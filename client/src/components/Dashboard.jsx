@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 function Dashboard() {
     const [user, setUser] = useState(null);
 
@@ -19,6 +20,7 @@ function Dashboard() {
 
     return (
         <div>
+           
             {user ? (
                 <>
                     <h1>Welcome, {user.name}</h1>
