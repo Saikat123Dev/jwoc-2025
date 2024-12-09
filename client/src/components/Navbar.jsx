@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 import { Home, Clock, Trophy, BookOpen, Briefcase, Menu, X } from "lucide-react";
-// Define the props interface for NavItem
-interface NavItemProps {
-  id: string;
-  label: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  isMobile?: boolean;
-}
 
 
 const NavbarDemo = () => {
-  const [hoveredItem, setHoveredItem] = useState<string|null>(null);
+  const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const NavItem: React.FC<NavItemProps> = ({ id, label, Icon, isMobile = false }) => (
+  const NavItem = ({ id, label, Icon, isMobile = false }) => (
     
     <div
       className={`relative ${!isMobile ? 'hidden lg:block' : ''}`}

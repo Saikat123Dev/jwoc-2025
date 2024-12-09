@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "./ui/button"
-import  NavbarDemo  from "./Navbar";
-import Footer from "./Footer";
+import { Button } from "../components/ui/button"
+import  NavbarDemo  from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Home() {
     const googleLogin = () => {
