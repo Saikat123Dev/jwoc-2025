@@ -6,25 +6,29 @@ import NavbarDemo from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Projects from "./pages/Projects.jsx";
 import LeaderBoard from "./pages/leaderboard.jsx";
+import MentorRegistration from "./components/MentorRegistration.jsx";
+import MenteeRegistration from "./components/MenteeRegistration.jsx";
+import AddProject from "./components/AddProject.jsx";
 
 
 function App() {
     return (
-        <div>
+        <div >
             <NavbarDemo />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/projects" element={<Projects/>}/>          
                 <Route path="/leaderboard" element={<LeaderBoard/>}/>
+                <Route path="/Mentor-registration" element={<MentorRegistration/>}/>
+                <Route path="/mentee-registration" element={<MenteeRegistration/>}/>
+                <Route path="/add-project" element={<AddProject/>}/>
             </Routes>  
         <Footer />
         </div>
        
 
-           
-       
-
+        
     );
 }
 
