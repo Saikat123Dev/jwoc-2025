@@ -1,0 +1,15 @@
+.project-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 
+      1px 1px 0px #2a5298, 
+      2px 2px 0px #1e3c72, 
+      3px 3px 0px #162d50, 
+      4px 4px 0px #0c1a33;
+    transform: rotateX(10deg) rotateY(-5deg);
+    perspective: 500px;
+  }
+  

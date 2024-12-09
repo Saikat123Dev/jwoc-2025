@@ -4,7 +4,7 @@ import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import NavbarDemo from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
-import Projects from "./pages/Projects.jsx";
+import Projects from "./pages/Projects/Projects.jsx";
 import LeaderBoard from "./pages/leaderboard.jsx";
 import MentorRegistration from "./components/MentorRegistration.jsx";
 import MenteeRegistration from "./components/MenteeRegistration.jsx";
@@ -16,8 +16,6 @@ function App() {
         <div >
             <NavbarDemo />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/projects" element={<Projects/>}/>          
                 <Route path="/leaderboard" element={<LeaderBoard/>}/>
                 <Route path="/Mentor-registration" element={<MentorRegistration/>}/>
@@ -26,9 +24,7 @@ function App() {
             </Routes>  
         <Footer />
         </div>
-       
 
-        
     );
 }
 

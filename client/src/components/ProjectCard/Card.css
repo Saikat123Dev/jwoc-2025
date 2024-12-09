@@ -1,0 +1,29 @@
+
+  
+  .card {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+  }
+  
+  .card-content {
+    padding: 20px;
+    text-align: center;
+    transform: translateZ(50px);
+  }
+  
+  .card h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card p {
+    font-size: 1rem;
+  }
