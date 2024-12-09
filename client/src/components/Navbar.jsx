@@ -14,7 +14,7 @@ const NavbarDemo = () => {
       onMouseLeave={() => setHoveredItem(null)}
     >
       <a 
-        href={`#${id}`} 
+        href={`${id}`} 
         className={`flex items-center space-x-3 px-4 py-2 group ${
           isMobile ? 'w-full' : ''
         }`}
@@ -36,7 +36,7 @@ const NavbarDemo = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-4 py-2">
+    <div className=" top-0 left-0 right-0 z-50 px-4 py-2">
       <div className="min-w-full mx-auto">
         <div className="mt-2 p-4 flex items-center justify-between rounded-2xl shadow-xl relative">
           {/* Logo Section */}
@@ -55,7 +55,7 @@ const NavbarDemo = () => {
                 <NavItem id="home" label="Home" Icon={Home} />
                 <NavItem id="timeline" label="Timeline" Icon={Clock} />
                 <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
-                <NavItem id="resources" label="Resources" Icon={BookOpen} />
+                <NavItem id="projects" label="Projects" Icon={BookOpen} />
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ const NavbarDemo = () => {
               <NavItem id="home" label="Home" Icon={Home} isMobile={true} />
               <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
               <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} isMobile={true} />
-              <NavItem id="resources" label="Resources" Icon={BookOpen} isMobile={true} />
+              <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
               <button 
                 className="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(false)}
