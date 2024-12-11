@@ -10,6 +10,7 @@ import MentorRegistration from "./components/MentorRegistration.jsx";
 import MenteeRegistration from "./components/MenteeRegistration.jsx";
 import AddProject from "./components/AddProject.jsx";
 
+import Starvideo from "./components/ui/Starvideo.jsx";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/Mentor-registration" element={<MentorRegistration/>}/>
                 <Route path="/mentee-registration" element={<MenteeRegistration/>}/>
                 <Route path="/add-project" element={<AddProject/>}/>
+                <Route path="/stars" element={<Starvideo/>}/>
             </Routes>  
         <Footer />
         </div>
