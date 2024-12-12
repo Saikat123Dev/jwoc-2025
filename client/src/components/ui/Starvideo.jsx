@@ -1,66 +1,69 @@
-import React, { useState, useEffect, useCallback } from "react";
-import star from "../../assets/videos/star.mp4"; // Background video
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import React, { useCallback, useEffect, useRef } from "react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import starVideo from "../../assets/videos/star.mp4";
 
-// Register ScrollTrigger with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 const BackgroundVideo = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  // Track scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const videoContainerRef = useRef(null);
+  const headingRef = useRef(null);
 
   const init = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
 
-  // GSAP animation for the heading with ScrollTrigger
   useEffect(() => {
+    // Create a ScrollTrigger to pin the video container
+    const pinTrigger = ScrollTrigger.create({
+      trigger: videoContainerRef.current,
+      start: "top top",
+      end: "+=100%", // Pin for the height of one viewport
+      pin: true,
+      pinSpacing: true,
+    });
+
+    // Animate the heading
     gsap.fromTo(
-      ".heading", // Targeting the class of the heading
+      headingRef.current,
       {
-        y: 200, // Start position off-screen
-        opacity: 0, // Start as invisible
-        scale: 0.8, // Start slightly smaller
+        y: 400, // Start position below
+        opacity: 0, // Start invisible
+        scale: 0.8, // Start smaller
       },
       {
-        y: 0, // Move to its final position
+        y: 0, // Move to final position
         opacity: 1, // Fade in
         scale: 1, // Scale to original size
-        duration: 2, // Duration of the animation
-        ease: "power4.out", // Smooth easing for a fluid effect
+        duration: 3,
+        ease: "power4.out",
         scrollTrigger: {
-          trigger: ".heading", // Trigger the animation when the element comes into view
-          start: "top 80%", // Start the animation when the top of the element reaches 80% of the viewport height
-          end: "bottom top", // End the animation when the bottom of the element reaches the top of the viewport
-          scrub: 0.5, // Scrub value to tie the animation directly to the scroll position (smooth)
-          markers: false, // Disable markers (can be enabled for debugging)
-          toggleActions: "play none none none", // Ensures the animation only plays when entering the viewport
+          trigger: headingRef.current,
+          start: "top 80%",
+          end: "bottom top",
+          scrub: 0.5,
+          markers: false,
         },
       }
     );
+
+    // Cleanup function
+    return () => {
+      pinTrigger.kill(); // Remove the ScrollTrigger when component unmounts
+    };
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div
+      ref={videoContainerRef}
+      className="relative h-screen w-full overflow-hidden"
+    >
       {/* Full-Screen Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
-        src={star}
+        src={starVideo}
         autoPlay
         loop
         muted
@@ -103,19 +106,29 @@ const BackgroundVideo = () => {
         />
       </div>
 
-      {/* Deer Image with Transparent Background */}
-      <div className="absolute bottom-0 w-full h-1/2 z-20">
+      {/* Deer Image Covering Full Screen */}
+      <div className="absolute bottom-0 w-full h-full z-20">
         <img
-          className="w-full h-full object-cover"
-          src="deer.webp" // Image with transparent background
+          className="w-full h-full object-contain object-bottom"
+          src="deer.webp"
           alt="Deer in Snow"
         />
       </div>
 
-      {/* Overlay Content with Parallax Heading */}
-      <div className="absolute top-0 left-0 w-full h-full z-30 flex items-center justify-center">
+      {/* Pine Tree Overlay in the Middle */}
+      {/* <div className="absolute bottom-0 w-full h-full z-30 flex items-center justify-center">
+        <img
+          className="w-1/2 max-w-[500px] object-contain"
+          src="pineTree.webp"
+          alt="Pine Tree"
+        />
+      </div> */}
+
+      {/* Overlay Content with Animated Heading */}
+      <div className="absolute top-0 left-0 w-full h-full z-40 flex items-center justify-center">
         <h1
-          className="heading text-white text-4xl md:text-6xl font-bold text-center"
+          ref={headingRef}
+          className="text-white text-4xl md:text-6xl font-bold text-center"
         >
           Welcome to Our Platform
         </h1>
