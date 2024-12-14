@@ -9,11 +9,14 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import LeaderBoard from "./pages/leaderboard.jsx";
+import NavbarDemo from "./components/Navbar.jsx";
+
+
 function App() {
 
     return (      
         <div >
-            {/* <NavbarDemo /> */}
+            <NavbarDemo />
             <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/dashboard" element={<Dashboard/>}/>
