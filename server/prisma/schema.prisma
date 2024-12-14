@@ -37,7 +37,7 @@ model Mentor {
   name                String?
   email               String    @unique
   googleId            String?   @unique
-  githubId            String?   @unique
+  githubId            String?  @unique
   isRegistered        Boolean   @default(false)
   phone               String?
   whatsapp            String?
