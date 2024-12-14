@@ -4,14 +4,14 @@ import { loadFull } from "tsparticles";
 import Card from "../../components/ProjectCard/Card";
 import "./Tagstyle.css";
 import SearchBar from "../../components/ProjectCard/SearchBar";
-import StarryNightBackground from "../Projects/Style"
+
 export default function Projects() {
     const init = useCallback(async (engine) => {
         await loadFull(engine);
     }, []);
     return (
-        <div className="gap-y-4   bg-gradient-to-br from-[#3B1578] to-[#B6116B] flex flex-col p-4">
-            <StarryNightBackground />
+        <div className="gap-y-4   flex flex-col p-4">
+          
             <Particles options={{
                 particles: {
                     color: {
