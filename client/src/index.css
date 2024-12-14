@@ -81,3 +81,12 @@ button:focus-visible {
     --radius: 0.5rem;
   }
 }
+@layer utilities {
+  .star-twinkle {
+    animation: twinkle 3s infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+}

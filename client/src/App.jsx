@@ -10,7 +10,8 @@ import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import LeaderBoard from "./pages/leaderboard.jsx";
 function App() {
-    return (
+
+    return (      
         <div >
             {/* <NavbarDemo /> */}
             <Routes>
