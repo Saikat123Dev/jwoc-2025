@@ -12,7 +12,7 @@ const SearchBar = () => {
     <div >
       <div className="" >
         <input
-        className="h-11  bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20  p-2"
+        className="h-11  bg-gradient-to-br from-white/20 to-white/10  p-2"
           type="text"
           value={query}
           onChange={handleChange}

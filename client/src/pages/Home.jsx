@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../components/ui/button";
+import ScrollLineAnimation from "../components/ui/ScrollLineAnimation/scrollLineAnimation.jsx";
 
 function Home() {
     const googleLogin = () => {
@@ -12,6 +13,8 @@ function Home() {
 
     return (
         <div className="flex flex-col min-h-screen min-w-full bg-slate-800">
+
+<ScrollLineAnimation />
 
         <main className="flex-grow">
           <h1>Welcome</h1>

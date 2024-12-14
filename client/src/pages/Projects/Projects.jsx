@@ -4,16 +4,14 @@ import { loadFull } from "tsparticles";
 import Card from "../../components/ProjectCard/Card";
 import "./Tagstyle.css";
 import SearchBar from "../../components/ProjectCard/SearchBar";
-import img from "../../assets/Snowstar.png"
+import StarryNightBackground from "../Projects/Style"
 export default function Projects() {
-
     const init = useCallback(async (engine) => {
         await loadFull(engine);
     }, []);
-
     return (
-        <div className="gap-y-4 bg-gradient-to-br from-[#3B1578] to-[#B6116B] flex flex-col p-4">
-
+        <div className="gap-y-4   bg-gradient-to-br from-[#3B1578] to-[#B6116B] flex flex-col p-4">
+            <StarryNightBackground />
             <Particles options={{
                 particles: {
                     color: {
@@ -43,24 +41,21 @@ export default function Projects() {
                     }
                 }
             }} init={init} />
-
-
-            <div className=" flex-col relative flex gap-y-3 items-center project-title  justify-center h-30">
-                <h1 className="text-white relative ">Projects</h1>
-                <div className="relative">
-                    <SearchBar />
+            <div className="my-[120px]">
+                <div className=" flex-col relative flex gap-y-3 items-center project-title  justify-center h-30">
+                    <h1 className="text-white relative ">Projects</h1>
+                    <div className="relative">
+                        <SearchBar />
+                    </div>
                 </div>
-            </div>
-            <div className="flex flex-wrap">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <div className="flex flex-wrap">
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
             </div>
         </div>
     );

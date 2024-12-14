@@ -110,6 +110,38 @@ router.get("/getAll", async (req, res) => {
     }
 });
 
+router.get("/getAllProjects", async (req, res) => {
+  try {
+    // Optional: Uncomment and use this block if authentication is required
+    // if (!req.isAuthenticated()) {
+    //     return res.status(401).json({ message: "Unauthorized request" });
+    // }
+
+    // Fetch all projects
+    const projects = await prisma.mentor.findMany();
+
+    // Handle case when no projects are found
+    if (projects.length === 0) {
+      return res.status(404).json({ message: "No projects found." });
+    }
+
+    // Respond with the fetched projects
+    return res.status(200).json({
+      message: "Projects retrieved successfully.",
+      projects,
+    });
+  } catch (error) {
+    console.error("Error fetching projects:", error.message);
+
+    // Return generic error response
+    return res.status(500).json({
+      message: "An error occurred while retrieving projects.",
+      error: error.message, // Optional: Expose error message for debugging
+    });
+  }
+});
+
+
 // PATCH: Update project details or toggle selection
 router.patch("/updateProject", async (req, res) => {
     try {
