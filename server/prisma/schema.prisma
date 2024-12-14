@@ -35,8 +35,10 @@ model Mentor {
   id                  String               @id @default(auto()) @map("_id") @db.ObjectId
   type                String               @default("Mentor")
   name                String?
+
   email               String               @unique
   isRegistered        Boolean              @default(false)
+
   phone               String?
   whatsapp            String?
   gender              String               @default("Prefer not to say")

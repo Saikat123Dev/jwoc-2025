@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import starVideo from "../../assets/videos/star.mp4";
-
+import AboutJWoC from "../AboutJWoc";
 gsap.registerPlugin(ScrollTrigger);
 
 const BackgroundVideo = () => {
@@ -56,6 +56,7 @@ const BackgroundVideo = () => {
   }, []);
 
   return (
+    <div>
     <div
       ref={videoContainerRef}
       className="relative h-screen w-full overflow-hidden"
@@ -134,6 +135,8 @@ const BackgroundVideo = () => {
           Welcome to Our Platform
         </h1>
       </div>
+    </div>
+  <div className="py-4 mr-4 ml-4"><AboutJWoC/></div>
     </div>
   );
 };
