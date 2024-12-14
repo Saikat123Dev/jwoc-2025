@@ -10,7 +10,8 @@ import LeaderBoard from "./pages/leaderboard.jsx";
 import Footer from "./components/Footer.jsx";
 import Starvideo from "./components/ui/Starvideo.jsx";
 function App() {
-    return (
+
+    return (      
         <div >
             <NavbarDemo />
             <Routes>
