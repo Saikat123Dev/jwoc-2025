@@ -30,10 +30,10 @@ export default function Projects() {
                         value: { min: 0.3, max: 1 }
                     },
                     shape: {
-                        type: "circle"
+                        type: "star"
                     },
                     size: {
-                        value: { min: 1, max: 5 }
+                        value: { min: 1, max: 3 }
                     },
                     move: {
                         direction: "bottom-right",
