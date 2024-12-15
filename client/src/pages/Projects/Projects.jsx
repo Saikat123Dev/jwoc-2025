@@ -1,11 +1,24 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback,useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import Card from "../../components/ProjectCard/Card";
 import "./Tagstyle.css";
+import axios from "axios";
 import SearchBar from "../../components/ProjectCard/SearchBar";
 
 export default function Projects() {
+    const [Data, setData] = useState();
+    useEffect(() => {
+        const fetch = async () => {
+            const response = await axios.get(
+                "http://localhost:5000/api/mentor/project/getAllProjects"
+            );
+           setData(response.data.projects)
+       console.log(response.data.projects)
+        }
+        fetch();
+    }
+        , [])
     const init = useCallback(async (engine) => {
         await loadFull(engine);
     }, []);
@@ -28,7 +41,7 @@ export default function Projects() {
                         value: { min: 0.3, max: 1 }
                     },
                     shape: {
-                        type: "star"
+                        type: "circle"
                     },
                     size: {
                         value: { min: 1, max: 3 }
@@ -48,13 +61,12 @@ export default function Projects() {
                         <SearchBar />
                     </div>
                 </div>
-                <div className="flex flex-wrap">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                <div className="flex flex-wrap justify-center ">
+                {Data && Data.map((items, i) => (
+                    <div key={i} >
+                        <Card data={items} />{""}
+                    </div>
+                ))}
                 </div>
             </div>
         </div>
