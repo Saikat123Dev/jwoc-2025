@@ -63,7 +63,7 @@ const ScrollLineAnimation = () => {
     <div>
       {/* <div className="black-section"></div> */}
 
-      <div className="line-container">
+      <div className="line-container mt-11">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 800 2600"

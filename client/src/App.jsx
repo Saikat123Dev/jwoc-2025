@@ -10,7 +10,7 @@ import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import   StarryNightBackground from "./pages/Projects/Style.jsx"
 import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
-
+import ScrollLineAnimation from "./components/ui/ScrollLineAnimation/scrollLineAnimation.jsx";
 // import Footer from "./components/Footer.jsx";
 // import Starvideo from "./components/ui/Starvideo.jsx";
 // import LeaderBoard from "./pages/leaderboard.jsx";
@@ -26,6 +26,7 @@ function App() {
             <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/timeline" element={<ScrollLineAnimation/>}/>
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/leaderboard" element={<LeaderBoard/>}/>
                 <Route path="/Mentor-registration" element={<MentorRegistration/>}/>

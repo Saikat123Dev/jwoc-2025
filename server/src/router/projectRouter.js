@@ -118,7 +118,7 @@ router.get("/getAllProjects", async (req, res) => {
     // }
 
     // Fetch all projects
-    const projects = await prisma.mentor.findMany();
+    const projects = await prisma.project.findMany();
 
     // Handle case when no projects are found
     if (projects.length === 0) {
