@@ -1,4 +1,4 @@
-import React, { useState, useCallback,useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import Card from "../../components/ProjectCard/Card";
@@ -7,66 +7,87 @@ import axios from "axios";
 import SearchBar from "../../components/ProjectCard/SearchBar";
 
 export default function Projects() {
-    const [Data, setData] = useState();
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+
     useEffect(() => {
-        const fetch = async () => {
-            const response = await axios.get(
-                "http://localhost:5000/api/mentor/project/getAllProjects"
-            );
-           setData(response.data.projects)
-       console.log(response.data.projects)
-        }
-        fetch();
-    }
-        , [])
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(
+                    "http://localhost:5000/api/mentor/project/getAllProjects"
+                );
+                setData(response.data.projects);
+                setFilteredData(response.data.projects);
+            } catch (error) {
+                console.error("Error fetching projects:", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const filtered = data.filter(project =>
+            project.projectName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredData(filtered);
+    }, [searchQuery, data]);
+
+    const handleSearch = (query) => {
+        setSearchQuery(query);
+    };
+
     const init = useCallback(async (engine) => {
         await loadFull(engine);
     }, []);
+
     return (
-        <div className="gap-y-4   flex flex-col p-4">
-          
-            <Particles options={{
-                particles: {
-                    color: {
-                        value: "#fff"
-                    },
-                    number: {
-                        value: 200,
-                        density: {
-                            enable: true,
-                            area: 800,
+        <div className="gap-y-4 flex flex-col p-4">
+            <Particles
+                options={{
+                    particles: {
+                        color: {
+                            value: "#fff"
                         },
-                    },
-                    opacity: {
-                        value: { min: 0.3, max: 1 }
-                    },
-                    shape: {
-                        type: "circle"
-                    },
-                    size: {
-                        value: { min: 1, max: 3 }
-                    },
-                    move: {
-                        direction: "bottom-right",
-                        enable: true,
-                        speed: { min: 3, max: 5 },
-                        straight: true
+                        number: {
+                            value: 200,
+                            density: {
+                                enable: true,
+                                area: 800,
+                            },
+                        },
+                        opacity: {
+                            value: { min: 0.3, max: 1 }
+                        },
+                        shape: {
+                            type: "circle"
+                        },
+                        size: {
+                            value: { min: 1, max: 3 }
+                        },
+                        move: {
+                            direction: "bottom-right",
+                            enable: true,
+                            speed: { min: 3, max: 5 },
+                            straight: true
+                        }
                     }
-                }
-            }} init={init} />
+                }}
+                init={init}
+            />
             <div className="my-[120px]">
-                <div className=" flex-col relative flex gap-y-3 items-center project-title  justify-center h-30">
-                    <h1 className="text-white relative ">Projects</h1>
+                <div className="flex-col relative flex gap-y-3 items-center project-title justify-center h-30">
+                    <h1 className="text-white relative">Projects</h1>
                     <div className="relative">
-                        <SearchBar />
+                        <SearchBar onSearch={handleSearch} />
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-center ">
-                {Data && Data.map((items, i) => (
-                    <div key={i} >
-                        <Card data={items} />{""}
-                    </div>
-                ))}
+                <div className="flex flex-wrap justify-center">
+                    {filteredData.map((items, i) => (
+                        <div key={i}>
+                            <Card data={items} />
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

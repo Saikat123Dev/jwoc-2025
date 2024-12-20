@@ -16,7 +16,7 @@ export default function Card({data}){
  
       setStyle({
         transform: `rotateY(${xPercent * 15}deg) rotateX(${-yPercent * 15}deg)`,
-        backgroundColor: 'rgba(27, 51, 95, 0.8)', 
+        backgroundColor: 'rgba(27, 51, 95, 1)'
       });
     };
  
@@ -25,6 +25,7 @@ export default function Card({data}){
        
         transform: "rotateY(0deg) rotateX(0deg)",
         transition: "transform 0.3s ease",
+        backgroundColor: 'rgba(27, 51, 95, 0.8)'
       });
     };
  
