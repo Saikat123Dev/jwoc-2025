@@ -12,8 +12,8 @@ export default function MentorRegistration() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-xl rounded-lg w-full max-w-4xl p-8">
+    <div className="min-h-screen flex items-center justify-center ">
+      <div className=" shadow-xl rounded-lg w-full max-w-4xl p-8">
         <h2 className="text-3xl font-semibold text-gray-800 mb-8 text-center">
           Complete Your Profile
         </h2>
