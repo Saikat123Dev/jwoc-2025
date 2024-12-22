@@ -32,7 +32,6 @@ export default function Card({data}){
     return (
       <div 
         className="card m-4" 
-     
         style={style} 
         onMouseMove={handleMouseMove} 
         onMouseLeave={handleMouseLeave}
@@ -77,8 +76,6 @@ export default function Card({data}){
               {data.projectTypes}
             </span>
           </div>
-
-          {/* Project Link */}
           <div style={{
             marginBottom: '10px'
           }}>
