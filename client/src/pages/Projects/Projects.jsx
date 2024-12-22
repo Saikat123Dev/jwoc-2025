@@ -5,12 +5,10 @@ import Card from "../../components/ProjectCard/Card";
 import "./Tagstyle.css";
 import axios from "axios";
 import SearchBar from "../../components/ProjectCard/SearchBar";
-
 export default function Projects() {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,7 +23,6 @@ export default function Projects() {
         };
         fetchData();
     }, []);
-
     useEffect(() => {
         const filtered = data.filter(project =>
             project.projectName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -78,11 +75,11 @@ export default function Projects() {
             <div className="my-[120px]">
                 <div className="flex-col relative flex gap-y-3 items-center project-title justify-center h-30">
                     <h1 className="text-white relative">Projects</h1>
-                    <div className="relative">
+                    <div className="relative mt-3">
                         <SearchBar onSearch={handleSearch} />
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-center">
+                <div className="flex flex-wrap mt-11 justify-center">
                     {filteredData.map((items, i) => (
                         <div key={i}>
                             <Card data={items} />

@@ -5,6 +5,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import starVideo from "../../assets/videos/star.mp4";
 import AboutJWoC from "../AboutJWoc";
+import InfinityCard from "../InfintyCard";
 gsap.registerPlugin(ScrollTrigger);
 
 const BackgroundVideo = () => {
@@ -137,6 +138,7 @@ const BackgroundVideo = () => {
       </div>
     </div>
   <div className="py-4 mr-4 ml-4"><AboutJWoC/></div>
+  <div className="py-4 mr-4 ml-4"><InfinityCard/></div>
     </div>
   );
 };
