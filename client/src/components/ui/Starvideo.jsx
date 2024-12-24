@@ -5,7 +5,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
-import ScrollLineAnimation from "./ScrollLineAnimation/scrollLineAnimation";
+import TimelineDemo from "../TimelineDemo";
 // import auroraVideo from "../../assets/videos/aurora.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -203,7 +203,7 @@ const Starvideo = () => {
   <div className="py-4 mr-4 ml-4"><AboutJWoC/></div>
   <div className="py-4 mr-4 ml-4"><InfinityCard/></div>
   <div>
-    <ScrollLineAnimation/>
+    <TimelineDemo/>
   </div>
   </div>
   );

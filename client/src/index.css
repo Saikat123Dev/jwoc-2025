@@ -226,3 +226,24 @@ button:focus-visible {
       0 0 60px #01579b;
   }
 }
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.animate-snowfall {
+  animation: snowfall linear infinite;
+}
+
+.content-card {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.timeline-line {
+  will-change: height;
+}
