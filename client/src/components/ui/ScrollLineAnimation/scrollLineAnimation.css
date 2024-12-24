@@ -7,7 +7,6 @@ body {
   position: relative;
   height: 1500px;
   width: 100%;
-  background: black;
   overflow: hidden;
   padding-top: 5rem;
 }
@@ -37,7 +36,7 @@ svg {
 
 text {
   font-size: 45px;
-  font-weight: 80; 
+  font-weight: 80;
   fill: rgb(6, 224, 10);
 }
 

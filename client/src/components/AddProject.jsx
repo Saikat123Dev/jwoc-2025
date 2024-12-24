@@ -1,16 +1,14 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useCallback, useState } from 'react';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+const AddProject = () => {
+  const [projectSections, setProjectSections] = useState([1]);
+  const [focusedField, setFocusedField] = useState(null);
 
-export default function AddProject() {
-  const [projectSections, setProjectSections] = useState([1]); // Tracks project sections
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log("Project Data Submitted: ", data);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("Project Data Submitted");
   };
 
   const addProjectSection = () => {
@@ -19,131 +17,196 @@ export default function AddProject() {
     }
   };
 
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const sectionVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        staggerChildren: 0.1
+      }
+    },
+    exit: {
+      opacity: 0,
+      x: 20,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const fieldVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const formFields = [
+    { name: 'projectName', label: 'Project Name:', required: true },
+    { name: 'projectLink', label: 'Project Link:', required: false },
+    { name: 'github', label: 'GitHub Link:', required: true },
+    { name: 'projectTypes', label: 'Project Type:', required: true },
+    { name: 'details', label: 'Project Details:', required: false, type: 'textarea' },
+    { name: 'completionDate', label: 'Completion Date:', required: false, type: 'date' }
+  ];
+  const init = useCallback(async (engine) => {
+    await loadFull(engine);
+}, []);
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-lg rounded-lg w-full max-w-4xl p-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Add New Projects
-        </h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {projectSections.map((section, index) => (
-            <div key={index} className="space-y-4 border-t pt-4">
-              <h3 className="text-lg font-medium text-gray-700">
-                Project {section}
-              </h3>
+    <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
+ <Particles
+                options={{
+                    particles: {
+                        color: {
+                            value: "#fff"
+                        },
+                        number: {
+                            value: 100,
+                            density: {
+                                enable: true,
+                                area: 800,
+                            },
+                        },
+                        opacity: {
+                            value: { min: 0.3, max: 1 }
+                        },
+                        shape: {
+                            type: "circle"
+                        },
+                        size: {
+                            value: { min: 1, max: 3 }
+                        },
+                        move: {
+                            direction: "bottom-right",
+                            enable: true,
+                            speed: { min: 1, max: 5 },
+                            straight: true
+                        }
+                    }
+                }}
+                init={init}
+            />
+      <motion.div
+        className="w-full max-w-3xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
 
-              {/* Project Name */}
-              <div>
-                <label className="text-gray-700 font-medium">Project Name:</label>
-                <input
-                  {...register(`projects[${index}].projectName`, {
-                    required: "Project name is required",
-                  })}
-                  className="mt-2 border border-gray-300 bg-gray-50 text-gray-700 rounded-lg w-full p-3 focus:ring-2 focus:ring-indigo-400 outline-none"
-                  placeholder="Enter project name"
-                />
-                {errors.projects?.[index]?.projectName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.projects[index].projectName.message}
-                  </p>
-                )}
-              </div>
+        <motion.h2
+          className="text-3xl font-bold text-white mb-6 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Add New Project
+        </motion.h2>
 
-              {/* Project Link */}
-              <div>
-                <label className="text-gray-700 font-medium">Project Link:</label>
-                <input
-                  {...register(`projects[${index}].projectLink`)}
-                  className="mt-2 border border-gray-300 bg-gray-50 text-gray-700 rounded-lg w-full p-3 focus:ring-2 focus:ring-indigo-400 outline-none"
-                  placeholder="Enter Project link (optional)"
-                />
-              </div>
+        <form onSubmit={onSubmit} className="space-y-6">
+          <AnimatePresence mode="wait">
+            {projectSections.map((section, sectionIndex) => (
+              <motion.div
+                key={section}
+                className="space-y-4 border-b border-gray-500 pb-6"
+                variants={sectionVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              >
+                <motion.h3
+                  className="text-lg font-semibold text-white"
+                  variants={fieldVariants}
+                >
+                  Project {section}
+                </motion.h3>
 
-              {/* GitHub Link */}
-              <div>
-                <label className="text-gray-700 font-medium">GitHub Link:</label>
-                <input
-                  {...register(`projects[${index}].github`, {
-                    required: "GitHub link is required",
-                  })}
-                  className="mt-2 border border-gray-300 bg-gray-50 text-gray-700 rounded-lg w-full p-3 focus:ring-2 focus:ring-indigo-400 outline-none"
-                  placeholder="Enter GitHub link"
-                />
-                {errors.projects?.[index]?.github && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.projects[index].github.message}
-                  </p>
-                )}
-              </div>
+                {formFields.map((field, fieldIndex) => (
+                  <motion.div
+                    key={field.name}
+                    variants={fieldVariants}
+                    className="space-y-2"
+                  >
+                    <label className="text-white font-medium">{field.label}</label>
+                    {field.type === 'textarea' ? (
+                      <motion.textarea
+                        name={`projects[${sectionIndex}].${field.name}`}
+                        className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder={`Enter ${field.label.toLowerCase().replace(':', '')}`}
+                        whileFocus={{
+                          scale: 1.01,
+                          transition: { duration: 0.2 }
+                        }}
+                        onFocus={() => setFocusedField(`${sectionIndex}-${field.name}`)}
+                        onBlur={() => setFocusedField(null)}
+                      />
+                    ) : (
+                      <motion.input
+                        type={field.type || 'text'}
+                        name={`projects[${sectionIndex}].${field.name}`}
+                        className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder={`Enter ${field.label.toLowerCase().replace(':', '')}`}
+                        required={field.required}
+                        whileFocus={{
+                          scale: 1.01,
+                          transition: { duration: 0.2 }
+                        }}
+                        onFocus={() => setFocusedField(`${sectionIndex}-${field.name}`)}
+                        onBlur={() => setFocusedField(null)}
+                      />
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
 
-              {/* Project Type */}
-              <div>
-                <label className="text-gray-700 font-medium">Project Type:</label>
-                <input
-                  {...register(`projects[${index}].projectTypes`, {
-                    required: "Project type is required",
-                  })}
-                  className="mt-2 border border-gray-300 bg-gray-50 text-gray-700 rounded-lg w-full p-3 focus:ring-2 focus:ring-indigo-400 outline-none"
-                  placeholder="Enter project type"
-                />
-                {errors.projects?.[index]?.projectTypes && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.projects[index].projectTypes.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Video Link */}
-              <div>
-                <label className="text-gray-700 font-medium">Video Link:</label>
-                <input
-                  {...register(`projects[${index}].videolink`)}
-                  className="mt-2 border border-gray-300 bg-gray-50 text-gray-700 rounded-lg w-full p-3 focus:ring-2 focus:ring-indigo-400 outline-none"
-                  placeholder="Enter video link (optional)"
-                />
-              </div>
-
-              {/* Project Description */}
-              <div>
-                <label className="text-gray-700 font-medium">Project Description:</label>
-                <textarea
-                  {...register(`projects[${index}].projectDescription`, {
-                    required: "Project description is required",
-                  })}
-                  className="mt-2 border border-gray-300 bg-gray-50 text-gray-700 rounded-lg w-full p-3 focus:ring-2 focus:ring-indigo-400 outline-none"
-                  placeholder="Enter project description"
-                ></textarea>
-                {errors.projects?.[index]?.projectDescription && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.projects[index].projectDescription.message}
-                  </p>
-                )}
-              </div>
-            </div>
-          ))}
-
-          {/* Add More Button */}
           {projectSections.length < 3 && (
-            <button
+            <motion.button
               type="button"
               onClick={addProjectSection}
-              className="w-full bg-gray-200 text-gray-800 py-3 rounded-lg font-medium hover:bg-gray-300 transition"
+              className="w-full bg-gray-800 text-white py-3 rounded-lg font-medium hover:bg-gray-700 transition"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
             >
               Add More
-            </button>
+            </motion.button>
           )}
 
-          {/* Submit Button */}
-          <button
+          <motion.button
             type="submit"
             className="w-full bg-indigo-500 text-white py-3 rounded-lg font-medium hover:bg-indigo-600 transition"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
-            {projectSections.length === 1
-              ? "Submit Project"
-              : "Submit All Projects"}
-          </button>
+            {projectSections.length === 1 ? "Submit Project" : "Submit All Projects"}
+          </motion.button>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
-}
+};
+
+export default AddProject;
