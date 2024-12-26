@@ -1,5 +1,5 @@
 import React from "react";
-import { Timeline } from "./ui/Timeline";
+import Timeline from "./ui/Timeline";
 
 export function TimelineDemo() {
   const data = [
@@ -61,10 +61,8 @@ export function TimelineDemo() {
   ];
 
   return (
-    <div className="w-full h-full min-h-screen ">
+    <div className="w-full pl-10 ml-10 pr-20 mr-20 h-full min-h-screen ">
       <Timeline data={data} />
     </div>
   );
 }
-
-export default TimelineDemo;

@@ -5,7 +5,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
-import TimelineDemo from "../TimelineDemo";
+import { TimelineDemo } from "../TimelineDemo";
 // import auroraVideo from "../../assets/videos/aurora.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
