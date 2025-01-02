@@ -1,30 +1,73 @@
+import { Github } from "lucide-react";
 import React from "react";
-import { Button } from "../components/ui/button";
-import ScrollLineAnimation from "../components/ui/ScrollLineAnimation/scrollLineAnimation.jsx";
 
-function Home() {
-    const googleLogin = () => {
-        window.location.href = "http://localhost:5000/auth/google";
-    };
+const GoogleIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 48 48"
+    className="mr-2 h-5 w-5"
+  >
+    <path
+      fill="#EA4335"
+      d="M24 9.5c3.54 0 6.74 1.22 9.24 3.24l6.92-6.92C36.21 2.15 30.45 0 24 0 14.94 0 7.16 5.14 3.29 12.65l7.94 6.19C13.08 13.21 18.12 9.5 24 9.5z"
+    />
+    <path
+      fill="#34A853"
+      d="M46.26 24.64c0-1.77-.16-3.48-.45-5.13H24v9.7h12.6c-.54 2.9-2.17 5.37-4.63 7.03l7.3 5.69c4.28-3.94 6.99-9.74 6.99-16.29z"
+    />
+    <path
+      fill="#4A90E2"
+      d="M24 48c6.48 0 11.93-2.15 15.9-5.83l-7.3-5.69c-2.01 1.35-4.57 2.15-8.6 2.15-6.62 0-12.22-4.4-14.24-10.34l-8.09 6.21C6.08 42.9 14.59 48 24 48z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M3.71 12.65C1.9 15.69 1 19.17 1 22.8c0 3.63.9 7.11 2.71 10.15l8.09-6.21c-.93-2.79-.93-5.92 0-8.71L3.71 12.65z"
+    />
+  </svg>
+);
 
-    const githubLogin = () => {
-        window.location.href = "http://localhost:5000/auth/github";
-    };
+const Home = () => {
+  const googleLogin = () => {
+    window.location.href = "http://localhost:5000/auth/google";
+  };
 
-    return (
-        <div className="flex flex-col min-h-screen min-w-full bg-slate-800">
+  const githubLogin = () => {
+    window.location.href = "http://localhost:5000/auth/github";
+  };
 
-<ScrollLineAnimation />
+  return (
+    <div className="min-h-screen flex flex-col">
+      <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md space-y-8">
+          <h2 className="text-center text-2xl font-bold text-gray-800">
+            Welcome Back
+          </h2>
+          <p className="text-center text-gray-600">
+            Sign in to your account to continue
+          </p>
 
-        <main className="flex-grow">
-          <h1>Welcome</h1>
-          <Button>Click me</Button>
-          <button onClick={googleLogin}>Login with Google</button>
-          <button onClick={githubLogin}>Login with GitHub</button>
-        </main>
+          {/* Buttons */}
+          <div className="space-y-4">
+            <button
+              onClick={googleLogin}
+              className="group w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <GoogleIcon />
+              Login with Google
+            </button>
 
-      </div>
-    );
-}
+            <button
+              onClick={githubLogin}
+              className="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <Github className="mr-2 h-5 w-5" />
+              Login with GitHub
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
 
 export default Home;
