@@ -6,6 +6,7 @@ import { loadFull } from "tsparticles";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
+import { Link } from "react-router-dom";
 // import auroraVideo from "../../assets/videos/aurora.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -190,16 +191,14 @@ const Starvideo = () => {
   Welcome to a month of open-source
 </h1>
 
-      <button
-      onClick={()=>{
-        window.location.href="/registrationcard"
-      }}
-        ref={buttonRef}
+      <Link
+        to="/registrationcard"
         className="relative px-8 py-4 bg-gradient-to-r from-blue-600/80 to-indigo-700/80 text-white font-semibold text-lg rounded-lg shadow-lg transform transition-all duration-300
                     hover:scale-105 hover:shadow-indigo-500/50 group flex items-center justify-center overflow-hidden glowing-button"
       >
-        <span className="relative z-10">Register Now</span>
-      </button>
+      Register Now
+      </Link>
+
     </div>
 
   </div>
