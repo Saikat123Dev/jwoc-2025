@@ -11,13 +11,10 @@ export const TypewriterEffect = ({
 }) => {
   const [showCursor, setShowCursor] = useState(true);
 
-  // split text inside of words into array of characters
-  const wordsArray = words.map((word) => {
-    return {
-      ...word,
-      text: word.text.split(" "),
-    };
-  });
+  const wordsArray = words.map((word) => ({
+    ...word,
+    text: word.text.split(""), // Split into characters
+  }));
 
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope);
@@ -28,72 +25,71 @@ export const TypewriterEffect = ({
         "span",
         {
           display: "inline-block",
-          opacity: 1,
-          width: "fit-content",
+          opacity: [0, 1],
+          y: [20, 0],
+          scale: [0.8, 1],
         },
         {
-          duration: 0.3,
-          delay: stagger(0.1),
-          ease: "easeInOut",
+          duration: 0.5,
+          delay: stagger(0.08),
+          ease: [0.25, 1, 0.5, 1],
         }
       ).then(() => {
-        // Hide cursor after the animation finishes
         setShowCursor(false);
       });
     }
-  }, [isInView]);
+  }, [isInView, animate]);
 
-  const renderWords = () => {
-    return (
-      <motion.div ref={scope} className="inline">
-        {wordsArray.map((word, idx) => {
-          return (
-            <div key={`word-${idx}`} className="inline-block">
-              {word.text.map((char, index) => (
-                <motion.span
-                  initial={{}}
-                  key={`char-${index}`}
-                  className={cn(
-                    `dark:text-white text-black opacity-0 hidden`,
-                    word.className
-                  )}
-                >
-                  {char}
-                </motion.span>
-              ))}
-            </div>
-          );
-        })}
-      </motion.div>
-    );
-  };
+  const renderWords = () => (
+    <motion.div ref={scope} className="inline">
+      {wordsArray.map((word, idx) => (
+        <div key={`word-${idx}`} className="inline-block">
+          {word.text.map((char, index) => (
+            <motion.span
+              initial={{ opacity: 0, y: 20, scale: 0.8 }}
+              key={`char-${index}`}
+              className={cn(
+                "dark:text-white text-black font-semibold opacity-0 hidden transition-colors duration-300 hover:text-blue-500 hover:scale-110",
+                word.className
+              )}
+            >
+              {char}
+            </motion.span>
+          ))}
+          {idx < wordsArray.length - 1 && (
+            <span className="inline-block mr-1">&nbsp;</span>
+          )}
+        </div>
+      ))}
+    </motion.div>
+  );
 
   return (
     <div
       className={cn(
-        "text-base sm:text-xl md:text-3xl lg:text-5xl font-bold text-center my-2",
+        "text-lg sm:text-2xl md:text-4xl lg:text-6xl font-extrabold text-center my-4 leading-tight tracking-wide",
         className
       )}
     >
       {renderWords()}
       {showCursor && (
         <motion.span
-          initial={{
-            opacity: 0,
-          }}
+          initial={{ opacity: 0, height: 0 }}
           animate={{
-            opacity: 1,
+            opacity: [0, 1],
+            height: ["0%", "100%"],
           }}
           transition={{
             duration: 0.8,
             repeat: Infinity,
             repeatType: "reverse",
+            ease: "easeInOut",
           }}
           className={cn(
-            "inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-blue-500",
+            "inline-block rounded-sm w-[4px] h-5 md:h-8 lg:h-12 bg-gradient-to-r from-blue-400 to-blue-600 animate-pulse",
             cursorClassName
           )}
-        ></motion.span>
+        />
       )}
     </div>
   );
@@ -105,73 +101,99 @@ export const TypewriterEffectSmooth = ({
   cursorClassName,
 }) => {
   const [showCursor, setShowCursor] = useState(true);
+  const [animationComplete, setAnimationComplete] = useState(false);
 
-  // split text inside of words into array of characters
-  const wordsArray = words.map((word) => {
-    return {
-      ...word,
-      text: word.text.split(" "),
-    };
-  });
+  const wordsArray = words.map((word) => ({
+    ...word,
+    text: word.text.split(""), // Split into characters
+  }));
 
-  const renderWords = () => {
-    return (
-      <div>
-        {wordsArray.map((word, idx) => {
-          return (
-            <div key={`word-${idx}`} className="inline-block">
-              {word.text.map((char, index) => (
-                <span
-                  key={`char-${index}`}
-                  className={cn(`dark:text-white text-black `, word.className)}
-                >
-                  {char}
-                </span>
-              ))}
-            </div>
-          );
-        })}
-      </div>
-    );
+  const containerVariants = {
+    hidden: { width: "0%" },
+    visible: {
+      width: "fit-content",
+      transition: {
+        duration: 2,
+        ease: [0.25, 1, 0.5, 1],
+        delay: 0.3,
+      },
+    },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 1, 0.5, 1],
+      },
+    },
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowCursor(false), 3000); // Adjust timing as needed
+    const timer = setTimeout(() => {
+      setShowCursor(false);
+      setAnimationComplete(true);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
+  const renderWords = () => (
+    <div>
+      {wordsArray.map((word, idx) => (
+        <motion.div
+          key={`word-${idx}`}
+          className="inline-block"
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: idx * 0.15 }}
+        >
+          {word.text.map((char, index) => (
+            <span
+              key={`char-${index}`}
+              className={cn(
+                "dark:text-white text-black font-medium transition-colors duration-300 hover:text-purple-500 hover:scale-110",
+                word.className,
+                animationComplete && "hover:text-blue-500 dark:hover:text-blue-400"
+              )}
+            >
+              {char}
+            </span>
+          ))}
+          {idx < wordsArray.length - 1 && (
+            <span className="inline-block mr-1">&nbsp;</span>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  );
+
   return (
-    <div className={cn("flex space-x-1 my-2", className)}>
+    <div className={cn("flex space-x-2 my-4", className)}>
       <motion.div
-        className="overflow-hidden pb-1"
-        initial={{
-          width: "0%",
-        }}
-        whileInView={{
-          width: "fit-content",
-        }}
-        transition={{
-          duration: 2,
-          ease: "linear",
-          delay: 1,
-        }}
+        className="overflow-hidden pb-2"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
         <div
-          className="text-xs sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold"
+          className="text-sm sm:text-lg md:text-2xl lg:text-4xl xl:text-5xl font-bold tracking-wide"
           style={{
             whiteSpace: "nowrap",
           }}
         >
-          {renderWords()}{" "}
-        </div>{" "}
+          {renderWords()}
+        </div>
       </motion.div>
       {showCursor && (
         <motion.span
-          initial={{
-            opacity: 0,
-          }}
+          initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: 1,
+            opacity: [0, 1],
+            scale: [0.8, 1],
           }}
           transition={{
             duration: 0.8,
@@ -179,10 +201,10 @@ export const TypewriterEffectSmooth = ({
             repeatType: "reverse",
           }}
           className={cn(
-            "block rounded-sm w-[4px] h-4 sm:h-6 xl:h-12 bg-blue-500",
+            "block rounded-sm w-[4px] h-5 sm:h-8 xl:h-12 bg-gradient-to-r from-purple-400 to-purple-600 shadow-lg animate-pulse shadow-purple-500/50",
             cursorClassName
           )}
-        ></motion.span>
+        />
       )}
     </div>
   );
