@@ -247,3 +247,30 @@ button:focus-visible {
 .timeline-line {
   will-change: height;
 }
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0.5;
+  }
+}
+
+.star-twinkle {
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+.snow-fall {
+  animation: fall linear infinite;
+}

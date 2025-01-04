@@ -1,14 +1,13 @@
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useCallback, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
-import { Link } from "react-router-dom";
 // import auroraVideo from "../../assets/videos/aurora.mp4";
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Starvideo = () => {
@@ -111,27 +110,54 @@ const Starvideo = () => {
 
     return () => {
       // Cleanup all ScrollTrigger instances
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
     <div>
-    <div
-    ref={videoContainerRef}
-    className="relative h-screen w-full overflow-hidden"
-  >
-    {/* Snowfall Particles */}
-   {/* Pine Image with Glow */}
-<div className="absolute bottom-10 left-10 w-40 z-20">
-  <img
-    className="w-full h-auto object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
-    src="pine.png"
-    alt="Pine"
-  />
-</div>
+      <div ref={videoContainerRef} className="relative h-screen w-full overflow-hidden">
+        <audio src="jingle.mp3" controls autoPlay />
 
-    <div className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none">
+        {/* Aurora Video Background */}
+
+
+        {/* Snow Video Overlay */}
+        <div className="absolute top-0 left-0 w-full h-full z-10">
+        <video
+  className="w-full h-full object-cover glow-effect transform smooth-video"
+  src="snow.webm"
+  autoPlay
+  loop
+  muted
+  playsInline
+/>
+
+        </div>
+
+        {/* Content Wrapper */}
+        <div
+          ref={contentRef}
+          className="absolute top-0 left-0 w-full h-full z-40 flex flex-col items-center justify-center"
+        >
+          <h1
+            ref={headingRef}
+            className="text-4xl md:text-6xl font-bold text-center text-white mb-8 glowing-text"
+          >
+            Welcome to a month of open-source
+          </h1>
+
+          <Link
+            to="/registrationcard"
+            className="relative px-8 py-4 bg-gradient-to-r from-blue-600/80 to-indigo-700/80 text-white font-semibold text-lg rounded-lg shadow-lg transform transition-all duration-300
+                    hover:scale-105 hover:shadow-indigo-500/50 group flex items-center justify-center overflow-hidden glowing-button"
+          >
+            Register Now
+          </Link>
+        </div>
+      </div>
+
+      {/* Snowfall Particles */}
       <Particles
         options={{
           particles: {
@@ -164,50 +190,19 @@ const Starvideo = () => {
         }}
         init={init}
       />
-    </div>
-
-    {/* Pine Image with Glow */}
 
 
-    {/* Deer Image with Parallax */}
-    <div className="absolute bottom-0 w-full h-full z-20">
-  <img
-    className="w-full h-full object-contain object-bottom glow-effect transform"
-    src="deer.webp"
-    alt="Deer in Snow"
-  />
-</div>
-
-
-    {/* Content Wrapper */}
-    <div
-      ref={contentRef}
-      className="absolute top-0 left-0 w-full h-full z-40 flex flex-col items-center justify-center"
-    >
-     <h1
-  ref={headingRef}
-  className="text-4xl md:text-6xl font-bold text-center text-white mb-8 glowing-text"
->
-  Welcome to a month of open-source
-</h1>
-
-      <Link
-        to="/registrationcard"
-        className="relative px-8 py-4 bg-gradient-to-r from-blue-600/80 to-indigo-700/80 text-white font-semibold text-lg rounded-lg shadow-lg transform transition-all duration-300
-                    hover:scale-105 hover:shadow-indigo-500/50 group flex items-center justify-center overflow-hidden glowing-button"
-      >
-      Register Now
-      </Link>
+      <div className="py-4 mr-4 ml-4">
+        <AboutJWoC />
+      </div>
+      <div className="py-4 mr-4 ml-4">
+        <InfinityCard />
+      </div>
+      <div>
+        <TimelineDemo />
+      </div>
 
     </div>
-
-  </div>
-  <div className="py-4 mr-4 ml-4"><AboutJWoC/></div>
-  <div className="py-4 mr-4 ml-4"><InfinityCard/></div>
-  <div>
-    <TimelineDemo/>
-  </div>
-  </div>
   );
 };
 
