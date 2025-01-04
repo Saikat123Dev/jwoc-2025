@@ -71,7 +71,7 @@ const RegistrationCards = () => {
               ))}
             </ul>
 
-            <Link to="/mentee" className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-lg flex items-center justify-center group-hover:opacity-90 transition-opacity">
+            <Link to="/mentor" className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-lg flex items-center justify-center group-hover:opacity-90 transition-opacity">
               Register Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

@@ -18,10 +18,9 @@ model Mentee {
   ipAddress   String?
   ipDetails   Json?
   college     String
-  year        Int
+  year        String
   github      String
   linkedIn    String
-  isFirstTime Boolean
   question1   String   @default("What inspired you to join?")
   answer1     String
   isBanned    Boolean  @default(false)
@@ -32,12 +31,12 @@ model Mentee {
 }
 
 model Mentor {
-  id                  String               @id @default(auto()) @map("_id") @db.ObjectId
-  type                String               @default("Mentor")
-  name                String?
+  id   String  @id @default(auto()) @map("_id") @db.ObjectId
+  type String  @default("Mentor")
+  name String?
 
-  email               String               @unique
-  isRegistered        Boolean              @default(false)
+  email        String  @unique
+  isRegistered Boolean @default(false)
 
   phone               String?
   whatsapp            String?

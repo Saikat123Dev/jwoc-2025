@@ -32,7 +32,6 @@ router.post("/register", async (req, res) => {
                 email,
                 phone,
                 whatsapp,
-
                 college,
                 year,
                 github,

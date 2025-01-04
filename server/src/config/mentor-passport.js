@@ -67,7 +67,7 @@ async function handleOAuthLogin(profile, provider, accessToken, refreshToken) {
         },
       });
     } else {
-      // Update tokens for existing OAuth account
+
       await prisma.mentorOAuthAccount.update({
         where: { id: oauthAccount.id },
         data: { accessToken, refreshToken },

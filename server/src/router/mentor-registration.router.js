@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 router.post("/registerMentor", async (req, res) => {
     try {
         const {
-            id,
+             id,
             name,
             phone,
             whatsapp,
@@ -18,10 +18,8 @@ router.post("/registerMentor", async (req, res) => {
             answer1,
             answer2,
         } = req.body;
-        // if (!req.isAuthenticated()) {
-        //     return res.status(401).json({ message: "Unauthorized request" });
-        // }
-        if (!id || !name || !college || !year || !answer1 || !answer2) {
+
+        if (!name || !college || !year || !answer1 || !answer2) {
             return res.status(400).json({ message: "All required fields must be provided." });
         }
 
@@ -43,6 +41,7 @@ router.post("/registerMentor", async (req, res) => {
                      phone,
                     whatsapp,
                     ipAddress,
+                    isRegistered:true,
                     college,
                     year: mentorYear,
                     githubLink,

@@ -1,26 +1,69 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-
 export default function MentorRegistration() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
   const [focusedField, setFocusedField] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const init = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
 
-  function onSubmit(data) {
-    console.log("Submitting the form", data);
+  async function onSubmit(data) {
+    setIsSubmitting(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    try {
+      // Retrieve mentorId from localStorage
+      const id = localStorage.getItem('mentorId');
+      if (!id) {
+        throw new Error('Mentor ID not found in localStorage');
+      }
+
+      // Add mentorId to the form data
+      const payload = { ...data, id };
+
+      const response = await fetch('http://localhost:5000/api/mentor/registerMentor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Registration failed');
+      }
+
+      const result = await response.json();
+      setSubmitSuccess(true);
+      reset();
+      localStorage.setItem('isProfileComplete',true);
+      console.log('Registration successful:', result);
+      navigate('/dashboard');
+    } catch (error) {
+      setSubmitError(error.message || 'An error occurred during registration');
+      console.error('Registration error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
-  // Animation variants
+
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -77,7 +120,7 @@ export default function MentorRegistration() {
         }}
         init={init}
       />
-      
+
       <motion.div
         className="w-full max-w-4xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg"
         variants={containerVariants}
@@ -92,6 +135,30 @@ export default function MentorRegistration() {
         >
           Complete Your Profile
         </motion.h2>
+
+        <AnimatePresence>
+          {submitError && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="bg-red-500 bg-opacity-20 text-red-100 p-4 rounded-lg mb-6"
+            >
+              {submitError}
+            </motion.div>
+          )}
+
+          {submitSuccess && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="bg-green-500 bg-opacity-20 text-green-100 p-4 rounded-lg mb-6"
+            >
+              Registration successful! Thank you for applying to be a mentor.
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Name */}
@@ -268,14 +335,27 @@ export default function MentorRegistration() {
           {/* Submit Button */}
           <motion.button
             type="submit"
-            className="w-full bg-indigo-500 text-white py-3 rounded-lg font-medium hover:bg-indigo-600 transition"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className={`w-full bg-indigo-500 text-white py-3 rounded-lg font-medium transition ${
+              isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-indigo-600'
+            }`}
+            whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+            whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.2 }}
+            disabled={isSubmitting}
           >
-            Submit
+            {isSubmitting ? (
+              <div className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Submitting...
+              </div>
+            ) : (
+              'Submit'
+            )}
           </motion.button>
         </form>
       </motion.div>
