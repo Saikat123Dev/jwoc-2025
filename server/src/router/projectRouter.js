@@ -8,64 +8,72 @@ const prisma = new PrismaClient();
 
 router.post("/addProject", async (req, res) => {
     try {
-        const {
-            projectName,
-            projectLink,
-            projectDescription,
-            projectTypes,
-            projectTags,
-            videoLink,
-            mentorId,
-        } = req.body;
+        const { projects } = req.body;
+        const mentorId = req.body.projects[0].projectOwnerId;
 
-
-
+  
         const mentor = await prisma.mentor.findUnique({
             where: { id: mentorId },
-
         });
 
-// Check if mentor exists
         if (!mentor) {
             return res.status(400).json({ message: "Mentor couldn't be found" });
         }
 
-// Increment projectNumber and update mentor
+       
+        const existingProjects = await prisma.project.count({
+            where: { projectOwnerId: mentorId }
+        });
+
+        if (existingProjects + projects.length > 3) {
+            return res.status(400).json({
+                message: "Mentor can't have more than 3 projects in total",
+            });
+        }
+
+        // Validate tags array for each project
+        for (const project of projects) {
+            if (!Array.isArray(project.projectTags)) {
+                return res.status(400).json({
+                    message: "Project tags must be an array",
+                });
+            }
+        }
+
+        // Create new projects in a transaction
+        const createdProjects = await prisma.$transaction(
+            projects.map((project) =>
+                prisma.project.create({
+                    data: {
+                        projectName: project.projectName,
+                        projectLink: project.projectLink,
+                        projectDescription: project.projectDescription,
+                        projectTypes: project.projectTypes,
+                        projectTags: project.projectTags, // Now this is already an array
+                        GitHubLink: project. GitHubLink,
+                        projectOwnerId: mentorId,
+                    },
+                })
+            )
+        );
+
+      
         await prisma.mentor.update({
             where: { id: mentorId },
             data: {
-                projectNumber: mentor.projectNumber + 1, // Increment the project number
+                projectNumber: existingProjects + projects.length,
             },
         });
 
-
-
-
-        // Create a new project
-        const project = await prisma.project.create({
-            data: {
-                projectName,
-                projectLink,
-                projectDescription,
-                projectTypes,
-                projectTags,
-                videoLink,
-                projectOwnerId: mentorId,
-            },
-        });
-        if (mentor.projectNumber>3) {
-            return res.status(400).json({
-                message: "Mentor has already registered 3 projects",
-            });
-        }
         res.status(201).json({
-            message: "Project uploaded successfully.",
-            project,
+            message: "Projects uploaded successfully.",
+            projects: createdProjects,
         });
     } catch (error) {
-        console.error("Error uploading project:", error);
+        console.error("Error uploading projects:", error);
         res.status(500).json({
-            message: "An error occurred while uploading the project.",
+            message: "An error occurred while uploading the projects.",
+            error: error.message
         });
     }
 });
