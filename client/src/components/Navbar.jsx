@@ -41,16 +41,18 @@ const NavbarDemo = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-4 py-2">
-      <div className="min-w-full mx-auto">
-        <div className="mt-2 p-4 flex items-center justify-between rounded-2xl relative">
-          {/* Logo Section */}
-          <div className="flex items-center group cursor-pointer">
-            <a href="/" className="flex items-center">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-6 rounded-xl text-xl shadow-lg group-hover:shadow-2xl transition-all duration-300">
-                JWoC
-              </div>
-            </a>
+    <div className="fixed top-0 left-0 right-0 z-50 px-4 ">
+      <div className="min-flex w-full mx-auto">
+        <div className="pl-4 pb-4 pr-4 flex items-center justify-between rounded-2xl relative">
+          <div className="flex  items-center group cursor-pointer">
+            <div >
+
+              <img
+  src="jwoc-2024.svg"
+  className=" top-0 h-36 w-28 z-50"
+/>
+
+            </div>
           </div>
 
           {/* Desktop Navigation Menu */}

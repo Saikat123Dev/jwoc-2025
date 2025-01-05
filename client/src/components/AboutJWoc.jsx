@@ -47,7 +47,7 @@ export default function AboutJWoC() {
   }, []);
 
   return (
-    <div className="w-full md:text-left bg-white m-auto rounded-xl shadow-lg px-4 sm:px-5 lg:px-8 my-6 pb-6">
+    <div className="w-full z-[99999999] md:text-left bg-white m-auto rounded-xl shadow-lg px-4 sm:px-5 lg:px-8  pb-6">
       <div className="text-2xl md:text-4xl font-bold px-7 pt-4">
         <TypewriterEffectSmooth
           words={words}

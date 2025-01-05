@@ -192,7 +192,7 @@ export default function MenteeRegistration() {
               {...register("phone", { required: "Phone is required" })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your phone number"
-              type="tel"
+              type="number"
               whileFocus={{
                 scale: 1.01,
                 transition: { duration: 0.2 }
@@ -212,7 +212,7 @@ export default function MenteeRegistration() {
               {...register("whatsapp", { required: "WhatsApp is required" })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your WhatsApp number"
-              type="tel"
+              type="number"
               whileFocus={{
                 scale: 1.01,
                 transition: { duration: 0.2 }

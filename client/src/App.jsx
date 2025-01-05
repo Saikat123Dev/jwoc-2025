@@ -44,7 +44,7 @@ function App() {
   return (
     <StarryNightBackground>
       {/* Global Background Audio */}
-      <audio ref={audioRef} src="jingle.mp3" loop />
+      {/* <audio ref={audioRef} src="jingle.mp3" loop /> */}
 
       {/* Mute/Unmute Button */}
 
@@ -66,12 +66,12 @@ function App() {
         <Footer />
 
       </div>
-      <button
+      {/* <button
         onClick={handleMuteToggle}
         className="fixed top-4 right-4 z-50 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-700 transition-all"
       >
         {isMuted ? "Mute" : "Unmute"}
-      </button>
+      </button> */}
     </StarryNightBackground>
   );
 }

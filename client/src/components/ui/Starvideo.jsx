@@ -7,7 +7,7 @@ import { loadFull } from "tsparticles";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
-// import auroraVideo from "../../assets/videos/aurora.mp4";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Starvideo = () => {
@@ -21,165 +21,158 @@ const Starvideo = () => {
   }, []);
 
   useEffect(() => {
-    // Create a timeline for smoother animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: videoContainerRef.current,
         start: "top top",
-        end: "+=100%",
+        end: "+=90%",
         pin: true,
         pinSpacing: true,
-        scrub: 1, // Smooth scrubbing effect
-        toggleActions: "play reverse play reverse", // Controls the animation on scroll up/down
+        scrub: 1,
       },
     });
 
-    // Initial state for the content wrapper
-    gsap.set(contentRef.current, {
+    gsap.set([contentRef.current, headingRef.current, buttonRef.current], {
       opacity: 0,
       y: 100,
     });
 
-    // Animate the content wrapper
     tl.to(contentRef.current, {
       opacity: 1,
-      y: 0,
-      duration: 1.5,
+      y: -40,
+      duration: 1,
       ease: "power2.out",
     });
 
-    // Animate heading with a slight delay and different movement
-    gsap.fromTo(
+    tl.to(
       headingRef.current,
       {
-        y: 200,
-        opacity: 0,
-        scale: 0.9,
-      },
-      {
-        y: 0,
         opacity: 1,
-        scale: 1,
-        duration: 2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: "top 80%",
-          end: "center 30%",
-          scrub: 1.5,
-          toggleActions: "play reverse play reverse",
-        },
-      }
+        y: -20,
+        duration: 1,
+        ease: "power2.out",
+      },
+      "<+=0.2"
     );
 
-    // Animate button with a follow-up movement
-    gsap.fromTo(
+    tl.to(
       buttonRef.current,
       {
-        y: 100,
-        opacity: 0,
-        scale: 0.8,
-      },
-      {
-        y: 0,
         opacity: 1,
-        scale: 1,
-        duration: 1.5,
+        y: -20,
+        duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: buttonRef.current,
-          start: "top 85%",
-          end: "center 35%",
-          scrub: 2,
-          toggleActions: "play reverse play reverse",
-        },
-      }
+      },
+      "<+=0.2"
     );
 
-    // Create a parallax effect for the deer image
     gsap.to("img", {
-      y: -50,
+      y: -30,
       ease: "none",
       scrollTrigger: {
         trigger: videoContainerRef.current,
         start: "top top",
         end: "bottom top",
-        scrub: 2,
+        scrub: 1,
       },
     });
 
     return () => {
-      // Cleanup all ScrollTrigger instances
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
     <div>
-      <div ref={videoContainerRef} className="relative h-screen w-full overflow-hidden">
-        <audio src="jingle.mp3" controls autoPlay />
+      <div
+        ref={videoContainerRef}
+        className="relative h-screen w-full overflow-hidden"
+      >
+        {/* Pine tree images */}
+        <div className="absolute bottom-10 left-10 w-20 sm:w-28 md:w-40 z-20">
+          <img
+            className="w-full h-auto object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
+            src="pine.png"
+            alt="Pine"
+          />
+        </div>
+        <div className="absolute pt-32 sm:pt-64 mt-8 sm:mt-16 right-3 w-20 sm:w-32 md:w-40 z-[9999]">
+          <img
+            className="w-full h-auto object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
+            src="pineTree.png"
+            alt="Pine"
+          />
+        </div>
+        <div className="absolute pt-32 sm:pt-64 mt-8 sm:mt-24 right-12 sm:right-24 h-28 w-32 sm:h-56 sm:w-60 z-[9999]">
+          <img
+            className="w-full h-48 glow-effect transform transition-transform duration-300 hover:scale-110"
+            src="trre.png"
+            alt="Pine"
+          />
+        </div>
+        <div className="absolute pt-32 sm:pt-64 mt-8 sm:mt-24 right-12 sm:right-24 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
+          <img
+            className="w-full h-48 glow-effect transform transition-transform duration-300 hover:scale-110 filter brightness-75"
+            src="deer_v5.png"
+            alt="Deer"
+          />
+        </div>
 
-        {/* Aurora Video Background */}
-
-
-        {/* Snow Video Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full z-10">
-        <video
-  className="w-full h-full object-cover glow-effect transform smooth-video"
-  src="snow.webm"
-  autoPlay
-  loop
-  muted
-  playsInline
-/>
-
+        {/* Main deer image */}
+        <div className="absolute bottom-0 w-full h-full z-20">
+          <img
+            className="w-full h-full object-contain object-bottom glow-effect transform"
+            src="deer.webp"
+            alt="Deer in Snow"
+          />
         </div>
 
         {/* Content Wrapper */}
         <div
           ref={contentRef}
-          className="absolute top-0 left-0 w-full h-full z-40 flex flex-col items-center justify-center"
+          className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-40 flex flex-col items-center justify-start gap-3 px-4"
         >
           <h1
             ref={headingRef}
-            className="text-4xl md:text-6xl font-bold text-center text-white mb-8 glowing-text"
+            className="text-2xl sm:text-3xl md:text-5xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-500 mb-4 sm:mb-8"
+            style={{
+              textShadow:
+                "0 0 15px rgba(0, 199, 255, 0.8), 0 0 30px rgba(0, 199, 255, 0.5)",
+            }}
           >
-            Welcome to a month of open-source
+            ᗯEᒪᑕOᗰE TO ᗩ ᗰOᑎTᕼ Oᖴ OᑭEᑎ-ᔕOᑌᖇᑕE
           </h1>
 
           <Link
+            ref={buttonRef}
             to="/registrationcard"
-            className="relative px-8 py-4 bg-gradient-to-r from-blue-600/80 to-indigo-700/80 text-white font-semibold text-lg rounded-lg shadow-lg transform transition-all duration-300
-                    hover:scale-105 hover:shadow-indigo-500/50 group flex items-center justify-center overflow-hidden glowing-button"
+            className="relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-sm sm:text-lg rounded-lg shadow-xl transform transition-all duration-300
+            hover:scale-110 hover:shadow-purple-500/50 flex items-center justify-center"
+            style={{
+              boxShadow:
+                "0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(236, 72, 153, 0.8)",
+            }}
           >
             Register Now
           </Link>
         </div>
       </div>
 
-      {/* Snowfall Particles */}
+      <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4">
+        <AboutJWoC />
+      </div>
+
       <Particles
         options={{
           particles: {
-            color: {
-              value: "#ffffff",
-            },
+            color: { value: "#ffffff" },
             number: {
               value: 100,
-              density: {
-                enable: true,
-                area: 800,
-              },
+              density: { enable: true, area: 800 },
             },
-            opacity: {
-              value: 1,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: { min: 2, max: 4 },
-            },
+            opacity: { value: 1 },
+            shape: { type: "circle" },
+            size: { value: { min: 2, max: 4 } },
             move: {
               direction: "up",
               enable: true,
@@ -191,17 +184,12 @@ const Starvideo = () => {
         init={init}
       />
 
-
-      <div className="py-4 mr-4 ml-4">
-        <AboutJWoC />
-      </div>
-      <div className="py-4 mr-4 ml-4">
+      <div className="py-4 px-4 sm:mr-4 sm:ml-4">
         <InfinityCard />
       </div>
-      <div>
+      <div className="px-4">
         <TimelineDemo />
       </div>
-
     </div>
   );
 };

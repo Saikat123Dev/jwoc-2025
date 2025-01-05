@@ -274,3 +274,9 @@ button:focus-visible {
 .snow-fall {
   animation: fall linear infinite;
 }
+@font-face {
+  font-family: 'Basis33';
+  src: url('/fonts/basis33.regular.ttf') format('woff2'); /* Adjust path as needed */
+  font-weight: normal;
+  font-style: normal;
+}

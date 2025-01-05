@@ -6,7 +6,7 @@ export function TimelineDemo() {
     {
       title: "2024",
       content: (
-        <div className="space-y-4">
+        <div className="space-y-4 ">
           <p className="text-neutral-200 text-xs md:text-sm font-normal">
             Built and launched Aceternity UI and Aceternity UI Pro from scratch
           </p>
@@ -61,7 +61,7 @@ export function TimelineDemo() {
   ];
 
   return (
-    <div className="w-full pl-10 ml-10 pr-20 mr-20 h-full min-h-screen ">
+    <div className="w-full mr-32 ml-28 h-full min-h-screen ">
       <Timeline data={data} />
     </div>
   );
