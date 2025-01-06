@@ -1,3 +1,4 @@
+import { Volume2, VolumeX } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import MouseParticles from "react-mouse-particles";
 import { Route, Routes } from "react-router-dom";
@@ -18,6 +19,7 @@ import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
 function App() {
   const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
+
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.muted = false;
@@ -36,32 +38,47 @@ function App() {
           console.error("Failed to play audio:", error);
         });
       } else {
-        audioRef.current.muted = false;
+        audioRef.current.muted = true;
       }
       setIsMuted(!isMuted);
     }
   };
-  const auroraColors = [
-    '#ffffff'  // Emerald green
-   ];
+
   return (
     <StarryNightBackground>
-      {/* Global Background Audio */}
-      {/* <audio ref={audioRef} src="jingle.mp3" loop /> */}
-
-      {/* Mute/Unmute Button */}
-
       <MouseParticles
-  g={1}
-  color={["#32CD32", "#00FFFF", "#8A2BE2", "#FF00FF", "#00FA9A", "#1E90FF", "#7FFF00", "#DDA0DD"]}
-  cull="MuiSvgIcon-root,MuiButton-root"
-  level={6}
-/>
-
-
+        g={1}
+        color={["#32CD32", "#00FFFF", "#8A2BE2", "#FF00FF", "#00FA9A", "#1E90FF", "#7FFF00", "#DDA0DD"]}
+        cull="MuiSvgIcon-root,MuiButton-root"
+        level={6}
+      />
 
       <div>
+        {/* Audio Element */}
+        <audio ref={audioRef} src="/jingle.mp3" loop />
+
+        {/* Navbar */}
         <NavbarDemo />
+
+        {/* Mute/Unmute Button */}
+        <div style={{ position: "fixed", top: "10px", right: "10px", zIndex: 1000 }}>
+          <button
+            onClick={handleMuteToggle}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "white",
+              fontSize: "16px",
+
+            }}
+            title={isMuted ? "Unmute" : "Mute"}
+          >
+            {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+          </button>
+        </div>
+
+        {/* Routes */}
         <Routes>
           <Route path="/" element={<Starvideo />} />
           <Route path="/mentor" element={<Home />} />
@@ -74,15 +91,10 @@ function App() {
           <Route path="/add-project" element={<AddProject />} />
           <Route path="/registrationcard" element={<RegistrationCards />} />
         </Routes>
-        <Footer />
 
+        {/* Footer */}
+        <Footer />
       </div>
-      {/* <button
-        onClick={handleMuteToggle}
-        className="fixed top-4 right-4 z-50 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-700 transition-all"
-      >
-        {isMuted ? "Mute" : "Unmute"}
-      </button> */}
     </StarryNightBackground>
   );
 }

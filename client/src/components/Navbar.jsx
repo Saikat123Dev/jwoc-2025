@@ -26,31 +26,36 @@ const NavbarDemo = () => {
         onClick={() => isMobile && setIsMobileMenuOpen(false)}
       >
         <Icon className={`h-auto w-auto transition-colors duration-200 ${
-          hoveredItem === id ? 'text-purple-500' : 'text-gray-400 dark:text-gray-300'
+          hoveredItem === id ? 'text-cyan-400' : 'text-gray-400 dark:text-gray-300'
         }`} />
         <span className={`text-base font-semibold transition-colors duration-200 ${
-          hoveredItem === id ? 'text-purple-500' : 'text-gray-400 dark:text-gray-300'
+          hoveredItem === id ? 'text-cyan-400' : 'text-gray-400 dark:text-gray-300'
         }`}>
           {label}
         </span>
       </a>
       {hoveredItem === id && !isMobile && (
-        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500" />
-      )}
+ <div
+ className="absolute bottom-0 -z-40 rounded-lg h-full opacity-50 left-0 right-0 bg-gradient-to-r from-cyan-300 to-blue-500 origin-left scale-x-0 transition-transform duration-300 ease-in-out"
+ style={{ transform: hoveredItem === id ? "scaleX(1)" : "scaleX(0)" }}
+/>
+
+)}
+
     </div>
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-4 ">
+    <div className="fixed bottom-[28rem] left-0 right-0 z-50 px-4 ">
       <div className="min-flex w-full mx-auto">
-        <div className="pl-4 pb-4 pr-4 flex items-center justify-between rounded-2xl relative">
+        <div className="pl-4 pb-4 pr-4 flex items-center justify-center gap-3 rounded-2xl relative">
           <div className="flex  items-center group cursor-pointer">
             <div >
 
               <div className="h-38 w-30">
               <img
   src="jwoc-2024.svg"
-  className=" top-0 h-36 pt-1  w-28 z-50"
+  className=" h-24 pt-1  w-24 z-50"
 />
               </div>
 
@@ -59,11 +64,12 @@ const NavbarDemo = () => {
 
           {/* Desktop Navigation Menu */}
           <div className="hidden md:flex flex-1 mx-8">
-            <div className="backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-2xl border border-white/30 shadow-lg shadow-black/10 px-8 py-4 min-w-full">
-              <div className="flex justify-center items-center space-x-12">
-                <NavItem id="home" label="Home" Icon={Home} />
+            <div className="backdrop-blur-lg h-16 bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-2xl border border-white/30 shadow-lg shadow-black/10 px-8 py-4  w-full">
+              <div className="flex justify-center pb-64 items-center space-x-10">
+
                 <NavItem id="timeline" label="Timeline" Icon={Clock} />
                 <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
+                <NavItem id="team" label="Team" Icon={BookOpen} />
                 <NavItem id="projects" label="Projects" Icon={BookOpen} />
               </div>
             </div>

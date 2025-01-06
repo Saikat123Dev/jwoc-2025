@@ -319,3 +319,21 @@ button:focus-visible {
       0 0 32px rgba(255, 0, 140, 0.4); /* Pink */
   }
 }
+
+
+/* Custom Tailwind CSS */
+.blur-ball {
+  filter: blur(4px);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+}
