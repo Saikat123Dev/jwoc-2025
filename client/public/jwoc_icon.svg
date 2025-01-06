@@ -1,53 +1,61 @@
-<svg version="1.1" id="ICON" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 458 304">
+<svg version="1.1" id="ICON" data-name="ICON" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 458 304">
   <style>
-    @keyframes fade-in-letter {
-      0% {
-        opacity: 0;
-        stroke-dashoffset: 1000;
-      }
-
-      100% {
-        opacity: 1;
-        stroke-dashoffset: 0;
-      }
-    }
-
-    @keyframes circle-pulse {
-      0% {
-        r: 15;
-        opacity: 0.4;
-        stroke-width: 3px;
-      }
-
-      50% {
-        r: 17;
-        opacity: 1;
-        stroke-width: 4px;
-      }
-
-      100% {
-        r: 15;
-        opacity: 0.4;
-        stroke-width: 3px;
-      }
-    }
-
     svg path {
       fill: none;
-      stroke: #00ffff;
+      stroke: url(#aurora-gradient);
       stroke-width: 9px;
       stroke-linecap: round;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 128, 0.4));
+      /* Reduced glow intensity */
       opacity: 0;
-      animation: fade-in-letter 2s ease forwards;
+      animation: glow-letter 1.5s ease-in-out forwards;
     }
 
     svg circle {
       fill: none;
-      stroke: #00ffff;
+      stroke: url(#aurora-gradient);
       stroke-width: 4px;
-      animation: circle-pulse 2s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 128, 0.4));
+      /* Reduced glow intensity */
+      animation: pulsate 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-letter {
+      0% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0.6;
+        /* Further dimmed opacity */
+        filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
+        /* Reduced glow */
+      }
+
+      100% {
+        opacity: 0.6;
+        /* Consistent dimmed glow */
+        filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
+        /* Reduced glow */
+      }
+    }
+
+    @keyframes pulsate {
+      0% {
+        fill: rgba(0, 255, 128, 0.3);
+        /* Further reduced opacity */
+        r: 20;
+        /* Increased starting radius */
+        opacity: 0.4;
+      }
+
+      100% {
+        fill: rgba(128, 0, 255, 0.6);
+        /* Further reduced intensity */
+        r: 24;
+        /* Increased maximum radius */
+        opacity: 0.7;
+      }
     }
 
     svg path#J {
@@ -55,42 +63,47 @@
     }
 
     svg path#W {
-      animation-delay: 0.5s;
-    }
-
-    svg path#O {
       animation-delay: 1s;
     }
 
+    svg path#O {
+      animation-delay: 2s;
+    }
+
     svg path#C {
-      animation-delay: 1.5s;
+      animation-delay: 3s;
     }
 
     svg.stable path {
-      opacity: 1;
-      stroke-dashoffset: 0;
-      filter: drop-shadow(0 0 3px #00ffff);
+      opacity: 0.6;
+      /* Further dimmed glow */
+      filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
+      /* Reduced intensity */
+      animation: none;
     }
 
     svg.stable circle {
-      animation: circle-pulse 2s ease-in-out infinite;
-      filter: drop-shadow(0 0 3px #00ffff);
-    }
-
-    @keyframes final-glow {
-      from {
-        filter: drop-shadow(0 0 0px #00ffff);
-      }
-
-      to {
-        filter: drop-shadow(0 0 3px #00ffff);
-      }
-    }
-
-    #ICON.stable {
-      animation: final-glow 1s ease-in-out forwards;
+      opacity: 0.6;
+      /* Further dimmed glow */
+      fill: rgba(128, 0, 255, 0.6);
+      /* Reduced fill intensity */
+      r: 24;
+      /* Increased stable radius */
+      filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
+      /* Reduced intensity */
+      animation: none;
     }
   </style>
+
+  <defs>
+    <linearGradient id="aurora-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ff80" />
+      <stop offset="50%" stop-color="#0080ff" />
+      <stop offset="100%" stop-color="#8000ff" />
+    </linearGradient>
+  </defs>
+
+  <title>JWOC</title>
 
   <path id="J" transform="translate(-339.5 -140)"
     d="M433.53,391.31c-3,5.54-5.53,11.53-5.53,18.3A33,33,0,1,0,477.47,381l.36-94.9a33,33,0,1,0-35.3,1.51L443,351a79.88,79.88,0,0,0-28-5c-17,0-23.17-28.9-23.17-28.9,8.57-6,16.17-17.87,16.17-29.1a33,33,0,1,0-49.47,28.61S354,377,423,384C423,384,436.07,386.61,433.53,391.31Z" />
@@ -100,7 +113,14 @@
     d="M548.17,439.52c-23.28-6.45-38.72-30.76-36.45-56.55,2.5-28.44,27.09-50.15,55.63-49.45a54.51,54.51,0,0,1,16.17,106.1s-5,1.88-5-3.12,2.9-19.52-2.72-24.75a.17.17,0,0,1,.09-.29c3.87-.43,36.52-5.18,18.63-41a28.57,28.57,0,0,0,0-14,25.24,25.24,0,0,0-15,6,51.26,51.26,0,0,0-27,0s-8-6-14-6c0,0-4,5-1,14,0,0-19,34.9,17.84,41a.13.13,0,0,1,.11.17c-.32.94-2.14,6.23-3,7.86-1,2-11.48,2-13.69-2.15a18.38,18.38,0,0,0-1.59-2.63c-2.22-2.84-6.9-7.77-10.57-4.37a.17.17,0,0,0,0,.27c1.09.88,7.53,6.19,8.67,10.61a4.63,4.63,0,0,0,1.77,2.58,17.68,17.68,0,0,0,14.65,2.9.59.59,0,0,1,.75.57V437.5S551.85,440.54,548.17,439.52Z" />
   <path id="C" transform="translate(-339.5 -140)"
     d="M780.22,292.1l13.51-34.52a5.19,5.19,0,0,0-4.83-7.08H690.06c-24.61,0-42.56,19.95-42.56,44.56v92.88c0,24.61,18,42.56,42.56,42.56H789c3.63,0,6.14-1.65,4.84-5l-13.62-35.57a6.84,6.84,0,0,0-6.38-4.39H686.1a4.6,4.6,0,0,1-4.6-4.6V300.15a4.6,4.6,0,0,1,4.65-4.6l87.63.9A6.84,6.84,0,0,0,780.22,292.1Z" />
-  <circle id="J_o1" class="cls-2" cx="34.5" cy="150" r="17" />
-  <circle id="J_o2" class="cls-2" cx="119.5" cy="268" r="17" />
-  <circle id="J_o3" class="cls-2" cx="119.5" cy="120" r="17" />
+
+  <circle id="J_o" class="cls-2" cx="34.5" cy="150" r="20" />
+  <circle id="J_o" class="cls-2" cx="119.5" cy="268" r="20" />
+  <circle id="J_o" class="cls-2" cx="119.5" cy="120" r="20" />
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('ICON').classList.add('stable');
+    }, 4500);
+  </script>
 </svg>

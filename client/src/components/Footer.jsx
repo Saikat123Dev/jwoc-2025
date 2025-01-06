@@ -18,18 +18,15 @@ function Footer() {
                 <div className="text-center space-y-3 ">
                   <div className="relative group px-4 flex items-center justify-center">
                     {/* Logo Container */}
-                    <div className=" w-56 h-56">
-                      <div className="w-full h-full bg-gradient-to-r from-blue-500 via-purple-600 to-blue-500 rounded-full flex items-center justify-center transform transition duration-500 group-hover:scale-105 group-hover:rotate-6">
-                        {/* Inner circle with enhanced depth */}
-                        <div className="w-52 h-52 rounded-full  flex items-center justify-center p-1 shadow-2xl">
-                          <div className="w-full h-full rounded-full bg-black flex items-center justify-center border border-purple-500/20">
+                    <div className=" w-72 h-72 rounded">
+
+
+
                             {/* Logo text with enhanced styling */}
-                            <span className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 tracking-tight animate-gradient">
-                              JWoC
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                          <img className="w-full h-full" src="jwoc_icon.svg" alt="jwoc-logo" />
+
+
+
                     </div>
                   </div>
 
@@ -49,11 +46,11 @@ function Footer() {
 
             <div className="min-h-screen  p-6 flex items-center justify-center">
               <div
-                className="w-full max-w-md backdrop-blur-xl bg-white/5 p-8 rounded-2xl shadow-2xl border border-white/10 
+                className="w-full max-w-md backdrop-blur-xl bg-white/5 p-8 rounded-2xl shadow-2xl border border-white/10
                       transform hover:scale-[1.02] transition-all duration-300"
               >
                 <strong
-                  className="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 
+                  className="text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200
                           font-extrabold tracking-wide"
                 >
                   Archives
@@ -62,7 +59,7 @@ function Footer() {
                 <ul className="mt-8 space-y-4">
                   <li className="relative group">
                     <div
-                      className="absolute -inset-2  rounded-lg opacity-0 
+                      className="absolute -inset-2  rounded-lg opacity-0
                            group-hover:opacity-20 transition-all duration-300 blur"
                     ></div>
                     <a
@@ -71,7 +68,7 @@ function Footer() {
                                   transform group-hover:translate-x-2"
                     >
                       <span
-                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100 
+                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100
                               group-hover:translate-x-0 transition-all duration-300"
                       >
                         →
@@ -82,7 +79,7 @@ function Footer() {
 
                   <li className="relative group">
                     <div
-                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0 
+                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0
                            group-hover:opacity-20 transition-all duration-300 blur"
                     ></div>
                     <a
@@ -91,7 +88,7 @@ function Footer() {
                                   transform group-hover:translate-x-2"
                     >
                       <span
-                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100 
+                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100
                               group-hover:translate-x-0 transition-all duration-300"
                       >
                         →
@@ -102,7 +99,7 @@ function Footer() {
 
                   <li className="relative group">
                     <div
-                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0 
+                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0
                            group-hover:opacity-20 transition-all duration-300 blur"
                     ></div>
                     <a
@@ -111,7 +108,7 @@ function Footer() {
                                   transform group-hover:translate-x-2"
                     >
                       <span
-                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100 
+                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100
                               group-hover:translate-x-0 transition-all duration-300"
                       >
                         →
@@ -122,7 +119,7 @@ function Footer() {
 
                   <li className="relative group">
                     <div
-                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0 
+                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0
                            group-hover:opacity-20 transition-all duration-300 blur"
                     ></div>
                     <a
@@ -131,7 +128,7 @@ function Footer() {
                                   transform group-hover:translate-x-2"
                     >
                       <span
-                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100 
+                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100
                               group-hover:translate-x-0 transition-all duration-300"
                       >
                         →
@@ -142,7 +139,7 @@ function Footer() {
 
                   <li className="relative group">
                     <div
-                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0 
+                      className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0
                            group-hover:opacity-20 transition-all duration-300 blur"
                     ></div>
                     <a
@@ -151,7 +148,7 @@ function Footer() {
                                   transform group-hover:translate-x-2"
                     >
                       <span
-                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100 
+                        className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100
                               group-hover:translate-x-0 transition-all duration-300"
                       >
                         →
@@ -181,7 +178,7 @@ function Footer() {
                   <input
                     type="text"
                     id="name"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-blue-200/60 backdrop-blur-sm 
+                    className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-blue-200/60 backdrop-blur-sm
                          focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none
                          transition-all duration-200 hover:bg-white/10"
                     placeholder="John Doe"
@@ -198,7 +195,7 @@ function Footer() {
                   <input
                     type="email"
                     id="contact-email"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-blue-200/60 backdrop-blur-sm 
+                    className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-blue-200/60 backdrop-blur-sm
                          focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none
                          transition-all duration-200 hover:bg-white/10"
                     placeholder="john@doe.com"
@@ -215,7 +212,7 @@ function Footer() {
                   <textarea
                     id="message"
                     rows={5}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-blue-200/60 backdrop-blur-sm 
+                    className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white placeholder-blue-200/60 backdrop-blur-sm
                          focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none
                          transition-all duration-200 hover:bg-white/10 resize-none"
                     placeholder="Your message here..."
@@ -224,7 +221,7 @@ function Footer() {
 
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-gradient-to-r from-blue-400 to-purple-500 px-6 py-4 text-base font-medium text-white 
+                  className="w-full rounded-xl bg-gradient-to-r from-blue-400 to-purple-500 px-6 py-4 text-base font-medium text-white
                      shadow-lg transition-all duration-200 hover:from-blue-500 hover:to-purple-600 hover:shadow-xl
                      focus:ring-2 focus:ring-purple-300 focus:ring-opacity-50 focus:outline-none
                      transform hover:-translate-y-0.5"
@@ -284,7 +281,7 @@ function Footer() {
                 </a>
               </li>
 
-        
+
 
               <li className="transition transform hover:scale-125">
                 <a
@@ -309,10 +306,10 @@ function Footer() {
                 </a>
               </li>
 
-            
+
             </ul>
             <p className="text-center text-xs/relaxed text-gray-300 dark:text-gray-400">
-              © JWoC 2024. All rights reserved.
+              © JWoC 2025. All rights reserved.
             </p>
           </div>
         </div>

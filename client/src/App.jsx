@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import MouseParticles from "react-mouse-particles";
 import { Route, Routes } from "react-router-dom";
 import AddProject from "./components/AddProject.jsx";
 import Footer from "./components/Footer.jsx";
@@ -40,13 +41,23 @@ function App() {
       setIsMuted(!isMuted);
     }
   };
-
+  const auroraColors = [
+    '#ffffff'  // Emerald green
+   ];
   return (
     <StarryNightBackground>
       {/* Global Background Audio */}
       {/* <audio ref={audioRef} src="jingle.mp3" loop /> */}
 
       {/* Mute/Unmute Button */}
+
+      <MouseParticles
+  g={1}
+  color={["#32CD32", "#00FFFF", "#8A2BE2", "#FF00FF", "#00FA9A", "#1E90FF", "#7FFF00", "#DDA0DD"]}
+  cull="MuiSvgIcon-root,MuiButton-root"
+  level={6}
+/>
+
 
 
       <div>

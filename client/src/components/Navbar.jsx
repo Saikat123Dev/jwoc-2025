@@ -47,10 +47,12 @@ const NavbarDemo = () => {
           <div className="flex  items-center group cursor-pointer">
             <div >
 
+              <div className="h-38 w-30">
               <img
   src="jwoc-2024.svg"
-  className=" top-0 h-36 w-28 z-50"
+  className=" top-0 h-36 pt-1  w-28 z-50"
 />
+              </div>
 
             </div>
           </div>
@@ -82,14 +84,25 @@ const NavbarDemo = () => {
 
           {/* Mentor Locker Button - Desktop */}
           <button
-            onClick={handleMentorClick}
-            className="hidden md:flex group items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <Briefcase className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-            <span className="group-hover:translate-x-0.5 transition-transform duration-300">
-              Mentor Locker
-            </span>
-          </button>
+  onClick={handleMentorClick}
+  className="hidden md:flex group items-center space-x-2 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+>
+  <Briefcase className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+  <span className="group-hover:translate-x-0.5 transition-transform duration-300">
+    Mentor Locker
+  </span>
+
+  {/* Aurora gradient background */}
+  <style jsx>{`
+    button {
+      background: linear-gradient(45deg, #00ff80, #0080ff, #8000ff);
+      background-size: 400% 400%;
+
+      border: none;
+    }
+  `}</style>
+</button>
+
         </div>
 
         {/* Mobile Menu */}

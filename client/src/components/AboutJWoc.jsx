@@ -6,7 +6,7 @@ import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 
 const words = [
   {
-    text: "JWOC",
+    text: "JWoC",
     className: "text-blue-500 dark:text-blue-500"
   },
   {
@@ -47,11 +47,11 @@ export default function AboutJWoC() {
   }, []);
 
   return (
-    <div className="w-full z-[99999999] md:text-left bg-white m-auto rounded-xl shadow-lg px-4 sm:px-5 lg:px-8  pb-6">
-      <div className="text-2xl md:text-4xl font-bold px-7 pt-4">
+    <div className="w-full z-[99999999] md:text-left  backdrop-blur-lg bg-white/20 m-auto rounded-xl shadow-lg px-4 sm:px-5 lg:px-8  pb-6">
+      <div className="text-2xl text-white md:text-4xl font-bold px-7 pt-4">
         <TypewriterEffectSmooth
           words={words}
-          cursorClassName="bg-blue-500"
+          cursorClassName="bg-blue-200 font-bold"
         />
       </div>
 
@@ -68,7 +68,7 @@ export default function AboutJWoC() {
         className="overflow-hidden"
       >
         {showContent && (
-          <div className="text-gray-600 dark:text-gray-200 leading-relaxed w-full mx-4 my-4 px-6 pb-9 text-[18px] md:text-[16px] sm:text-[14px]">
+          <div className="text-gray-200 dark:text-gray-200 leading-relaxed w-full mx-4 my-4 px-6 pb-9 text-[18px] md:text-[16px] sm:text-[14px]">
             <TextGenerateEffect text={content} />
           </div>
         )}

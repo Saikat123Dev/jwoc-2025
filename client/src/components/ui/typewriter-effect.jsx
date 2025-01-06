@@ -155,10 +155,13 @@ export const TypewriterEffectSmooth = ({
             <span
               key={`char-${index}`}
               className={cn(
-                "dark:text-white text-black font-medium transition-colors duration-300 hover:text-purple-500 hover:scale-110",
+                "text-white font-medium transition-colors duration-300 hover:text-purple-500 hover:scale-110",
                 word.className,
-                animationComplete && "hover:text-blue-500 dark:hover:text-blue-400"
+                animationComplete && "hover:text-blue-500 dark:hover:text-blue-400",
+                "hover:text-blue-500 dark:hover:text-blue-400",
+                { style: { textShadow: "0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.6)" } }
               )}
+
             >
               {char}
             </span>
