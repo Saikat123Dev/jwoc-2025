@@ -8,6 +8,7 @@ import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Starvideo = () => {
@@ -63,7 +64,6 @@ const Starvideo = () => {
       },
     });
 
-    // Set initial states
     gsap.set([contentRef.current, headingRef.current, buttonRef.current], {
       opacity: 0,
       y: 100,
@@ -74,14 +74,12 @@ const Starvideo = () => {
       y: 0,
     });
 
-    // Initial text animation
     tl.to(initialTextRef.current, {
       opacity: 0,
       y: -50,
       duration: 0.5,
     });
 
-    // Main content animations
     tl.to(contentRef.current, {
       opacity: 1,
       y: -40,
@@ -111,7 +109,6 @@ const Starvideo = () => {
       "<+=0.2"
     );
 
-    // Pine trees parallax effect
     gsap.to("img", {
       y: -30,
       ease: "none",
@@ -134,7 +131,6 @@ const Starvideo = () => {
         ref={videoContainerRef}
         className="relative h-screen w-full overflow-hidden"
       >
-        {/* Initial text that fades out */}
         <div
   ref={initialTextRef}
   className="absolute top-1/3 pt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
@@ -279,7 +275,7 @@ const Starvideo = () => {
         {/* Content Wrapper */}
         <div
           ref={contentRef}
-          className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-40 flex flex-col items-center justify-start gap-3 px-4 "
+          className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-40 flex flex-col items-center justify-start gap-3 px-4"
         >
           <h1
             ref={headingRef}
@@ -330,10 +326,10 @@ const Starvideo = () => {
           </Link>
 
 
+
         </div>
       </div>
 
-      {/* Rest of your components */}
       <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4">
         <AboutJWoC />
       </div>
@@ -359,7 +355,6 @@ const Starvideo = () => {
         }}
         init={init}
       />
-
 
       <div className="py-4 px-4 sm:mr-4 sm:ml-4">
         <InfinityCard />
