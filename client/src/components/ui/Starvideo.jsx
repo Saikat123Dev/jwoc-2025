@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
@@ -11,6 +11,36 @@ import { TimelineDemo } from "../TimelineDemo";
 gsap.registerPlugin(ScrollTrigger);
 
 const Starvideo = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: "I am not a Student of JGEC,can i particicpate?",
+      answer: "Yes, you can definitely participate"
+    },
+    {
+      question: "I am a beginner,can i participate?",
+      answer: "There is no such restriction but with some amount of development knowledge in any domain will be good to go."
+    },
+    {
+      question: "Can i participate as a team?",
+      answer: "No, this is an individual event."
+    },
+    {
+      question: "I don't know Open Source,can i participate?",
+      answer: "Then you must participate, because the aim of our event is to get more people into open source development."
+    },
+    {
+      question: "Can I participate both as a mentor and a mentee?",
+      answer: "No we don't encourage that."
+    },
+    {
+      question: "What perks will I get?",
+      answer: "Let's keep that a secret, but we promise you that you won't be dissapointed."
+    }
+  ];
+
+
   const videoContainerRef = useRef(null);
   const initialTextRef = useRef(null);
   const headingRef = useRef(null);
@@ -337,6 +367,35 @@ const Starvideo = () => {
       <div className="px-4">
         <TimelineDemo />
       </div>
+      <div className="max-w-3xl mx-auto p-6 space-y-4">
+      <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+
+      {faqs.map((faq, index) => (
+        <div
+          key={index}
+          className="border rounded-lg overflow-hidden"
+        >
+          <button
+            className="w-full p-4 text-left hover:bg-gray-50 flex justify-between items-center"
+            onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+          >
+            <span className="font-medium">{faq.question}</span>
+            <span className="ml-6 transform transition-transform duration-200">
+              {activeIndex === index ? '−' : '+'}
+            </span>
+          </button>
+
+          <div
+            className={`overflow-hidden transition-all duration-200 ${
+              activeIndex === index ? 'max-h-40 p-4' : 'max-h-0'
+            }`}
+          >
+            <p className="text-gray-200">{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
     </div>
   );
 };
