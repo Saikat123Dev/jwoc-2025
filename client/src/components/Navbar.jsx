@@ -1,6 +1,6 @@
 import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, X } from "lucide-react";
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const NavbarDemo = () => {
   const navigate = useNavigate();
@@ -8,76 +8,84 @@ const NavbarDemo = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleMentorClick = () => {
-    navigate('/mentor');
+    navigate("/mentor");
     setIsMobileMenuOpen(false); // Close mobile menu if open
   };
 
   const NavItem = ({ id, label, Icon, isMobile = false }) => (
     <div
-      className={`relative ${!isMobile ? 'hidden lg:block' : ''}`}
+      className={`relative ${!isMobile ? "hidden lg:block" : ""}`}
       onMouseEnter={() => setHoveredItem(id)}
       onMouseLeave={() => setHoveredItem(null)}
     >
       <a
         href={`${id}`}
         className={`flex items-center space-x-3 px-4 py-2 group ${
-          isMobile ? 'w-full' : ''
+          isMobile ? "w-full" : ""
         }`}
         onClick={() => isMobile && setIsMobileMenuOpen(false)}
       >
-        <Icon className={`h-auto w-auto transition-colors duration-200 ${
-          hoveredItem === id ? 'text-cyan-400' : 'text-gray-400 dark:text-gray-300'
-        }`} />
-        <span className={`text-base font-semibold transition-colors duration-200 ${
-          hoveredItem === id ? 'text-cyan-400' : 'text-gray-400 dark:text-gray-300'
-        }`}>
+        <Icon
+          className={`h-auto w-auto transition-colors duration-200 ${
+            hoveredItem === id
+              ? "text-cyan-400"
+              : "text-gray-400 dark:text-gray-300"
+          }`}
+        />
+        <span
+          className={`text-base font-semibold transition-colors duration-200 ${
+            hoveredItem === id
+              ? "text-cyan-400"
+              : "text-gray-400 dark:text-gray-300"
+          }`}
+        >
           {label}
         </span>
       </a>
-      {hoveredItem === id && !isMobile && (
- <div
- className="absolute bottom-0 -z-40 rounded-lg h-full opacity-50 left-0 right-0 bg-gradient-to-r from-cyan-300 to-blue-500 origin-left scale-x-0 transition-transform duration-300 ease-in-out"
- style={{ transform: hoveredItem === id ? "scaleX(1)" : "scaleX(0)" }}
-/>
-
-)}
-
+      {!isMobile && hoveredItem === id && (
+        <div
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 transition-transform duration-300"
+          style={{
+            transform: hoveredItem === id ? "scaleX(1)" : "scaleX(0)",
+          }}
+        ></div>
+      )}
     </div>
   );
 
   return (
-    <div className="fixed bottom-[28rem] left-0 right-0 z-50 px-4 ">
-      <div className="min-flex w-full mx-auto">
-        <div className="pl-4 pb-4 pr-4 flex items-center justify-center gap-3 rounded-2xl relative">
-          <div className="flex  items-center group cursor-pointer">
-            <div >
-
-              <div className="h-38 w-30">
-              <img
-  src="jwoc-2024.svg"
-  className=" h-24 pt-1  w-24 z-50"
-/>
-              </div>
-
-            </div>
+    <div className="fixed top-0 left-0 lg:pb-60 right-0 z-50 px-4 bg-transparent">
+      <div className="w-full lg:mb-60 mx-auto max-w-[100rem]">
+        <div className="flex lg:py-0 items-center lg:gap-36 justify-between py-4">
+          {/* Logo */}
+          <div className="flex items-center lg:h-36 lg:w-40 cursor-pointer">
+            <img
+              src="jwoc-2024.svg"
+              alt="Logo"
+              className="h-16 lg:h-24 lg:w-28 w-16 object-contain"
+            />
           </div>
 
-          {/* Desktop Navigation Menu */}
-          <div className="hidden md:flex flex-1 mx-8">
-            <div className="backdrop-blur-lg h-16 bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-2xl border border-white/30 shadow-lg shadow-black/10 px-8 py-4  w-full">
-              <div className="flex justify-center pb-64 items-center space-x-10">
-
-                <NavItem id="timeline" label="Timeline" Icon={Clock} />
-                <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
-                <NavItem id="team" label="Team" Icon={BookOpen} />
-                <NavItem id="projects" label="Projects" Icon={BookOpen} />
-              </div>
-            </div>
+          {/* Desktop Navigation */}
+          <div className="backdrop-blur-lg h-16 bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-2xl border border-white/30 shadow-lg shadow-black/10 px-8 py-4 lg:py-2  w-full xl:w-[75rem]  xl:items-center xl:justify-between  hidden lg:flex flex-1 justify-center space-x-8">
+            <NavItem id="timeline" label="Timeline" Icon={Clock} />
+            <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
+            <NavItem id="team" label="Team" Icon={BookOpen} />
+            <NavItem id="projects" label="Projects" Icon={BookOpen} />
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mentor Locker Button (Desktop) */}
           <button
-            className="md:hidden p-2"
+            onClick={handleMentorClick}
+            className="flex items-center space-x-2 bg-gradient-to-r from-green-400 via-teal-500 to-cyan-600 hover:from-green-500 hover:via-teal-600 hover:to-cyan-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 opacity-75"
+          >
+            <Briefcase className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+            <span className="text-lg">Mentor Locker</span>
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="lg:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -87,47 +95,41 @@ const NavbarDemo = () => {
               <Menu className="h-6 w-6 text-gray-300" />
             )}
           </button>
-
-          {/* Mentor Locker Button - Desktop */}
-          <button
-  onClick={handleMentorClick}
-  className="hidden md:flex group items-center space-x-2 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
->
-  <Briefcase className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-  <span className="group-hover:translate-x-0.5 transition-transform duration-300">
-    Mentor Locker
-  </span>
-
-  {/* Aurora gradient background */}
-  <style jsx>{`
-    button {
-      background: linear-gradient(45deg, #00ff80, #0080ff, #8000ff);
-      background-size: 400% 400%;
-
-      border: none;
-    }
-  `}</style>
-</button>
-
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 mt-2 p-4 backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-2xl border border-white/30 shadow-lg shadow-black/10">
+          <div className="lg:hidden absolute top-full left-0 right-0 mt-2 p-4 backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-2xl border border-white/30 shadow-lg shadow-black/10">
             <div className="flex flex-col space-y-4">
               <NavItem id="home" label="Home" Icon={Home} isMobile={true} />
-              <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
-              <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} isMobile={true} />
-              <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
+              <NavItem
+                id="timeline"
+                label="Timeline"
+                Icon={Clock}
+                isMobile={true}
+              />
+              <NavItem
+                id="leaderboard"
+                label="Leaderboard"
+                Icon={Trophy}
+                isMobile={true}
+              />
+              <NavItem
+                id="projects"
+                label="Projects"
+                Icon={BookOpen}
+                isMobile={true}
+              />
 
-              {/* Mentor Locker Button - Mobile */}
+              {/* Mentor Locker Button (Mobile) */}
               <button
-                onClick={handleMentorClick}
-                className="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <Briefcase className="h-5 w-5" />
-                <span>Mentor Locker</span>
-              </button>
+  onClick={handleMentorClick}
+  className="flex items-center space-x-2 bg-gradient-to-r from-green-400 via-teal-500 to-cyan-600 hover:from-green-500 hover:via-teal-600 hover:to-cyan-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+>
+  <Briefcase className="h-5 w-5" />
+  <span>Mentor Locker</span>
+</button>
+
             </div>
           </div>
         )}

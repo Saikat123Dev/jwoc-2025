@@ -133,26 +133,26 @@ const Starvideo = () => {
       >
         <div
   ref={initialTextRef}
-  className="absolute top-1/3 pt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
+  className="absolute top-1/3 xl:top-[16rem] pt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
 >
   <h1
-    className="text-4xl mt-7 sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text"
+    className="text-4xl xl:text-9xl mt-7 sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text"
   >
     JWoC - 2025
   </h1>
-  <p className="text-2xl font-bold text-cyan-500 glow-subtext mt-2">
+  <p className="text-2xl xl:text-5xl xl:pt-2 font-bold text-cyan-500 glow-subtext mt-2">
     Season 6
   </p>
-  <p className="text-[9px] text-white glow-subtext  ">
+  <p className="text-[9px] xl:text-[15px] text-white glow-subtext  ">
      In association with
   </p>
 <div className="flex justify-center items-center glow-subtext gap-2">
 <img className="w-10 h-5 " src="gdsc.png" alt="GDSC Logo" />
 <div>
-  <h2 className="text-sm   opacity-70 text-white  font-bold mt-2">
+  <h2 className="text-sm xl:text-xl   opacity-70 text-white  font-bold mt-2">
     Google Developer Student Club
   </h2>
- <p className="text-white   text-[9px] opacity-50  gap-2 flex items-center justify-center">
+ <p className="text-white xl:text-[15px]  text-[9px] opacity-50  gap-2 flex items-center justify-center">
 
   Jalpaiguri Government Engineering College
 
@@ -216,23 +216,19 @@ const Starvideo = () => {
           />
         </div>
         {/* ... (rest of your tree images) ... */}
-        <div className="absolute top-9 pt-44 sm:pt-64 mt-80 sm:mt-16 right-3 w-20 sm:w-32 md:w-40 z-[9999]">
-
-          <img
-
-            className="w-full h-auto object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
-
-            src="pineTree.png"
-
-            alt="Pine"
-
-          />
-
-        </div>
-
-        <div className="absolute pt-32 sm:pt-64 mt-10 sm:mt-24 right-12 sm:right-24 h-28 w-32 sm:h-56 sm:w-60 z-[9999]">
+        <div className="absolute top-9 pt-44 sm:pt-64 mt-80 sm:mt-16 right-3 w-20 xl:pt-80 xl:mt-80 xl:h-[40rem]
+        xl:w-[40rem] sm:w-32 md:w-40 z-[9999]">
   <img
-    className="w-full h-48 glow-effect transform transition-transform duration-300 hover:scale-110"
+    className="h-full w-full xl:pl-36 xl:ml-44 object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
+    src="pineTree.png"
+    alt="Pine"
+  />
+</div>
+
+
+        <div className="absolute xl:pt-96 xl:w-96  xl:mt-60 xl:right-48 pt-32 sm:pt-64 mt-10 sm:mt-24 right-12 sm:right-24 h-28 w-32 sm:h-56 sm:w-60 xl:z-[9999]">
+  <img
+    className="w-full h-48 xl:h-64 xl:w-96 glow-effect transform transition-transform duration-300 hover:scale-110"
     src="trre.png"
     alt="Pine"
   />
@@ -245,11 +241,11 @@ const Starvideo = () => {
 
         </div>
 
-        <div className="absolute pt-32 sm:pt-64 mt-8 sm:mt-24 right-12 sm:right-24 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
+        <div className="absolute xl:h-[20rem] xl:w-[20rem] xl:pt-[36rem] xl:mt-24 sm:pt-64 mt-8 xl:left-96  sm:mt-24 right-12 sm:right-24 xl:bottom-80 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
 
           <img
 
-            className="w-full h-48 glow-effect transform transition-transform duration-500 hover:scale-105 filter brightness-90 hover:brightness-110 floating-effect"
+            className="w-full h-48 xl:pb-24 xl:w-full xl:h-[25rem]  glow-effect transform transition-transform duration-500 hover:scale-105 filter brightness-90 hover:brightness-110 floating-effect"
 
             src="deer_v5.svg"
 
