@@ -54,10 +54,10 @@ function App() {
       />
 
       <div>
-        {/* Audio Element */}
+
         <audio ref={audioRef} src="/jingle.mp3" loop />
 
-        {/* Navbar */}
+
         <NavbarDemo />
 
         {/* Mute/Unmute Button */}
