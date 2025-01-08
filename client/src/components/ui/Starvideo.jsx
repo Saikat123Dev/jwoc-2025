@@ -208,16 +208,17 @@ const Starvideo = () => {
 
         {/* Rest of your existing content */}
 
-        <div className="absolute bottom-6 pt-5  left-10 w-20 sm:w-28 md:w-40 z-20">
-          <img
-            className="w-full h-auto object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
-            src="pine.png"
-            alt="Pine"
-          />
-        </div>
+        <div className="absolute bottom-5 left-5 w-16 pt-12 md:w-28 md:pt-16 lg:w-40 lg:bottom-9 z-20">
+  <img
+    className="w-full h-auto object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
+    src="pine.png"
+    alt="Pine"
+  />
+</div>
+
+
         {/* ... (rest of your tree images) ... */}
-        <div className="absolute top-9 pt-44 sm:pt-64 mt-80 sm:mt-16 right-3 w-20 xl:pt-80 xl:mt-80 xl:h-[40rem]
-        xl:w-[40rem] sm:w-32 md:w-40 z-[9999]">
+        <div className="hidden md:block absolute top-9 pt-44 sm:pt-64 mt-80 sm:mt-16 right-3 w-20 xl:pt-80 xl:mt-80 xl:h-[40rem] xl:w-[40rem] sm:w-32 md:w-40 z-[9999]">
   <img
     className="h-full w-full xl:pl-36 xl:ml-44 object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
     src="pineTree.png"
@@ -226,34 +227,31 @@ const Starvideo = () => {
 </div>
 
 
-        <div className="absolute xl:pt-96 xl:w-96  xl:mt-60 xl:right-48 pt-32 sm:pt-64 mt-10 sm:mt-24 right-12 sm:right-24 h-28 w-32 sm:h-56 sm:w-60 xl:z-[9999]">
+
+        <div className="absolute xl:pt-96 xl:w-96  xl:mt-60 xl:right-48 pt-32 sm:pt-64 mt-10 sm:mt-24 right-12 sm:right-24 h-28 w-32 sm:h-56 sm:w-60 z-[9999]">
   <img
     className="w-full h-48 xl:h-64 xl:w-96 glow-effect transform transition-transform duration-300 hover:scale-110"
     src="trre.png"
     alt="Pine"
   />
   {/* Glowing Light Balls */}
-  <div className="absolute top-6 mt-72 left-8 h-4 w-4 bg-yellow-400 rounded-full blur-ball"></div>
-  <div className="absolute top-20 mt-72 left-16 h-6 w-6 bg-pink-400 rounded-full blur-ball"></div>
-  <div className="absolute top-10 mt-72 right-10 h-5 w-5 bg-blue-400 rounded-full blur-ball"></div>
-  <div className="absolute top-6 mt-64 left-9 h-3 w-3 bg-green-400 rounded-full blur-ball"></div>
+  <div className="absolute top-6 lg:top-96 xl:top-[10rem] xl:left-14 mt-72 left-8 h-4 w-4 bg-yellow-400 rounded-full blur-ball"></div>
+<div className="absolute top-20 lg:top-[28rem] xl:top-[15rem] mt-72 left-16 h-6 w-6 bg-pink-400 rounded-full blur-ball"></div>
+<div className="absolute top-10 lg:top-[26rem] xl:top-[10rem] mt-72 right-10 h-5 w-5 bg-blue-400 rounded-full blur-ball"></div>
+<div className="absolute top-6 lg:top-[24rem] xl:top-[15rem] mt-64 left-9 h-3 w-3 bg-green-400 rounded-full blur-ball"></div>
 
 
-        </div>
-
-        <div className="absolute xl:h-[20rem] xl:w-[20rem] xl:pt-[36rem] xl:mt-24 sm:pt-64 mt-8 xl:left-96  sm:mt-24 right-12 sm:right-24 xl:bottom-80 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
-
-          <img
-
-            className="w-full h-48 xl:pb-24 xl:w-full xl:h-[25rem]  glow-effect transform transition-transform duration-500 hover:scale-105 filter brightness-90 hover:brightness-110 floating-effect"
-
-            src="deer_v5.svg"
-
-            alt="Deer"
-
-          />
 
         </div>
+
+        <div className="hidden md:block absolute xl:h-[20rem] xl:w-[20rem] xl:pt-[36rem] xl:mt-24 sm:pt-64 mt-8 xl:left-96 sm:mt-24 right-12 sm:right-24 xl:bottom-80 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
+  <img
+    className="w-full h-48 xl:pb-24 xl:w-full xl:h-[25rem] glow-effect transform transition-transform duration-500 hover:scale-105 filter brightness-90 hover:brightness-110 floating-effect"
+    src="deer_v5.svg"
+    alt="Deer"
+  />
+</div>
+
 
         <div className="absolute bottom-0 top-6 w-full h-full z-20">
 
@@ -273,18 +271,19 @@ const Starvideo = () => {
           ref={contentRef}
           className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-40 flex flex-col items-center justify-start gap-3 px-4"
         >
-          <h1
-            ref={headingRef}
-            className="text-2xl sm:text-3xl md:text-6xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-400 mb-4 sm:mb-8"
-            style={{
-              fontFamily: "Jersey, sans-serif", // Apply the Jersey font
-              textShadow: "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
-              opacity: 0.8, // Dim the overall text slightly
-            }}
-          >
-            {/* ᗯEᒪᑕOᗰE TO ᗩ ᗰOᑎTᕼ Oᖴ OᑭEᑎ-ᔕOᑌᖇᑕE */}
-            Welcome To A Month Of Open-Source
-          </h1>
+         <h1
+  ref={headingRef}
+  className="text-2xl sm:text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-400 mb-4 sm:mb-8"
+  style={{
+    fontFamily: "Jersey, sans-serif", // Apply the Jersey font
+    textShadow: "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
+    opacity: 0.8, // Dim the overall text slightly
+  }}
+>
+  {/* ᗯEᒪᑕOᗰE TO ᗩ ᗰOᑎTᕼ Oᖴ OᑭEᑎ-ᔕOᑌᖇᑕE */}
+  Welcome To A Month Of Open-Source
+</h1>
+
 
 
           <Link
