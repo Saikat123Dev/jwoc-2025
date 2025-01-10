@@ -51,8 +51,8 @@ const InfinityCard = () => {
 
     const cardSet = (
         <div className="flex">
-            <CardForScrolling />
-            <CardForScrolling />
+            <CardForScrolling/>
+            <CardForScrolling/>
             <CardForScrolling />
             <CardForScrolling />
             <CardForScrolling />

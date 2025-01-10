@@ -1,4 +1,4 @@
-import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, X } from "lucide-react";
+import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, X ,Users2} from "lucide-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -69,9 +69,9 @@ const NavbarDemo = () => {
           {/* Desktop Navigation */}
           <div className="backdrop-blur-lg h-16 bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-2xl border border-white/30 shadow-lg shadow-black/10 px-8 py-4 lg:py-2  w-full xl:w-[75rem]  xl:items-center xl:justify-between  hidden lg:flex flex-1 justify-center space-x-8">
             <NavItem id="timeline" label="Timeline" Icon={Clock} />
-            <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
-            <NavItem id="team" label="Team" Icon={BookOpen} />
+            <NavItem id="team" label="Team" Icon={Users2} />
             <NavItem id="projects" label="Projects" Icon={BookOpen} />
+            <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
           </div>
 
           {/* Mentor Locker Button (Desktop) */}
