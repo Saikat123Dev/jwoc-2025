@@ -263,61 +263,38 @@ const Starvideo = () => {
         </div>
         {/* Content Wrapper */}
         <div
-          ref={contentRef}
-          className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-40 flex flex-col items-center justify-start gap-3 px-4"
-        >
-         <h1
-  ref={headingRef}
-  className="text-2xl sm:text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-400 mb-4 sm:mb-8"
-  style={{
-    fontFamily: "Jersey, sans-serif", // Apply the Jersey font
-    textShadow: "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
-    opacity: 0.8, // Dim the overall text slightly
-  }}
+  ref={contentRef}
+  className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-50 flex flex-col items-center justify-start gap-3 px-4"
 >
-  {/* ᗯEᒪᑕOᗰE TO ᗩ ᗰOᑎTᕼ Oᖴ OᑭEᑎ-ᔕOᑌᖇᑕE */}
-  Welcome To A Month Of Open-Source
-</h1>
+  <h1
+    ref={headingRef}
+    className="text-2xl sm:text-3xl md:text-6xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-400 mb-4 sm:mb-8"
+    style={{
+      fontFamily: "Jersey, sans-serif",
+      textShadow: "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
+      opacity: 0.8,
+    }}
+  >
+    Welcome To A Month Of Open-Source
+  </h1>
 
-
-
-          <Link
-            ref={buttonRef}
-            to="/registrationcard"
-            className="relative px-6 py-3 text-white cursor-pointer font-semibold text-sm rounded-lg shadow-xl transform transition-all duration-300 z-50
-    hover:scale-110 hover:shadow-lg  hover:text-cyan-200 flex items-center justify-center"
-            style={{
-              background: "linear-gradient(45deg, #00cc66, #0066cc, #6600cc)", // Dimmed gradient colors
-              backgroundSize: "400% 400%",
-              animation: "aurora 10s ease infinite",
-              boxShadow: "0 0 20px rgba(0, 204, 102, 0.5), 0 0 30px rgba(102, 0, 204, 0.5)",
-              filter: "brightness(0.9)", // Dim the brightness
-            }}
-          >
-            <span className="group-hover:text-cyan-300 transition-colors curs duration-300">
-              Register Now
-            </span>
-
-            {/* Aurora Gradient Animation */}
-            <style jsx>{`
-    @keyframes aurora {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-  `}</style>
-          </Link>
-
-
-
-        </div>
+  {/* Register Now Button */}
+  <Link
+    to="/registrationcard"
+    className="relative px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold text-sm sm:text-lg rounded-lg shadow-xl transform transition-all duration-300 hover:scale-110 hover:shadow-lg hover:text-cyan-200 flex items-center justify-center z-50"
+    style={{
+      background: "linear-gradient(45deg, #00cc66, #0066cc, #6600cc)",
+      backgroundSize: "400% 400%",
+      animation: "aurora 10s ease infinite",
+      boxShadow: "0 0 20px rgba(0, 204, 102, 0.5), 0 0 30px rgba(102, 0, 204, 0.5)",
+      filter: "brightness(0.9)",
+    }}
+  >
+    <span className="group-hover:text-cyan-300 transition-colors duration-300">
+      Register Now
+    </span>
+  </Link>
+</div>
       </div>
 
       <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4">
