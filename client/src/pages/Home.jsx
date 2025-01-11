@@ -38,19 +38,24 @@ const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md space-y-8">
-          <h2 className="text-center text-2xl font-bold text-gray-800">
+      <div className="absolute inset-0 z-0">
+        <div className="mt-7 absolute slide-out-to-top-1/4 left-1/4 w-[600px] h-[200px] bg-gradient-to-br from-purple-500 via-indigo-500 to-purple-700 opacity-50 rounded-full blur-3xl"></div>
+      
+      </div>
+        <div className="max-w-md w-full backdrop-blur-xl bg-white/10  p-8 rounded-lg shadow-md space-y-8">
+        
+        <h2 className="text-center text-3xl font-extrabold text-white">
             Welcome Back
           </h2>
-          <p className="text-center text-gray-600">
+          <p className="text-center text-gray-400">
             Sign in to your account to continue
           </p>
 
           {/* Buttons */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <button
               onClick={googleLogin}
-              className="group w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group w-full flex items-center justify-center py-3 px-4 border border-gray-600 rounded-md shadow-md text-sm font-medium text-gray-200 bg-gray-900 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 ease-in-out"
             >
               <GoogleIcon />
               Login with Google
@@ -58,7 +63,7 @@ const Home = () => {
 
             <button
               onClick={githubLogin}
-              className="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="w-full flex items-center justify-center py-3 px-4 border border-gray-600 rounded-md shadow-md text-sm font-medium text-gray-200 bg-gray-900 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 ease-in-out"
             >
               <Github className="mr-2 h-5 w-5" />
               Login with GitHub

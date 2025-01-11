@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      <footer className="relative min-w-full bg-gradient-to-b from-transparent to-gray-900/30 backdrop-blur-xl">
+      <footer className="relative min-w-full  backdrop-blur-xl ">
         <div className="absolute inset-0 bg-white/0 dark:bg-gray-900/30 backdrop-blur-md"></div>
 
         <div className="relative mx-auto px-4 pb-8 pt-6 sm:px-6 lg:px-8">

@@ -360,7 +360,7 @@ const Starvideo = () => {
     </div>
 
     </div>
-  );
-};
+  )
+}
 
 export default Starvideo;
