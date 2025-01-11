@@ -74,7 +74,7 @@ export default function Projects() {
             />
             <div className="my-[120px]">
                 <div className="flex-col relative flex gap-y-3 items-center project-title justify-center h-30">
-                    <h1 className="text-white relative">Projects</h1>
+                    <h1 className="text-transperent relative font-rubik text-cyan-500 text-glow">Projects</h1>
                     <div className="relative mt-3">
                         <SearchBar onSearch={handleSearch} />
                     </div>

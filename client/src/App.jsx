@@ -1,6 +1,7 @@
 import { Volume2, VolumeX } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Team from "./pages/Team.jsx";
 import AddProject from "./components/AddProject.jsx";
 import Footer from "./components/Footer.jsx";
 import MenteeRegistration from "./components/MenteeRegistration.jsx";
@@ -82,6 +83,7 @@ function App() {
           <Route path="/mentor" element={<Home />} />
           <Route path="/dashboard" element={<MentorDashboard />} />
           <Route path="/timeline" element={<ScrollLineAnimation />} />
+          <Route path="/team" element={<Team/>}/>
           <Route path="/projects" element={<Projects />} />
           <Route path="/leaderboard" element={<LeaderBoard />} />
           <Route path="/Mentor-registration" element={<MentorRegistration />} />
