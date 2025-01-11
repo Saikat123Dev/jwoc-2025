@@ -1,0 +1,26 @@
+/* Card.css */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.3), rgba(0, 0, 255, 0.1));
+}
+
+.card-content {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(0, 0, 255, 0.4));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 20px 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}

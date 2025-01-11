@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
+import Card from "../giftComponent";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -129,6 +130,7 @@ const Starvideo = () => {
         ref={videoContainerRef}
         className="relative h-screen w-full overflow-hidden"
       >
+
         <div
   ref={initialTextRef}
   className="absolute md:top-1/3 xl:top-[16rem] pt-10  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
@@ -206,13 +208,7 @@ const Starvideo = () => {
 
         {/* Rest of your existing content */}
 
-        <div className="absolute bottom-5 left-5 w-16 pt-12 md:w-28 md:pt-16 lg:w-40 lg:bottom-9 z-20">
-  <img
-    className="w-full h-auto object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
-    src="pine.png"
-    alt="Pine"
-  />
-</div>
+
 
 
         {/* ... (rest of your tree images) ... */}
@@ -226,18 +222,7 @@ const Starvideo = () => {
 
 
 
-<div className="absolute xl:pt-96 xl:w-96 xl:bottom-64 xl:mt-60 xl:left-72 pt-32 sm:pt-64 mt-10 sm:mt-24 left-12 sm:left-24 h-28 w-32 sm:h-56 sm:w-60 z-[9999]">
-  <img
-    className="w-full h-48 xl:h-64 xl:w-96 glow-effect transform transition-transform duration-300 hover:scale-110"
-    src="trre.png"
-    alt="Pine"
-  />
-  {/* Glowing Light Balls */}
-  <div className="absolute top-6 lg:top-96 xl:top-[10rem] xl:left-14 mt-72 left-8 h-4 w-4 bg-yellow-400 rounded-full blur-ball"></div>
-  <div className="absolute top-20 lg:top-[28rem] xl:top-[15rem] mt-72 left-16 h-6 w-6 bg-pink-400 rounded-full blur-ball"></div>
-  <div className="absolute top-10 lg:top-[26rem] xl:top-[10rem] mt-72 left-10 h-5 w-5 bg-blue-400 rounded-full blur-ball"></div>
-  <div className="absolute top-6 lg:top-[24rem] xl:top-[15rem] mt-64 left-9 h-3 w-3 bg-green-400 rounded-full blur-ball"></div>
-</div>
+
 
         {/* <div className="hidden md:block absolute xl:h-[20rem] xl:w-[20rem] xl:pt-[36rem] xl:mt-24 sm:pt-64 mt-8 xl:left-96 sm:mt-24 right-12 sm:right-24 xl:bottom-80 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
   <img
@@ -248,18 +233,19 @@ const Starvideo = () => {
 </div> */}
 
 
-        <div className="absolute bottom-0 top-6 w-full h-full z-20">
 
-          <img
-
-            className="w-full h-full object-contain object-bottom glow-effect transform"
-
-            src="deer.webp"
-
-            alt="Deer in Snow"
-
-          />
-
+<div className="absolute inset-0 top-32 z-0">
+          <div className="relative w-full glow-effect h-full">
+            <img
+              src="jwoc_v1.svg"
+              alt="Winter Scene"
+              className="w-full h-[calc(100vh-8rem)] object-cover object-center"
+              style={{
+                maxHeight: 'calc(100vh - 8rem)',
+                marginTop: '2rem'
+              }}
+            />
+          </div>
         </div>
         {/* Content Wrapper */}
         <div
@@ -328,6 +314,9 @@ const Starvideo = () => {
       </div>
       <div className="px-4">
         <TimelineDemo />
+      </div>
+      <div>
+        <Card/>
       </div>
       <div className="max-w-3xl mx-auto p-6 space-y-4">
       <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>

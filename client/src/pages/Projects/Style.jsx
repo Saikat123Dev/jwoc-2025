@@ -31,7 +31,16 @@ const StarryNightBackground = ({ children }) => {
   const snowflakes = generateSnowflakes(200); // Add snowflakes
 
   return (
-    <div className="relative min-h-screen bg-[#0F1C3F] overflow-hidden">
+    <div className="relative min-h-screen bg-[#020715] overflow-hidden">
+      {/* Pixel Image */}
+     <div className="absolute w-full h-full ">
+        <img
+          src="pixelcut-export-Photoroom.png"
+          alt="doogle"
+          className="w-full h-auto blur-[5px] opacity-50 filter invert fixed"
+        />
+      </div>
+
       {/* Stars */}
       {stars.map((star, index) => (
         <div
@@ -63,7 +72,13 @@ const StarryNightBackground = ({ children }) => {
       ))}
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0F1C3F]/30 to-[#0F1C3F]/50 pointer-events-none" />
+      {/* Gradient Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(to right, rgba(2, 7, 32, 0.8), rgba(0, 0, 0, 0.3))`,
+        }}
+      />
 
       {/* Children */}
       <div className="relative z-10">{children}</div>

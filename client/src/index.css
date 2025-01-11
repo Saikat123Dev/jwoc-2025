@@ -295,21 +295,24 @@ button:focus-visible {
 
 @keyframes glow {
   0% {
-    filter: drop-shadow(0 0 5px #0bceec); /* Initial subtle glow */
+    filter: drop-shadow(0 0 5px #82c0bc); /* Subtle cyan-teal glow */
   }
   25% {
-    filter: drop-shadow(0 0 15px #0acef2); /* Gradual brightening */
+    filter: drop-shadow(0 0 15px #027f7a); /* Cyan-teal brightening */
   }
   50% {
-    filter: drop-shadow(0 0 25px #067ed4); /* Peak intensity */
+    filter: drop-shadow(0 0 25px #0286d1), /* Peak blue intensity */
+            drop-shadow(0 0 30px #8a2be2); /* Added violet glow */
   }
   75% {
-    filter: drop-shadow(0 0 15px #0acef2); /* Gradual dimming */
+    filter: drop-shadow(0 0 15px #027f7a), /* Cyan-teal dimming */
+            drop-shadow(0 0 20px #6a0dad); /* Subtle violet presence */
   }
   100% {
-    filter: drop-shadow(0 0 5px #0bceec); /* Return to subtle glow */
+    filter: drop-shadow(0 0 5px #82c0bc); /* Return to subtle cyan-teal glow */
   }
 }
+
 @layer utilities {
   .text-glow {
     text-shadow:
