@@ -1,9 +1,7 @@
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
@@ -48,9 +46,9 @@ const Starvideo = () => {
   const buttonRef = useRef(null);
   const contentRef = useRef(null);
 
-  const init = useCallback(async (engine) => {
-    await loadFull(engine);
-  }, []);
+  // const init = useCallback(async (engine) => {
+  //   await loadFull(engine);
+  // }, []);
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -133,10 +131,10 @@ const Starvideo = () => {
       >
         <div
   ref={initialTextRef}
-  className="absolute top-1/3 xl:top-[16rem] pt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
+  className="absolute md:top-1/3 xl:top-[16rem] pt-10  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
 >
   <h1
-    className="text-4xl xl:text-9xl mt-7 sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text"
+    className="text-4xl xl:text-9xl mt-5 sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text"
   >
     JWoC - 2025
   </h1>
@@ -218,17 +216,17 @@ const Starvideo = () => {
 
 
         {/* ... (rest of your tree images) ... */}
-        <div className="hidden md:block absolute top-9 pt-44 sm:pt-64 mt-80 sm:mt-16 right-3 w-20 xl:pt-80 xl:mt-80 xl:h-[40rem] xl:w-[40rem] sm:w-32 md:w-40 z-[9999]">
+        {/* <div className=" md:block absolute top-9 pt-44 sm:pt-64 mt-80 sm:mt-16 right-3 w-20 xl:pt-80 xl:mt-80 xl:h-[40rem] xl:w-[40rem] sm:w-32 md:w-40 z-[9999]">
   <img
     className="h-full w-full xl:pl-36 xl:ml-44 object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
     src="pineTree.png"
     alt="Pine"
   />
-</div>
+</div> */}
 
 
 
-        <div className="absolute xl:pt-96 xl:w-96  xl:mt-60 xl:right-48 pt-32 sm:pt-64 mt-10 sm:mt-24 right-12 sm:right-24 h-28 w-32 sm:h-56 sm:w-60 z-[9999]">
+<div className="absolute xl:pt-96 xl:w-96 xl:bottom-64 xl:mt-60 xl:left-72 pt-32 sm:pt-64 mt-10 sm:mt-24 left-12 sm:left-24 h-28 w-32 sm:h-56 sm:w-60 z-[9999]">
   <img
     className="w-full h-48 xl:h-64 xl:w-96 glow-effect transform transition-transform duration-300 hover:scale-110"
     src="trre.png"
@@ -236,21 +234,18 @@ const Starvideo = () => {
   />
   {/* Glowing Light Balls */}
   <div className="absolute top-6 lg:top-96 xl:top-[10rem] xl:left-14 mt-72 left-8 h-4 w-4 bg-yellow-400 rounded-full blur-ball"></div>
-<div className="absolute top-20 lg:top-[28rem] xl:top-[15rem] mt-72 left-16 h-6 w-6 bg-pink-400 rounded-full blur-ball"></div>
-<div className="absolute top-10 lg:top-[26rem] xl:top-[10rem] mt-72 right-10 h-5 w-5 bg-blue-400 rounded-full blur-ball"></div>
-<div className="absolute top-6 lg:top-[24rem] xl:top-[15rem] mt-64 left-9 h-3 w-3 bg-green-400 rounded-full blur-ball"></div>
+  <div className="absolute top-20 lg:top-[28rem] xl:top-[15rem] mt-72 left-16 h-6 w-6 bg-pink-400 rounded-full blur-ball"></div>
+  <div className="absolute top-10 lg:top-[26rem] xl:top-[10rem] mt-72 left-10 h-5 w-5 bg-blue-400 rounded-full blur-ball"></div>
+  <div className="absolute top-6 lg:top-[24rem] xl:top-[15rem] mt-64 left-9 h-3 w-3 bg-green-400 rounded-full blur-ball"></div>
+</div>
 
-
-
-        </div>
-
-        <div className="hidden md:block absolute xl:h-[20rem] xl:w-[20rem] xl:pt-[36rem] xl:mt-24 sm:pt-64 mt-8 xl:left-96 sm:mt-24 right-12 sm:right-24 xl:bottom-80 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
+        {/* <div className="hidden md:block absolute xl:h-[20rem] xl:w-[20rem] xl:pt-[36rem] xl:mt-24 sm:pt-64 mt-8 xl:left-96 sm:mt-24 right-12 sm:right-24 xl:bottom-80 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
   <img
     className="w-full h-48 xl:pb-24 xl:w-full xl:h-[25rem] glow-effect transform transition-transform duration-500 hover:scale-105 filter brightness-90 hover:brightness-110 floating-effect"
     src="deer_v5.svg"
     alt="Deer"
   />
-</div>
+</div> */}
 
 
         <div className="absolute bottom-0 top-6 w-full h-full z-20">
@@ -268,74 +263,51 @@ const Starvideo = () => {
         </div>
         {/* Content Wrapper */}
         <div
-          ref={contentRef}
-          className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-40 flex flex-col items-center justify-start gap-3 px-4"
-        >
-         <h1
-  ref={headingRef}
-  className="text-2xl sm:text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-400 mb-4 sm:mb-8"
-  style={{
-    fontFamily: "Jersey, sans-serif", // Apply the Jersey font
-    textShadow: "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
-    opacity: 0.8, // Dim the overall text slightly
-  }}
+  ref={contentRef}
+  className="absolute top-1/4 sm:top-1/3 left-0 w-full h-full z-50 flex flex-col items-center justify-start gap-3 px-4"
 >
-  {/* ᗯEᒪᑕOᗰE TO ᗩ ᗰOᑎTᕼ Oᖴ OᑭEᑎ-ᔕOᑌᖇᑕE */}
-  Welcome To A Month Of Open-Source
-</h1>
+  <h1
+    ref={headingRef}
+    className="text-2xl sm:text-3xl md:text-6xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-400 mb-4 sm:mb-8"
+    style={{
+      fontFamily: "Jersey, sans-serif",
+      textShadow: "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
+      opacity: 0.8,
+    }}
+  >
+    Welcome To A Month Of Open-Source
+  </h1>
 
-
-
-          <Link
-            ref={buttonRef}
-            to="/registrationcard"
-            className="relative px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold text-sm sm:text-lg rounded-lg shadow-xl transform transition-all duration-300
-    hover:scale-110 hover:shadow-lg  hover:text-cyan-200 flex items-center justify-center"
-            style={{
-              background: "linear-gradient(45deg, #00cc66, #0066cc, #6600cc)", // Dimmed gradient colors
-              backgroundSize: "400% 400%",
-              animation: "aurora 10s ease infinite",
-              boxShadow: "0 0 20px rgba(0, 204, 102, 0.5), 0 0 30px rgba(102, 0, 204, 0.5)",
-              filter: "brightness(0.9)", // Dim the brightness
-            }}
-          >
-            <span className="group-hover:text-cyan-300 transition-colors duration-300">
-              Register Now
-            </span>
-
-            {/* Aurora Gradient Animation */}
-            <style jsx>{`
-    @keyframes aurora {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-  `}</style>
-          </Link>
-
-
-
-        </div>
+  {/* Register Now Button */}
+  <Link
+    to="/registrationcard"
+    className="relative px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold text-sm sm:text-lg rounded-lg shadow-xl transform transition-all duration-300 hover:scale-110 hover:shadow-lg hover:text-cyan-200 flex items-center justify-center z-50"
+    style={{
+      background: "linear-gradient(45deg, #00cc66, #0066cc, #6600cc)",
+      backgroundSize: "400% 400%",
+      animation: "aurora 10s ease infinite",
+      boxShadow: "0 0 20px rgba(0, 204, 102, 0.5), 0 0 30px rgba(102, 0, 204, 0.5)",
+      filter: "brightness(0.9)",
+    }}
+  >
+    <span className="group-hover:text-cyan-300 transition-colors duration-300">
+      Register Now
+    </span>
+  </Link>
+</div>
       </div>
 
       <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4">
         <AboutJWoC />
       </div>
 
-      <Particles
+      {/* <Particles
         options={{
           particles: {
             color: { value: "#ffffff" },
             number: {
-              value: 50,
-              density: { enable: true, area: 800 },
+              value: 10,
+              density: { enable: true, area: 500 },
             },
             opacity: { value: 1 },
             shape: { type: "circle" },
@@ -349,7 +321,7 @@ const Starvideo = () => {
           },
         }}
         init={init}
-      />
+      /> */}
 
       <div className="py-4 px-4 sm:mr-4 sm:ml-4">
         <InfinityCard />
@@ -361,6 +333,7 @@ const Starvideo = () => {
       <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
 
       {faqs.map((faq, index) => (
+
         <div
           key={index}
           className="border rounded-lg overflow-hidden"

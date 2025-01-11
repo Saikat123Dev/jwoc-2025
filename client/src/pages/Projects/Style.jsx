@@ -19,7 +19,7 @@ const StarryNightBackground = ({ children }) => {
     for (let i = 0; i < count; i++) {
       snowflakes.push({
         left: `${Math.random() * 100}%`,
-        size: Math.random() * 0.2 + 0.1,
+        size: Math.random() * 0.3 + 0.2,
         duration: Math.random() * 5 + 5,
         delay: Math.random() * 3,
       });
@@ -28,7 +28,7 @@ const StarryNightBackground = ({ children }) => {
   };
 
   const stars = generateStars(300); // Increase star count
-  const snowflakes = generateSnowflakes(100); // Add snowflakes
+  const snowflakes = generateSnowflakes(200); // Add snowflakes
 
   return (
     <div className="relative min-h-screen bg-[#0F1C3F] overflow-hidden">

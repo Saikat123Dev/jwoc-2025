@@ -1,6 +1,5 @@
 import { Volume2, VolumeX } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import MouseParticles from "react-mouse-particles";
 import { Route, Routes } from "react-router-dom";
 import Team from "./pages/Team.jsx";
 import AddProject from "./components/AddProject.jsx";
@@ -16,7 +15,6 @@ import Projects from "./pages/Projects/Projects.jsx";
 import StarryNightBackground from "./pages/Projects/Style.jsx";
 import RegistrationCards from "./pages/RegistrationCard.jsx";
 import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
-
 function App() {
   const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -47,12 +45,12 @@ function App() {
 
   return (
     <StarryNightBackground>
-      <MouseParticles
+      {/* <MouseParticles
         g={1}
         color={["#32CD32", "#00FFFF", "#8A2BE2", "#FF00FF", "#00FA9A", "#1E90FF", "#7FFF00", "#DDA0DD"]}
         cull="MuiSvgIcon-root,MuiButton-root"
         level={6}
-      />
+      /> */}
 
       <div>
 
