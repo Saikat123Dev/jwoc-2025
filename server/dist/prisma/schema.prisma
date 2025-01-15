@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Mentee {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  type        String   @default("Mentee")
+  name        String
+  gender      String   @default("Prefer not to say")
+  email       String   @unique
+  phone       String
+  whatsapp    String
+  ipAddress   String?
+  ipDetails   Json?
+  college     String
+  year        String
+  github      String
+  linkedIn    String
+  question1   String   @default("What inspired you to join?")
+  answer1     String
+  isBanned    Boolean  @default(false)
+  TotalPoints Int      @default(0)
+  Ranking     Int      @default(0)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+}
+
+model Mentor {
+  id   String  @id @default(auto()) @map("_id") @db.ObjectId
+  type String  @default("Mentor")
+  name String?
+
+  email        String  @unique
+  isRegistered Boolean @default(false)
+
+  phone               String?
+  whatsapp            String?
+  gender              String               @default("Prefer not to say")
+  ipAddress           String?
+  college             String?
+  year                String?
+  githubLink          String?
+  linkedIn            String?
+  RegisteredProjectId String[]             @db.ObjectId
+  acceptedProjectId   String[]             @db.ObjectId
+  PRMerged            Int                  @default(0)
+  question1           String               @default("Why do you want to mentor?")
+  answer1             String?
+  question2           String               @default("What is your most valuable skill?")
+  answer2             String?
+  isSelected          Boolean              @default(false)
+  isBanned            Boolean              @default(false)
+  projectNumber       Int?                 @default(0)
+  forgotPasswordToken String?
+  createdAt           DateTime             @default(now()) @map("created_at")
+  updatedAt           DateTime             @updatedAt @map("updated_at")
+  Project             Project[]            @relation("MentorProjects")
+  oauthAccounts       MentorOAuthAccount[]
+}
+
+model MentorOAuthAccount {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  mentorId     String  @db.ObjectId
+  provider     String // 'google' or 'github'
+  providerId   String // Unique ID from OAuth provider
+  accessToken  String?
+  refreshToken String?
+
+  mentor Mentor @relation(fields: [mentorId], references: [id])
+
+  @@unique([provider, providerId])
+  @@index([mentorId])
+}
+
+model Project {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  projectName        String
+  projectLink        String
+  projectDescription String
+  isDeleted          Boolean  @default(false)
+  projectTypes       String
+  projectTags        String[]
+  projectOwner       Mentor   @relation(fields: [projectOwnerId], references: [id], name: "MentorProjects")
+  projectOwnerId     String   @db.ObjectId
+  GitHubLink         String
+  PRMerged           Int      @default(0)
+  isSelected         Boolean  @default(false)
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+}
