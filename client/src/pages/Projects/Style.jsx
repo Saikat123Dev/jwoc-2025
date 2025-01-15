@@ -73,7 +73,7 @@ const StarryNightBackground = ({ children }) => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `linear-gradient(to right, rgba(2, 7, 35, 0.9), rgba(0,0, 0, 0.3))`,
+          background: `linear-gradient(to right, rgba(2, 7, 35, 0.9), rgba(0,70, 0, 0.3))`,
         }}
       />
 
