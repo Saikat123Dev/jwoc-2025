@@ -128,7 +128,11 @@ const Starvideo = () => {
     <div>
       <div
         ref={videoContainerRef}
-        className="relative h-screen w-full overflow-hidden"
+        className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center"
+        style={{
+          minHeight: "100vh", // Ensure full viewport height
+          height: "100dvh",   // Dynamic viewport height for mobile browsers
+        }}
       >
 
 <div ref={initialTextRef}
