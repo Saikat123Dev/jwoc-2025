@@ -1,7 +1,5 @@
-import { Volume2, VolumeX } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Team from "./pages/Team.jsx";
 import AddProject from "./components/AddProject.jsx";
 import Footer from "./components/Footer.jsx";
 import MenteeRegistration from "./components/MenteeRegistration.jsx";
@@ -14,34 +12,35 @@ import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import StarryNightBackground from "./pages/Projects/Style.jsx";
 import RegistrationCards from "./pages/RegistrationCard.jsx";
+import Team from "./pages/Team.jsx";
 import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
 function App() {
-  const audioRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(false);
+  // const audioRef = useRef(null);
+  // const [isMuted, setIsMuted] = useState(false);
 
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.muted = false;
-      audioRef.current.play().catch((error) => {
-        console.error("Audio autoplay blocked:", error);
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (audioRef.current) {
+  //     audioRef.current.muted = false;
+  //     audioRef.current.play().catch((error) => {
+  //       console.error("Audio autoplay blocked:", error);
+  //     });
+  //   }
+  // }, []);
 
   // Mute/Unmute Handler
-  const handleMuteToggle = () => {
-    if (audioRef.current) {
-      if (isMuted) {
-        audioRef.current.muted = false;
-        audioRef.current.play().catch((error) => {
-          console.error("Failed to play audio:", error);
-        });
-      } else {
-        audioRef.current.muted = true;
-      }
-      setIsMuted(!isMuted);
-    }
-  };
+  // const handleMuteToggle = () => {
+  //   if (audioRef.current) {
+  //     if (isMuted) {
+  //       audioRef.current.muted = false;
+  //       audioRef.current.play().catch((error) => {
+  //         console.error("Failed to play audio:", error);
+  //       });
+  //     } else {
+  //       audioRef.current.muted = true;
+  //     }
+  //     setIsMuted(!isMuted);
+  //   }
+  // };
 
   return (
     <StarryNightBackground>
@@ -54,13 +53,13 @@ function App() {
 
       <div>
 
-        <audio ref={audioRef} src="/jingle.mp3" loop />
-
+        {/* <audio ref={audioRef} src="/jingle.mp3" loop />
+ */}
 
         <NavbarDemo />
 
         {/* Mute/Unmute Button */}
-        <div style={{ position: "fixed", top: "10px", right: "10px", zIndex: 1000 }}>
+        {/* <div style={{ position: "fixed", top: "10px", right: "10px", zIndex: 1000 }}>
           <button
             onClick={handleMuteToggle}
             style={{
@@ -75,7 +74,7 @@ function App() {
           >
             {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
           </button>
-        </div>
+        </div> */}
 
         {/* Routes */}
         <Routes>

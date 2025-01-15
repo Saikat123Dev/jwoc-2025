@@ -31,7 +31,7 @@ const StarryNightBackground = ({ children }) => {
   const snowflakes = generateSnowflakes(200); // Add snowflakes
 
   return (
-    <div className="relative min-h-screen bg-[#020715] overflow-hidden">
+    <div className="relative min-h-screen bg-[#030331] overflow-hidden">
       {/* Pixel Image */}
      <div className="absolute w-full h-full ">
         <img
@@ -73,7 +73,7 @@ const StarryNightBackground = ({ children }) => {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `linear-gradient(to right, rgba(2, 7, 32, 0.8), rgba(0, 0, 0, 0.3))`,
+          background: `linear-gradient(to right, rgba(2, 7, 35, 0.9), rgba(0,0, 0, 0.3))`,
         }}
       />
 
