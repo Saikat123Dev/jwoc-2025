@@ -131,80 +131,76 @@ const Starvideo = () => {
         className="relative h-screen w-full overflow-hidden"
       >
 
-        <div
-  ref={initialTextRef}
-  className="absolute md:top-1/3  xl:top-[16rem] pt-10  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
->
-  <h1
-    className="text-4xl xl:text-9xl mt-5 sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text"
-  >
-    JWoC - 2025
-  </h1>
-  <p className="text-2xl xl:text-5xl xl:pt-2 font-bold text-cyan-500 glow-subtext mt-2">
-    Season 6
-  </p>
-  <p className="text-[9px] xl:text-[15px] text-white glow-subtext  ">
-     In association with
-  </p>
-<div className="flex justify-center items-center glow-subtext gap-2">
-<img className="w-10 h-5 " src="gdsc.png" alt="GDSC Logo" />
-<div>
-  <h2 className="text-sm xl:text-xl   opacity-70 text-white  font-bold mt-2">
-    Google Developer Student Club
-  </h2>
- <p className="text-white xl:text-[15px]  text-[9px] opacity-50  gap-2 flex items-center justify-center">
+<div ref={initialTextRef}
+ className="fixed w-full top-[20%] sm:top-[15%] md:top-1/3 lg:top-[15%] left-1/2 transform -translate-x-1/2 px-4 text-center">
+      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text">
+        JWoC - 2025
+      </h1>
 
-  Jalpaiguri Government Engineering College
+      <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-cyan-500 glow-subtext mt-2 sm:mt-3">
+        Season 6
+      </p>
 
-</p>
-</div>
-</div>
+      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-[15px] text-white glow-subtext mt-1 sm:mt-2">
+        In association with
+      </p>
 
-  <style jsx>
-    {`
-      /* Glow animation for main heading */
-      @keyframes glow-text {
-        0% {
-          text-shadow: 0 0 10px rgba(0, 255, 128, 0.6),
-                       0 0 20px rgba(0, 255, 128, 0.4);
+      <div className="flex justify-center items-center glow-subtext gap-2 mt-2">
+        <img
+          className="w-8 h-4 sm:w-10 sm:h-5"
+          src="gdsc.png"
+          alt="GDSC Logo"
+        />
+        <div>
+          <h2 className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-bold opacity-70">
+            Google Developer Student Club
+          </h2>
+          <p className="text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-[15px] text-white opacity-50">
+            Jalpaiguri Government Engineering College
+          </p>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes glow-text {
+          0% {
+            text-shadow: 0 0 10px rgba(0, 255, 128, 0.6),
+                         0 0 20px rgba(0, 255, 128, 0.4);
+          }
+          50% {
+            text-shadow: 0 0 20px rgba(0, 255, 128, 0.8),
+                         0 0 30px rgba(0, 128, 255, 0.6),
+                         0 0 40px rgba(128, 0, 255, 0.8);
+          }
+          100% {
+            text-shadow: 0 0 10px rgba(0, 255, 128, 0.6),
+                         0 0 20px rgba(128, 0, 255, 0.6);
+          }
         }
-        50% {
-          text-shadow: 0 0 20px rgba(0, 255, 128, 0.8),
-                       0 0 30px rgba(0, 128, 255, 0.6),
-                       0 0 40px rgba(128, 0, 255, 0.8);
-        }
-        100% {
-          text-shadow: 0 0 10px rgba(0, 255, 128, 0.6),
-                       0 0 20px rgba(128, 0, 255, 0.6);
-        }
-      }
 
-      /* Glow animation for subtexts */
-      @keyframes glow-subtext {
-        0%, 100% {
-          text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        @keyframes glow-subtext {
+          0%, 100% {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+          }
+          50% {
+            text-shadow: 0 0 12px rgba(0, 255, 255, 0.8),
+                         0 0 18px rgba(128, 0, 255, 0.8);
+          }
         }
-        50% {
-          text-shadow: 0 0 12px rgba(0, 255, 255, 0.8),
-                       0 0 18px rgba(128, 0, 255, 0.8);
+
+        .glow-text {
+          animation: glow-text 1.5s ease-in-out infinite;
+          background: linear-gradient(90deg, #00ff80, #0080ff, #8000ff);
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
         }
-      }
 
-      .glow-text {
-        animation: glow-text 1.5s ease-in-out infinite;
-        background: linear-gradient(90deg, #00ff80, #0080ff, #8000ff);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-      }
-
-      .glow-subtext {
-        animation: glow-subtext 2s ease-in-out infinite;
-      }
-    `}
-  </style>
-</div>
-
+        .glow-subtext {
+          animation: glow-subtext 2s ease-in-out infinite;
+        }
+      `}</style>
+    </div>
 
         {/* Rest of your existing content */}
 
