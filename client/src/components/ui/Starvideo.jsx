@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Snowfall from "react-snowfall";
 import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
@@ -130,10 +131,10 @@ const Starvideo = () => {
         ref={videoContainerRef}
         className="relative h-screen w-full overflow-hidden"
       >
-
+ <Snowfall snowflakeCount={80} />
         <div
   ref={initialTextRef}
-  className="absolute md:top-1/3 xl:top-[16rem] pt-10  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
+  className="absolute md:top-1/3 sm:top-1/2 xl:top-[16rem] pt-10  left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center"
 >
   <h1
     className="text-4xl xl:text-9xl mt-5 sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text"
@@ -236,6 +237,7 @@ const Starvideo = () => {
 
 <div className="absolute inset-0 top-32 z-0">
           <div className="relative w-full glow-effect h-full">
+
             <img
               src="jwoc_v1.svg"
               alt="Winter Scene"
@@ -264,7 +266,6 @@ const Starvideo = () => {
     Welcome To A Month Of Open-Source
   </h1>
 
-  {/* Register Now Button */}
   <Link
     to="/registrationcard"
     className="relative px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold text-sm sm:text-lg rounded-lg shadow-xl transform transition-all duration-300 hover:scale-110 hover:shadow-lg hover:text-cyan-200 flex items-center justify-center z-50"
