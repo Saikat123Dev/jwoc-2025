@@ -240,7 +240,7 @@ const Starvideo = () => {
             <img
               src="jwoc_v1.svg"
               alt="Winter Scene"
-              className="w-full h-[calc(100vh-8rem)] object-cover object-center"
+              className="w-full h-[calc(100vh-5rem)] object-cover object-center"
               style={{
                 maxHeight: 'calc(100vh - 8rem)',
                 marginTop: '2rem'
