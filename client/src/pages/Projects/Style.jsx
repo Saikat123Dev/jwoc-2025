@@ -70,9 +70,6 @@ const StarryNightBackground = ({ children }) => {
           }}
         />
       ))}
-
-      {/* Gradient Overlay */}
-      {/* Gradient Overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
