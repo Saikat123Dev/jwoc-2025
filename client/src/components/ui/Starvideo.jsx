@@ -123,6 +123,9 @@ const Starvideo = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+  // const scrollToSection = (ref) => {
+  //   ref.current.scrollIntoView({ behavior: 'smooth' });
+  // };
 
   return (
     <div>
@@ -269,7 +272,7 @@ const Starvideo = () => {
 </div>
       </div>
 
-      <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4">
+      <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4" >
         <AboutJWoC />
       </div>
 
@@ -319,18 +322,14 @@ const Starvideo = () => {
           className="border rounded-lg overflow-hidden"
         >
           <button
-  className="w-full backdrop-blur-md p-4 text-left hover:text-cyan-200 flex justify-between items-center rounded-lg border border-white/10 bg-white/5  transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl"
-  onClick={() => setActiveIndex(activeIndex === index ? null : index)}
->
-  <span className="font-medium text-white">{faq.question}</span>
-  <span
-    className={`ml-6 text-white text-2xl font-light transform transition-transform duration-300 ${
-      activeIndex === index ? 'rotate-180' : 'rotate-0'
-    }`}
-  >
-    {activeIndex === index ? '−' : '+'}
-  </span>
-</button>
+            className="w-full p-4 text-left hover:bg-gray-500 flex justify-between items-center"
+            onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+          >
+            <span className="font-medium">{faq.question}</span>
+            <span className="ml-6 transform transition-transform duration-200">
+              {activeIndex === index ? '−' : '+'}
+            </span>
+          </button>
 
           <div
             className={`overflow-hidden transition-all duration-200 ${
