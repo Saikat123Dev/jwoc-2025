@@ -25,49 +25,49 @@ const MentorDashboard = () => {
         // Handle mentorId from URL params first
         const params = new URLSearchParams(location.search);
         const mentorId = params.get("mentorId");
-        console.log("jkzbc")
+
         if (mentorId) {
           localStorage.setItem("mentorId", mentorId);
-          // After storing mentorId, fetch the full user data
-          const response = await axios.get("https://jwoc-2025.onrender.com/auth/user", {
-            withCredentials: true,
-            headers: {
-              'Authorization': `Bearer ${mentorId}` // Add mentorId to auth header if your API expects it
-            }
-          });
-        console.log(response)
+        }
+
+        // Get stored mentorId (either from URL or previously stored)
+        const storedMentorId = localStorage.getItem("mentorId");
+
+        const response = await axios.get("https://jwoc-2025.onrender.com/auth/user", {
+          withCredentials: true,
+          headers: {
+            'Authorization': `Bearer ${storedMentorId || ''}`
+          }
+        });
+
+        if (response.data && response.data.user) {
           setAuthState({
             user: response.data,
-            isProfileComplete: response.data.user?.isRegistered || false,
+            isProfileComplete: response.data.user.isRegistered || false,
             loading: false,
             error: null
           });
 
           // Clean up URL after successful auth
-          navigate("/dashboard", { replace: true });
+          if (mentorId) {
+            navigate("/dashboard", { replace: true });
+          }
         } else {
-          // If no mentorId in URL, try to fetch user data with existing credentials
-          const response = await axios.get("https://jwoc-2025.onrender.com/auth/user", {
-            withCredentials: true
-          });
-
-          setAuthState({
-            user: response.data,
-            isProfileComplete: response.data.user?.isRegistered || false,
-            loading: false,
-            error: null
-          });
+          throw new Error("Invalid user data received");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
+        const errorMessage = error.response?.data?.message || "Failed to load user data. Please try again.";
+
         setAuthState(prev => ({
           ...prev,
           loading: false,
-          error: "Failed to load user data. Please try again."
+          error: errorMessage
         }));
 
         // Only redirect to home if it's an authentication error
         if (error.response?.status === 401) {
+          localStorage.removeItem("mentorId"); // Clear invalid mentorId
           navigate("/");
         }
       }
@@ -78,11 +78,20 @@ const MentorDashboard = () => {
 
   const logout = async () => {
     try {
+      const mentorId = localStorage.getItem("mentorId");
+      await axios.get("https://jwoc-2025.onrender.com/auth/logout", {
+        withCredentials: true,
+        headers: {
+          'Authorization': `Bearer ${mentorId || ''}`
+        }
+      });
       localStorage.removeItem("mentorId");
-      await axios.get("https://jwoc-2025.onrender.com/auth/logout", { withCredentials: true });
       navigate("/");
     } catch (error) {
       console.error("Error during logout:", error);
+      // Force logout even if API call fails
+      localStorage.removeItem("mentorId");
+      navigate("/");
     }
   };
 
@@ -213,6 +222,7 @@ const MentorDashboard = () => {
                       {[
                         { label: "Phone", value: phone },
                         { label: "WhatsApp", value: whatsapp },
+                        { label: "Gender", value: gender },
                         { label: "College", value: college },
                         { label: "Year", value: year ? getOrdinalSuffix(year) : "N/A" },
                       ].map((item) => (
