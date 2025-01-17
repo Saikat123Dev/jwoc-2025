@@ -21,13 +21,14 @@ const MentorDashboard = () => {
 
     if (mentorId) {
       localStorage.setItem("mentorId", mentorId);
-      navigate("/dashboard", { replace: true });
+      navigate("https://jwoc-2025.vercel.app/dashboard", { replace: true });
     }
 
     axios
       .get("https://jwoc-2025.onrender.com/auth/user", { withCredentials: true })
       .then((response) => {
         const userData = response.data;
+        console.log(userData)
         setUser(userData);
         setIsProfileComplete(userData.user.isRegistered || false);
         setLoading(false);
