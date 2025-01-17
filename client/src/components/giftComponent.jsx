@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import React from "react";
 
@@ -60,7 +59,7 @@ const PrizeCards = () => {
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: index * 0.1 }}
-              className="reward_card  rounded-lg p-6 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300"
+              className="reward_card rounded-lg p-6 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300 border border-white border-opacity-20 bg-black bg-opacity-20 backdrop-blur-sm"
             >
               <div className="relative flex justify-center mb-4">
                 <img
