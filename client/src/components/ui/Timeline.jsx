@@ -71,14 +71,25 @@ const TimelineItem = ({ item, index }) => {
 
 const Timeline = ({ data }) => {
   return (
+    
     <div className="min-h-screen">
+   
+     
       <div className="w-full font-sans relative z-10">
+     
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10"
         >
+         <div className="text-center mb-8">
+          <div className="relative inline-block">
+            <span className="absolute  inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 blur-lg"></span>
+            <h1 className="relative font-extrabold font-rubik text-6xl text-white">Timeline⌛</h1>
+          </div>
+        </div>
           <GlowingTitle className="text-lg md:text-4xl mb-4 font-bold">
             Changelog from my journey
           </GlowingTitle>

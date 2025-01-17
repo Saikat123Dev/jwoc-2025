@@ -126,6 +126,11 @@ const Starvideo = () => {
 
   return (
     <div>
+       {/* <div
+  className="fixed left-[-200px] w-[55rem] h-[55rem] rounded-full blur-[50px] bg-gradient-to-br from-purple-500 via-indigo-500 to-purple-800 opacity-10 z-[-20]"
+
+></div> */}
+
       <div
         ref={videoContainerRef}
         className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center"
@@ -137,15 +142,24 @@ const Starvideo = () => {
 
 <div ref={initialTextRef}
  className="fixed w-full top-[20%] sm:top-[15%] md:top-1/3 lg:top-[15%] left-1/2 transform -translate-x-1/2 px-4 text-center">
-      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-6xl xl:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text">
-        JWoC - 2025
-      </h1>
+
+<div className="relative ">
+<span className="absolute inset-0 w-[620px] h-[80px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-900 via-[rgba(0, 255, 255, 0.2)] to-cyan-800 blur-lg"></span>
+
+
+  <h1 className="relative font-extrabold font-rubik text-8xl text-white">
+    JWoC - 2025
+  </h1>
+</div>
+
+
+
 
       <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-bold text-cyan-500 glow-subtext mt-2 sm:mt-3">
         Season 6
       </p>
 
-      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-[15px] text-white glow-subtext mt-1 sm:mt-2">
+      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-[15px] text-white mt-1 sm:mt-2">
         In association with
       </p>
 
@@ -187,18 +201,11 @@ const Starvideo = () => {
             text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
           }
           50% {
-            text-shadow: 0 0 12px rgba(0, 255, 255, 0.8),
-                         0 0 18px rgba(128, 0, 255, 0.8);
+            text-shadow:0 0 18px rgba(128, 0, 255, 0.8);
           }
         }
 
-        .glow-text {
-          animation: glow-text 1.5s ease-in-out infinite;
-          background: linear-gradient(90deg, #00ff80, #0080ff, #8000ff);
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
-        }
+       
 
         .glow-subtext {
           animation: glow-subtext 2s ease-in-out infinite;
@@ -206,31 +213,6 @@ const Starvideo = () => {
       `}</style>
     </div>
 
-        {/* Rest of your existing content */}
-
-
-
-
-        {/* ... (rest of your tree images) ... */}
-        {/* <div className=" md:block absolute top-9 pt-44 sm:pt-64 mt-80 sm:mt-16 right-3 w-20 xl:pt-80 xl:mt-80 xl:h-[40rem] xl:w-[40rem] sm:w-32 md:w-40 z-[9999]">
-  <img
-    className="h-full w-full xl:pl-36 xl:ml-44 object-contain glow-effect transform transition-transform duration-300 hover:scale-110"
-    src="pineTree.png"
-    alt="Pine"
-  />
-</div> */}
-
-
-
-
-
-        {/* <div className="hidden md:block absolute xl:h-[20rem] xl:w-[20rem] xl:pt-[36rem] xl:mt-24 sm:pt-64 mt-8 xl:left-96 sm:mt-24 right-12 sm:right-24 xl:bottom-80 left-24 sm:left-52 h-28 w-32 sm:h-56 sm:w-60 z-50">
-  <img
-    className="w-full h-48 xl:pb-24 xl:w-full xl:h-[25rem] glow-effect transform transition-transform duration-500 hover:scale-105 filter brightness-90 hover:brightness-110 floating-effect"
-    src="deer_v5.svg"
-    alt="Deer"
-  />
-</div> */}
 
 
 
@@ -319,7 +301,12 @@ const Starvideo = () => {
         <Card/>
       </div>
       <div className="max-w-3xl mx-auto p-6 space-y-4">
-      <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      <div className="text-center mb-8">
+          <div className="relative inline-block">
+            <span className="absolute  inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 blur-lg"></span>
+            <h1 className="relative font-extrabold font-rubik text-6xl text-white">FAQs🤔💭</h1>
+          </div>
+        </div>
 
       {faqs.map((faq, index) => (
 
