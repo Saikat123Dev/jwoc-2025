@@ -18,7 +18,7 @@ const MentorDashboard = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  console.log(authState)
   useEffect(() => {
     const fetchUserData = async () => {
       try {
