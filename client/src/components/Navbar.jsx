@@ -53,7 +53,7 @@ const NavbarDemo = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center h-12 w-24 cursor-pointer">
             <img
-              src="jwoc-2024.svg"
+              src="jwoc_icon.svg"
               alt="Logo"
               className="h-10 w-auto object-contain"
             />

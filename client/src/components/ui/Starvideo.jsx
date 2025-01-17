@@ -149,7 +149,7 @@ const Starvideo = () => {
 <div className="relative ">
 <span className="absolute inset-0 w-[620px] h-[80px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-900 via-[rgba(0, 255, 255, 0.2)] to-cyan-800 blur-lg"></span>
 
-
+  
   <h1 className="relative font-extrabold font-rubik text-8xl text-white">
     JWoC - 2025
   </h1>
@@ -241,7 +241,7 @@ const Starvideo = () => {
 >
   <h1
     ref={headingRef}
-    className="text-2xl sm:text-3xl md:text-6xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-400 mb-4 sm:mb-8"
+    className="text-4xl sm:text-3xl md:text-7xl font-bold text-center text-white mb-4 sm:mb-8"
     style={{
       fontFamily: "Jersey, sans-serif",
       textShadow: "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
