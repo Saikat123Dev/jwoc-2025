@@ -126,6 +126,10 @@ const Starvideo = () => {
 
   return (
     <div>
+       {/* <div
+        className=" fixed left-96 top-52 w-[20rem] h-[20rem] bg-gradient-to-br from-purple-500 via-indigo-500 to-purple-700 opacity-40  rounded-full blur-[50px]"
+        style={{ zIndex: -1 }}
+      ></div> */}
       <div
         ref={videoContainerRef}
         className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center"
@@ -137,6 +141,7 @@ const Starvideo = () => {
 
 <div ref={initialTextRef}
  className="fixed w-full top-[20%] sm:top-[15%] md:top-1/3 lg:top-[15%] left-1/2 transform -translate-x-1/2 px-4 text-center">
+
       <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-6xl xl:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-600 font-rubik glow-text">
         JWoC - 2025
       </h1>
