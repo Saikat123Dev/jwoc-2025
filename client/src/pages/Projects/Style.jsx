@@ -15,7 +15,7 @@ const StarryNightBackground = ({ children }) => {
     return snowflakes;
   };
 
-  const snowflakes = generateSnowflakes(200);
+  const snowflakes = generateSnowflakes(120);
 
   return (
     <div className="relative min-h-screen bg-[#021c0e] overflow-hidden">
