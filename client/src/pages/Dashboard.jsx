@@ -18,7 +18,7 @@ const MentorDashboard = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(authState)
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -75,7 +75,7 @@ const MentorDashboard = () => {
 
     fetchUserData();
   }, [location.search, navigate]);
-
+  console.log(authState)
   const logout = async () => {
     try {
       const mentorId = localStorage.getItem("mentorId");
