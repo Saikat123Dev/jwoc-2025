@@ -58,21 +58,55 @@ router.get(
 
 // Get Current User
 router.get("/user", (req, res) => {
-  const userData = req.cookies.user;
-  if (req.isAuthenticated()) {
+  console.log("Session:", req.session);
+  console.log("User object:", req.user);
+  console.log("Cookies:", req.cookies);
 
+  if (req.isAuthenticated() && req.user) {
+    // Send the user data from req.user instead of cookies
     res.json({
       success: true,
-      user: userData,
+      user: req.user
     });
   } else {
-    res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-    });
+    // Try to get mentorId from Authorization header as fallback
+    const authHeader = req.headers.authorization;
+    const mentorId = authHeader?.split(' ')?.[1];
+
+    if (mentorId) {
+      // Find user by mentorId using Prisma
+      prisma.mentor.findUnique({
+        where: { id: mentorId },
+        include: { oauthAccounts: true }
+      })
+        .then(user => {
+          if (user) {
+            res.json({
+              success: true,
+              user: user
+            });
+          } else {
+            res.status(401).json({
+              success: false,
+              message: "User not found"
+            });
+          }
+        })
+        .catch(err => {
+          console.error("Database error:", err);
+          res.status(500).json({
+            success: false,
+            message: "Server error"
+          });
+        });
+    } else {
+      res.status(401).json({
+        success: false,
+        message: "Unauthorized"
+      });
+    }
   }
 });
-
 // Logout Route
 router.get("/logout", (req, res, next) => {
   req.logout((err) => {
