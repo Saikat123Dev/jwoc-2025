@@ -57,7 +57,7 @@ const MentorDashboard = () => {
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
-        const errorMessage = error.response?.data?.message || "Failed to load user data. Please try again.";
+        const errorMessage = error || "Failed to load user data. Please try again.";
 
         setAuthState(prev => ({
           ...prev,
