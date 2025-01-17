@@ -4,14 +4,15 @@ import React from "react";
 const PrizeCards = () => {
   return (
     <>
-      <section id="rewards" className="text-white max-w-7xl mx-auto px-4 py-10">
+      <section id="rewards" className="text-white max-w-6xl mx-auto px-4 py-10">
         {/* Heading */}
         <div className="text-center mb-8">
           <div className="relative inline-block">
+
             <span className="absolute  inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
             <h1 className="relative font-extrabold font-rubik text-6xl text-white">Rewards</h1>
+
           </div>
-          <div className="mt-2 h-1 w-16 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto"></div>
         </div>
 
         {/* Sub-heading */}
@@ -23,11 +24,8 @@ const PrizeCards = () => {
         >
           <h2 className="text-2xl text-glow font-semibold mb-2">
             Why you must register for
-            <span className="bg-blue-800 px-2 py-1 rounded ml-2">JWoC 2024</span>?
+            <span className="bg-blue-800 px-2 py-1 rounded ml-2 ">JWoC 2025</span>?
           </h2>
-          <p className="text-md text-gray-300">
-            Because exciting rewards & prizes are waiting just for you.
-          </p>
         </motion.div>
 
         {/* Reward Cards */}
@@ -59,15 +57,17 @@ const PrizeCards = () => {
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: index * 0.1 }}
-              className="reward_card rounded-lg p-6 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300 border border-white border-opacity-20 bg-black bg-opacity-20 backdrop-blur-sm"
+              className="reward_card rounded-lg p-6 shadow-md transition-transform duration-300 border border-white border-opacity-30  backdrop-blur-md"
             >
-              <div className="relative flex justify-center mb-4 z-50">
+
+              <div className="relative flex justify-center mb-4 z-[10]">
+
                 <img
                   src={perk.src}
                   alt={perk.title}
-                  className="w-[10rem] h-[10rem] object-contain"
+                  className="w-[10rem] h-[10rem] object-contain z-[20]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-xl opacity-40"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-xl opacity-30"></div>
               </div>
               <h4 className="text-center font-semibold text-lg">{perk.title}</h4>
             </motion.div>
