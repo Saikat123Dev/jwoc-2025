@@ -61,7 +61,6 @@ const NavbarDemo = () => {
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="backdrop-blur-lg h-12  md:max-w-[45rem]  bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center space-x-6">
 
             <NavItem id="timeline" label="Timeline" Icon={Clock} />
