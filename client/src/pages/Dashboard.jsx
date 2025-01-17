@@ -13,18 +13,14 @@ const MentorDashboard = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-
+ console.log("weisbfbfsbfwb")
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const mentorId = params.get("mentorId");
 
     if (mentorId) {
       localStorage.setItem("mentorId", mentorId);
-
-      // Optionally clear the URL query params
-      const newUrl = location.pathname;
-      window.history.replaceState(null, '', newUrl);
-
+      // Redirect to dashboard without external URL
       navigate("/dashboard", { replace: true });
     }
 
@@ -38,7 +34,7 @@ const MentorDashboard = () => {
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
-        navigate("/"); // Redirect to home if user data cannot be fetched
+        navigate("/");
       });
   }, [location.search, navigate]);
 
