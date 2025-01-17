@@ -21,7 +21,10 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use( cors({
+  origin: "https://jwoc-2025.vercel.app", // Replace with your frontend URL
+  credentials: true,
+}));
 
 // Root route
 app.get("/", (req, res) => res.send("Server is running"));
