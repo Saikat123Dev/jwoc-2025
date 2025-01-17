@@ -28,7 +28,7 @@ const GoogleIcon = () => (
 
 const Home = () => {
   const googleLogin = () => {
-    window.location.href = "https://jwoc-2025.onrender.com/auth/google";
+    window.location.href = "http://localhost:5000/auth/google";
   };
 
   const githubLogin = () => {
