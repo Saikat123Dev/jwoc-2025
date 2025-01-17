@@ -36,8 +36,8 @@ const MentorDashboard = () => {
         const response = await axios.get("https://jwoc-2025.onrender.com/auth/user", {
           withCredentials: true,
           headers: {
-            'Authorization': `Bearer ${storedMentorId || ''}`
-          }
+            Authorization: `Bearer ${storedMentorId}`,
+          },
         });
         console.log(response)
         if (response.data && response.data.user) {
