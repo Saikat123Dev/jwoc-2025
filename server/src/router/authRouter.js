@@ -37,23 +37,29 @@ router.get(
   passport.authenticate("github", { scope: ["user:email"] })
 );
 
-router.get(
-  "/github/callback",
+// Add this at the top of your file
+const logger = (req, res, next) => {
+  console.log(`Auth Route: ${req.method} ${req.url}`);
+  console.log('Session:', req.session);
+  console.log('User:', req.user);
+  next();
+};
+
+// Add to routes you want to debug
+router.get("/github/callback",
+  logger,
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
-    if (req.user) {
-      const mentorId = req.user.id;
-      // Send the mentor ID to the client as JSON response
-      res.json({
-        success: true,
-        message: "Login successful",
-        mentorId,
-      });
+    const mentorId = req.user?.id;
+    console.log('GitHub Callback - User:', req.user);
+    console.log('GitHub Callback - MentorId:', mentorId);
+    if (mentorId) {
+      const redirectUrl = `${process.env.CLIENT_URL}/dashboard?mentorId=${mentorId}`;
+      console.log('Redirecting to:', redirectUrl);
+      res.redirect(redirectUrl);
     } else {
-      res.status(401).json({
-        success: false,
-        message: "Authentication failed",
-      });
+      console.log('No mentorId found, redirecting to login');
+      res.redirect("/login");
     }
   }
 );
