@@ -41,10 +41,14 @@ router.get(
   "/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
+     // Log authentication status
+     console.log("Auth status:", req.isAuthenticated());
+     console.log("Session:", req.session);
     const mentorId = req.user?.id;
     if (mentorId) {
       const redirectUrl = new URL("/dashboard", process.env.CLIENT_URL);
       redirectUrl.searchParams.append("mentorId", mentorId);
+      res.cookie("user", req.user);
       res.redirect(redirectUrl.toString());
     } else {
       res.redirect("/login");
@@ -54,12 +58,12 @@ router.get(
 
 // Get Current User
 router.get("/user", (req, res) => {
-  console.log("Current User:", req);
+  const userData = req.cookies.user;
   if (req.isAuthenticated()) {
-    console.log("User is authenticated:", req.user);
+
     res.json({
       success: true,
-      user: req.user,
+      user: userData,
     });
   } else {
     res.status(401).json({
