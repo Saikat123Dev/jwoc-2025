@@ -22,7 +22,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use( cors({
-  origin: "https://jwoc-2025.vercel.app", // Replace with your frontend URL
+  origin:"*", // Replace with your frontend URL
   credentials: true,
 }));
 

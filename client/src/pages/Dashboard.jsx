@@ -13,7 +13,7 @@ const MentorDashboard = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
- console.log("weisbfbfsbfwb")
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const mentorId = params.get("mentorId");
