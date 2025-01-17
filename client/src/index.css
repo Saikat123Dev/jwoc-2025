@@ -166,7 +166,7 @@ button:focus-visible {
   animation: snowflake-4 5s linear infinite;
 }
 .glow-effect {
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7));
+  filter: drop-shadow(0 0 5px rgb(55, 243, 236));
 }
 
 .glowing-text {
@@ -289,30 +289,42 @@ button:focus-visible {
   font-weight: normal;
   font-style: normal;
 }
-.glow-effect {
-  animation: glow 4s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; /* Smooth easing for a natural feel */
-}
+/* .glow-effect {
+  animation: glow 4s cubic-bezier(0.25, 0.1, 0.25, 1)  ;
+} */
 
-@keyframes glow {
+/* @keyframes glow {
   0% {
-    filter: drop-shadow(0 0 5px #82c0bc); /* Subtle cyan-teal glow */
-  }
-  25% {
-    filter: drop-shadow(0 0 15px #027f7a); /* Cyan-teal brightening */
-  }
-  50% {
-    filter: drop-shadow(0 0 25px #0286d1), /* Peak blue intensity */
-            drop-shadow(0 0 30px #8a2be2); /* Added violet glow */
-  }
-  75% {
-    filter: drop-shadow(0 0 15px #027f7a), /* Cyan-teal dimming */
-            drop-shadow(0 0 20px #6a0dad); /* Subtle violet presence */
+    filter: drop-shadow(0 0 5px #11d1c4);
   }
   100% {
-    filter: drop-shadow(0 0 5px #82c0bc); /* Return to subtle cyan-teal glow */
+    filter: drop-shadow(0 0 15px #027f7a);
   }
-}
 
+} */
+/* .glow-effect {
+  animation: glow 4s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+} */
+
+/* @keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 5px #82c0bc);
+  }
+  25% {
+    filter: drop-shadow(0 0 15px #027f7a);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px #0286d1),
+            drop-shadow(0 0 30px #8a2be2);
+  }
+  75% {
+    filter: drop-shadow(0 0 15px #027f7a),
+            drop-shadow(0 0 20px #6a0dad);
+  }
+  100% {
+    filter: drop-shadow(0 0 5px #82c0bc);
+  }
+} */
 @layer utilities {
   .text-glow {
     text-shadow:
