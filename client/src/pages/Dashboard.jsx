@@ -9,41 +9,90 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 
 const MentorDashboard = () => {
-  const [user, setUser] = useState(null);
-  const [isProfileComplete, setIsProfileComplete] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [authState, setAuthState] = useState({
+    user: null,
+    isProfileComplete: false,
+    loading: true,
+    error: null
+  });
+
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const mentorId = params.get("mentorId");
+    const fetchUserData = async () => {
+      try {
+        // Handle mentorId from URL params first
+        const params = new URLSearchParams(location.search);
+        const mentorId = params.get("mentorId");
 
-    if (mentorId) {
-      localStorage.setItem("mentorId", mentorId);
-      navigate("/dashboard", { replace: true });
-    }
+        if (mentorId) {
+          localStorage.setItem("mentorId", mentorId);
+        }
 
-    axios
-      .get("https://jwoc-2025.vercel.app/auth/user", { withCredentials: true })
-      .then((response) => {
-        const userData = response.data;
-        setUser(userData);
-        setIsProfileComplete(userData.user.isRegistered || false);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-        navigate("/");
-      });
+        // Get stored mentorId (either from URL or previously stored)
+        const storedMentorId = localStorage.getItem("mentorId");
+        console.log(storedMentorId)
+        const response = await axios.get("https://jwoc-2025.onrender.com/auth/user", {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${storedMentorId}`,
+          },
+        });
+        console.log(response)
+        if (response.data && response.data.user) {
+          setAuthState({
+            user: response.data,
+            isProfileComplete: response.data.user.isRegistered || false,
+            loading: false,
+            error: null
+          });
+
+          // Clean up URL after successful auth
+          if (mentorId) {
+            navigate("/dashboard", { replace: true });
+          }
+        } else {
+          throw new Error("Invalid user data received");
+        }
+      } catch (error) {
+        console.log("Error fetching user data:",error);
+        const errorMessage = error ;
+
+        setAuthState(prev => ({
+          ...prev,
+          loading: false,
+          error: errorMessage
+        }));
+
+        // Only redirect to home if it's an authentication error
+        if (error.response?.status === 401) {
+          localStorage.removeItem("mentorId"); // Clear invalid mentorId
+          navigate("/");
+        }
+      }
+    };
+
+    fetchUserData();
   }, [location.search, navigate]);
-
-  const logout = () => {
-    localStorage.removeItem("mentorId");
-    axios
-      .get("http://localhost:5000/auth/logout", { withCredentials: true })
-      .then(() => navigate("/"))
-      .catch((error) => console.error("Error during logout:", error));
+  console.log(authState)
+  const logout = async () => {
+    try {
+      const mentorId = localStorage.getItem("mentorId");
+      await axios.get("https://jwoc-2025.onrender.com/auth/logout", {
+        withCredentials: true,
+        headers: {
+          'Authorization': `Bearer ${mentorId || ''}`
+        }
+      });
+      localStorage.removeItem("mentorId");
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+      // Force logout even if API call fails
+      localStorage.removeItem("mentorId");
+      navigate("/");
+    }
   };
 
   const handleCompleteProfile = () => navigate("/Mentor-registration");
@@ -57,9 +106,9 @@ const MentorDashboard = () => {
     return `${num}th`;
   };
 
-  if (loading) {
+  if (authState.loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen ">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center space-y-4">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
           <p className="text-lg font-medium text-gray-600 animate-pulse">
@@ -70,13 +119,13 @@ const MentorDashboard = () => {
     );
   }
 
-  if (!user) {
+  if (authState.error || !authState.user) {
     return (
-      <div className="flex items-center justify-center min-h-screen ">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-center space-y-4 p-8 bg-white rounded-xl shadow-lg animate-fade-in">
           <AlertTriangle className="w-12 h-12 text-red-500 mx-auto" />
           <p className="text-lg font-medium text-gray-800">
-            Unable to load user data
+            {authState.error || "Unable to load user data"}
           </p>
           <p className="text-gray-600">Please try again later</p>
           <button
@@ -91,9 +140,9 @@ const MentorDashboard = () => {
   }
 
   const {
-    name,
-    email,
-    role,
+    name = "User",
+    email = "",
+    role = "Mentor",
     phone,
     whatsapp,
     gender,
@@ -101,9 +150,9 @@ const MentorDashboard = () => {
     year,
     githubLink,
     linkedIn,
-    RegisteredProjectId,
-    acceptedProjectId,
-  } = user.user;
+    RegisteredProjectId = [],
+    acceptedProjectId = [],
+  } = authState.user.user || {};
 
   return (
     <div className="min-h-screen mt-9 pt-20 pb-12">
@@ -133,7 +182,7 @@ const MentorDashboard = () => {
         </header>
 
         <main className="transform transition-all duration-500 hover:scale-[1.01] bg-white rounded-2xl shadow-xl p-8">
-          {!isProfileComplete ? (
+          {!authState.isProfileComplete ? (
             <div className="relative overflow-hidden bg-yellow-50 rounded-xl p-6 border border-yellow-200">
               <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-200 rounded-full opacity-50 animate-pulse" />
               <div className="relative flex items-center space-x-6">
@@ -173,6 +222,7 @@ const MentorDashboard = () => {
                       {[
                         { label: "Phone", value: phone },
                         { label: "WhatsApp", value: whatsapp },
+                        { label: "Gender", value: gender },
                         { label: "College", value: college },
                         { label: "Year", value: year ? getOrdinalSuffix(year) : "N/A" },
                       ].map((item) => (

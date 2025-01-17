@@ -3,8 +3,8 @@ import React from "react";
 function Footer() {
   return (
     <footer className="relative max-w-full backdrop-blur-xl">
-      <div className="absolute inset-0 bg-white/0 dark:bg-gray-900/30 backdrop-blur-md"></div>
 
+      <div className="absolute inset-0 bg-white/0 dark:bg-gray-900/30 backdrop-blur-md"></div>
       <div className="relative mx-auto px-4 pb-2 pt-2 sm:px-9 lg:px-8">
         {/* Logo, Archives, and Contact Sections */}
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-3 items-center">
@@ -119,7 +119,7 @@ function Footer() {
                   <li className="relative group">
                     <div
                       className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0
-                           group-hover:opacity-20 transition-all duration-300 blur"
+                           group-hover:opacity-20 transition-all duration-100 blur"
                     ></div>
                     <a
                       href="https://jwoc-5.vercel.app/"
@@ -128,7 +128,7 @@ function Footer() {
                     >
                       <span
                         className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100
-                              group-hover:translate-x-0 transition-all duration-300"
+                              group-hover:translate-x-0 transition-all duration-100"
                       >
                         →
                       </span>
@@ -139,16 +139,16 @@ function Footer() {
                   <li className="relative group">
                     <div
                       className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg opacity-0
-                           group-hover:opacity-20 transition-all duration-300 blur"
+                           group-hover:opacity-20 transition-all duration-100 blur"
                     ></div>
                     <a
                       href="https://jwoc-2k23.vercel.app/"
-                      className="relative flex items-center text-lg text-gray-100 hover:text-white transition duration-300
+                      className="relative flex items-center text-lg text-gray-100 hover:text-white transition duration-100
                                   transform group-hover:translate-x-2"
                     >
                       <span
                         className="absolute left-0 opacity-0 -translate-x-2 text-blue-400 group-hover:opacity-100
-                              group-hover:translate-x-0 transition-all duration-300"
+                              group-hover:translate-x-0 transition-all duration-100"
                       >
                         →
                       </span>
@@ -222,9 +222,9 @@ function Footer() {
 
 
           {/* Contact Form Section */}
-          <div className="p-6">
+          <div className=" p-8">
             <div className="backdrop-blur-xl bg-white/10 p-6 rounded-2xl shadow-2xl border border-white/20">
-              <h3 className="text-2xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-100 to-white text-center">
+              <h3 className="text-2xl font-bold text-white mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-100 to-white text-center">
                 Contact Us
               </h3>
 
@@ -237,7 +237,7 @@ function Footer() {
                     type="text"
                     id="name"
                     className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10"
-                    placeholder="John Doe"
+                    placeholder="Bhupendra Jogi"
                   />
                 </div>
 
@@ -249,7 +249,7 @@ function Footer() {
                     type="email"
                     id="contact-email"
                     className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10"
-                    placeholder="john@doe.com"
+                    placeholder="Bhupendra@doe.com"
                   />
                 </div>
 
@@ -259,7 +259,7 @@ function Footer() {
                   </label>
                   <textarea
                     id="message"
-                    rows={4}
+                    rows={1}
                     className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10 resize-none"
                     placeholder="Your message here..."
                   ></textarea>

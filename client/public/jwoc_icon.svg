@@ -6,9 +6,7 @@
       stroke-width: 9px;
       stroke-linecap: round;
       filter: drop-shadow(0 0 8px rgba(0, 255, 128, 0.4));
-      /* Reduced glow intensity */
-      opacity: 0;
-      animation: glow-letter 1.5s ease-in-out forwards;
+      opacity: 0.6;
     }
 
     svg circle {
@@ -16,82 +14,6 @@
       stroke: url(#aurora-gradient);
       stroke-width: 4px;
       filter: drop-shadow(0 0 8px rgba(0, 255, 128, 0.4));
-      /* Reduced glow intensity */
-      animation: pulsate 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow-letter {
-      0% {
-        opacity: 0;
-      }
-
-      50% {
-        opacity: 0.6;
-        /* Further dimmed opacity */
-        filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
-        /* Reduced glow */
-      }
-
-      100% {
-        opacity: 0.6;
-        /* Consistent dimmed glow */
-        filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
-        /* Reduced glow */
-      }
-    }
-
-    @keyframes pulsate {
-      0% {
-        fill: rgba(0, 255, 128, 0.3);
-        /* Further reduced opacity */
-        r: 20;
-        /* Increased starting radius */
-        opacity: 0.4;
-      }
-
-      100% {
-        fill: rgba(128, 0, 255, 0.6);
-        /* Further reduced intensity */
-        r: 24;
-        /* Increased maximum radius */
-        opacity: 0.7;
-      }
-    }
-
-    svg path#J {
-      animation-delay: 0s;
-    }
-
-    svg path#W {
-      animation-delay: 1s;
-    }
-
-    svg path#O {
-      animation-delay: 2s;
-    }
-
-    svg path#C {
-      animation-delay: 3s;
-    }
-
-    svg.stable path {
-      opacity: 0.6;
-      /* Further dimmed glow */
-      filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
-      /* Reduced intensity */
-      animation: none;
-    }
-
-    svg.stable circle {
-      opacity: 0.6;
-      /* Further dimmed glow */
-      fill: rgba(128, 0, 255, 0.6);
-      /* Reduced fill intensity */
-      r: 24;
-      /* Increased stable radius */
-      filter: drop-shadow(0 0 10px rgba(0, 255, 128, 0.4));
-      /* Reduced intensity */
-      animation: none;
     }
   </style>
 
@@ -117,10 +39,4 @@
   <circle id="J_o" class="cls-2" cx="34.5" cy="150" r="20" />
   <circle id="J_o" class="cls-2" cx="119.5" cy="268" r="20" />
   <circle id="J_o" class="cls-2" cx="119.5" cy="120" r="20" />
-
-  <script>
-    setTimeout(() => {
-      document.getElementById('ICON').classList.add('stable');
-    }, 4500);
-  </script>
 </svg>
