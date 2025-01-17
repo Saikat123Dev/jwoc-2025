@@ -25,7 +25,7 @@ const MentorDashboard = () => {
     }
 
     axios
-      .get("https://jwoc-2025.vercel.app/auth/user", { withCredentials: true })
+      .get("https://jwoc-2025.onrender.com/auth/user", { withCredentials: true })
       .then((response) => {
         const userData = response.data;
         setUser(userData);
@@ -41,7 +41,7 @@ const MentorDashboard = () => {
   const logout = () => {
     localStorage.removeItem("mentorId");
     axios
-      .get("http://localhost:5000/auth/logout", { withCredentials: true })
+      .get("https://jwoc-2025.onrender.com/auth/logout", { withCredentials: true })
       .then(() => navigate("/"))
       .catch((error) => console.error("Error during logout:", error));
   };
