@@ -35,7 +35,7 @@ const MentorDashboard = () => {
               'Authorization': `Bearer ${mentorId}` // Add mentorId to auth header if your API expects it
             }
           });
-
+        console.log(response)
           setAuthState({
             user: response.data,
             isProfileComplete: response.data.user?.isRegistered || false,
