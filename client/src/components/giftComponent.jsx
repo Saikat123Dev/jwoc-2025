@@ -10,7 +10,7 @@ const PrizeCards = () => {
           <div className="relative inline-block">
 
             <span className="absolute  inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
-            <h1 className="relative font-extrabold font-rubik text-6xl text-white">Rewards</h1>
+            <h1 className="relative font-extrabold font-rubik text-6xl text-white">Rewards✨</h1>
 
           </div>
         </div>
