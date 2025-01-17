@@ -32,14 +32,14 @@ const MentorDashboard = () => {
 
         // Get stored mentorId (either from URL or previously stored)
         const storedMentorId = localStorage.getItem("mentorId");
-
+        console.log(storedMentorId)
         const response = await axios.get("https://jwoc-2025.onrender.com/auth/user", {
           withCredentials: true,
           headers: {
             'Authorization': `Bearer ${storedMentorId || ''}`
           }
         });
-
+        console.log(response)
         if (response.data && response.data.user) {
           setAuthState({
             user: response.data,
