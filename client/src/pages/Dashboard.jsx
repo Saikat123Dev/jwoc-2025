@@ -20,7 +20,11 @@ const MentorDashboard = () => {
 
     if (mentorId) {
       localStorage.setItem("mentorId", mentorId);
-      // Redirect to dashboard without external URL
+
+      // Optionally clear the URL query params
+      const newUrl = location.pathname;
+      window.history.replaceState(null, '', newUrl);
+
       navigate("/dashboard", { replace: true });
     }
 
@@ -34,7 +38,7 @@ const MentorDashboard = () => {
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
-        navigate("/"); // Redirect to home if fetching user fails
+        navigate("/"); // Redirect to home if user data cannot be fetched
       });
   }, [location.search, navigate]);
 
