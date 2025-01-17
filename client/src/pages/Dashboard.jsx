@@ -25,7 +25,7 @@ const MentorDashboard = () => {
         // Handle mentorId from URL params first
         const params = new URLSearchParams(location.search);
         const mentorId = params.get("mentorId");
-        console.log(localStorage.search)
+        console.log(location.search)
         if (mentorId) {
           localStorage.setItem("mentorId", mentorId);
           // After storing mentorId, fetch the full user data
