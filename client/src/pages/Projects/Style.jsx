@@ -6,8 +6,8 @@ const StarryNightBackground = ({ children }) => {
     for (let i = 0; i <= count; i++) {
       snowflakes.push({
         left: `${Math.random() * 100}%`,
-        size: Math.random() * 0.6 + 0.2,
-        blur: Math.random() * 5 + 0,
+        size: Math.random() * 0.7 + 0.3,
+        blur: Math.random() *  6+ 0,
         duration: Math.random() * 10 + 12,
         delay: Math.random() * 10,
       });
@@ -32,7 +32,7 @@ const StarryNightBackground = ({ children }) => {
       {snowflakes.map((snowflake, index) => (
         <div
           key={`snowflake-${index}`}
-          className="absolute bg-white rounded-full snow-fall"
+          className="absolute bg-white rounded-full snow-fall z-10"
           style={{
             left: snowflake.left,
             width: `${snowflake.size}rem`,
@@ -67,10 +67,10 @@ const StarryNightBackground = ({ children }) => {
 
          @keyframes wind-drift {
           0% {
-            transform: translate(-30vw, -100vh);
+            transform: translate(-5vh,-100vh, -300vh);
           }
           100% {
-            transform: translate(30vw, 100vh);
+            transform: translate(100vw, 300vh);
           }
         }
       `}</style>
