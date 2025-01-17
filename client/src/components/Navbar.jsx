@@ -1,4 +1,4 @@
-import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, X ,Users2} from "lucide-react";
+import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, Users2, X } from "lucide-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

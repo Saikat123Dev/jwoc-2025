@@ -42,7 +42,7 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       screens: {
-        xs: '480px', // Custom mobile breakpoint
+        xs: '375px', // Custom mobile breakpoint
       },
     },
   },

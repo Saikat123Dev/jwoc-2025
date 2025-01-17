@@ -130,8 +130,8 @@ const Starvideo = () => {
         ref={videoContainerRef}
         className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center"
         style={{
-          minHeight: "100vh", // Ensure full viewport height
-          height: "100dvh",   // Dynamic viewport height for mobile browsers
+          minHeight: "100vh",
+          height: "100dvh",
         }}
       >
 
@@ -234,33 +234,19 @@ const Starvideo = () => {
 
 
 
-<div className="absolute inset-0 top-32 z-0">
-  <div className="relative w-full glow-effect h-full">
-    <img
-      src="jwoc_v1.svg"
-      alt="Winter Scene"
-      className="w-full h-[calc(100vh-5rem)] object-cover object-center"
-      style={{
-        maxHeight: 'calc(100vh - 8rem)',
-        marginTop: '2rem',
-      }}
-    />
-  </div>
-  <style>
-    {`
-      @media (min-width: 1024px) {
-        .relative img {
-          margin-top: 4rem; /* Adjust for large screens */
-        }
-      }
-      @media (max-width: 768px) {
-        .relative img {
-          margin-top: 6rem; /* Adjust for mobile devices */
-        }
-      }
-    `}
-  </style>
-</div>
+<div className="absolute inset-0 z-0 xs:top-48 md:top-32 xl:top-48">
+      <div className="relative w-full glow-effect h-full">
+        <img
+          src="jwoc_v1.svg"
+          alt="Winter Scene"
+          className="w-full h-[calc(100vh-5rem)] object-cover object-center"
+          style={{
+            maxHeight: 'calc(100vh - 8rem)',
+            marginTop: 'clamp(2rem, 5vw, 4rem)'
+          }}
+        />
+      </div>
+    </div>
 
         {/* Content Wrapper */}
         <div
