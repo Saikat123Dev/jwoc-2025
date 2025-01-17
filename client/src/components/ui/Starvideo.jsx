@@ -234,7 +234,7 @@ const Starvideo = () => {
 
 
 
-<div className="absolute inset-0 z-0 xs:top-48 md:top-32 xl:top-48">
+<div className="absolute inset-0 z-0 xs:top-52 md:top-32 xl:top-48">
       <div className="relative w-full glow-effect h-full">
         <img
           src="jwoc_v1.svg"
