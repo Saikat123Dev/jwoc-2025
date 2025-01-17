@@ -14,20 +14,15 @@ const app = express();
 app.use(express.json());
 app.use(
     session({
-      secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  }
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
     })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 app.use( cors({
-  origin:"*", // Replace with your frontend URL
+  origin:"https://jwoc-2025.vercel.app", // Replace with your frontend URL
   credentials: true,
 }));
 
