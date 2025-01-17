@@ -56,8 +56,8 @@ const MentorDashboard = () => {
           throw new Error("Invalid user data received");
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
-        const errorMessage = error || "Failed to load user data. Please try again.";
+        console.error("Error fetching user data:");
+        const errorMessage = error ;
 
         setAuthState(prev => ({
           ...prev,
