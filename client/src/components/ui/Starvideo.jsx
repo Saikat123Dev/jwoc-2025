@@ -235,19 +235,33 @@ const Starvideo = () => {
 
 
 <div className="absolute inset-0 top-32 z-0">
-          <div className="relative w-full glow-effect h-full">
+  <div className="relative w-full glow-effect h-full">
+    <img
+      src="jwoc_v1.svg"
+      alt="Winter Scene"
+      className="w-full h-[calc(100vh-5rem)] object-cover object-center"
+      style={{
+        maxHeight: 'calc(100vh - 8rem)',
+        marginTop: '2rem',
+      }}
+    />
+  </div>
+  <style>
+    {`
+      @media (min-width: 1024px) {
+        .relative img {
+          margin-top: 4rem; /* Adjust for large screens */
+        }
+      }
+      @media (max-width: 768px) {
+        .relative img {
+          margin-top: 6rem; /* Adjust for mobile devices */
+        }
+      }
+    `}
+  </style>
+</div>
 
-            <img
-              src="jwoc_v1.svg"
-              alt="Winter Scene"
-              className="w-full h-[calc(100vh-5rem)] object-cover object-center"
-              style={{
-                maxHeight: 'calc(100vh - 8rem)',
-                marginTop: '2rem'
-              }}
-            />
-          </div>
-        </div>
         {/* Content Wrapper */}
         <div
   ref={contentRef}
