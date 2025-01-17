@@ -54,7 +54,7 @@ router.get(
 
 // Get Current User
 router.get("/user", (req, res) => {
-  console.log("Current User:", req.user);
+  console.log("Current User:", req);
   if (req.isAuthenticated()) {
     console.log("User is authenticated:", req.user);
     res.json({
