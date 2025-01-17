@@ -28,11 +28,11 @@ const GoogleIcon = () => (
 
 const Home = () => {
   const googleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/google";
+    window.location.href = "https://jwoc-2025.onrender.com/auth/google";
   };
 
   const githubLogin = () => {
-    window.location.href = "http://localhost:5000/auth/github";
+    window.location.href = "https://jwoc-2025.onrender.com/auth/github";
   };
 
   return (
@@ -40,10 +40,10 @@ const Home = () => {
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 z-0">
         <div className="mt-7 absolute slide-out-to-top-1/4 left-1/4 w-[600px] h-[200px] bg-gradient-to-br from-purple-500 via-indigo-500 to-purple-700 opacity-50 rounded-full blur-3xl"></div>
-      
+
       </div>
         <div className="max-w-md w-full backdrop-blur-xl bg-white/10  p-8 rounded-lg shadow-md space-y-8">
-        
+
         <h2 className="text-center text-3xl font-extrabold text-white">
             Welcome Back
           </h2>

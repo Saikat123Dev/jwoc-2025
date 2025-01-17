@@ -8,8 +8,10 @@ const PrizeCards = () => {
         {/* Heading */}
         <div className="text-center mb-8">
           <div className="relative inline-block">
-            <span className="absolute  inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 blur-lg"></span>
-            <h1 className="relative font-extrabold font-rubik text-6xl text-white">Rewards✨</h1>
+
+            <span className="absolute  inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
+            <h1 className="relative font-extrabold font-rubik text-6xl text-white">Rewards</h1>
+
           </div>
         </div>
 
@@ -57,7 +59,9 @@ const PrizeCards = () => {
               transition={{ duration: 1, delay: index * 0.1 }}
               className="reward_card rounded-lg p-6 shadow-md transition-transform duration-300 border border-white border-opacity-30  backdrop-blur-md"
             >
+
               <div className="relative flex justify-center mb-4 z-[10]">
+
                 <img
                   src={perk.src}
                   alt={perk.title}

@@ -127,9 +127,11 @@ const Starvideo = () => {
   return (
     <div>
        {/* <div
+
   className="fixed left-[-200px] w-[55rem] h-[55rem] rounded-full blur-[50px] bg-gradient-to-br from-purple-500 via-indigo-500 to-purple-800 opacity-10 z-[-20]"
 
 ></div> */}
+
 
       <div
         ref={videoContainerRef}
@@ -141,6 +143,7 @@ const Starvideo = () => {
       >
 
 <div ref={initialTextRef}
+
  className="fixed w-full top-[20%] sm:top-[15%] md:top-1/3 lg:top-[15%] left-1/2 transform -translate-x-1/2 px-4 text-center">
 
 <div className="relative ">
@@ -151,6 +154,7 @@ const Starvideo = () => {
     JWoC - 2025
   </h1>
 </div>
+
 
 
 
