@@ -5,7 +5,6 @@ import Footer from "./components/Footer.jsx";
 import MenteeRegistration from "./components/MenteeRegistration.jsx";
 import MentorRegistration from "./components/MentorRegistration.jsx";
 import NavbarDemo from "./components/Navbar.jsx";
-import ScrollLineAnimation from "./components/ui/ScrollLineAnimation/scrollLineAnimation.jsx";
 import Starvideo from "./components/ui/Starvideo.jsx";
 import MentorDashboard from "./pages/Dashboard.jsx";
 import Home from "./pages/Home.jsx";
@@ -14,6 +13,8 @@ import StarryNightBackground from "./pages/Projects/Style.jsx";
 import RegistrationCards from "./pages/RegistrationCard.jsx";
 import Team from "./pages/Team.jsx";
 import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
+import Timeline from "./components/ui/Timeline.jsx";
+import TimelineDemo from "./components/TimelineDemo.jsx";
 function App() {
   // const audioRef = useRef(null);
   // const [isMuted, setIsMuted] = useState(false);
@@ -81,7 +82,7 @@ function App() {
           <Route path="/" element={<Starvideo />} />
           <Route path="/mentor" element={<Home />} />
           <Route path="/dashboard" element={<MentorDashboard />} />
-          <Route path="/timeline" element={<ScrollLineAnimation />} />
+          <Route path="/timeline" element={<TimelineDemo />} />
           <Route path="/team" element={<Team/>}/>
           <Route path="/projects" element={<Projects />} />
           <Route path="/leaderboard" element={<LeaderBoard />} />

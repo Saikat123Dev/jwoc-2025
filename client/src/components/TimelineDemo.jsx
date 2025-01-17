@@ -4,65 +4,131 @@ import Timeline from "./ui/Timeline";
 export function TimelineDemo() {
   const data = [
     {
-      title: "2024",
-      content: (
-        <div className="space-y-4 ">
-          <p className="text-neutral-200 text-xs md:text-sm font-normal">
-            Built and launched Aceternity UI and Aceternity UI Pro from scratch
-          </p>
-          <div className="grid grid-cols-2 gap-4" />
-        </div>
-      )
-    },
-    {
-      title: "Early 2023",
+      title: "20th January",
       content: (
         <div className="space-y-4">
-          <p className="text-neutral-200 text-xs md:text-sm font-normal">
-            I usually run out of copy, but when I see content this big, I try to
-            integrate lorem ipsum.
+          <p className="text-lg font-medium text-blue-50">
+            Program Kickoff: Registration Phase
           </p>
-          <p className="text-neutral-200 text-xs md:text-sm font-normal">
-            Lorem ipsum is for people who are too lazy to write copy. But we are
-            not. Here are some more examples of beautiful designs I built.
-          </p>
-          <div className="grid grid-cols-2 gap-4" />
-        </div>
-      )
-    },
-    {
-      title: "Changelog",
-      content: (
-        <div className="space-y-4">
-          <p className="text-neutral-200 text-xs md:text-sm font-normal">
-            Deployed 5 new components on Aceternity today
-          </p>
-          <div className="space-y-2">
-            <div className="flex gap-2 items-center text-neutral-200 text-xs md:text-sm">
-              <span className="text-green-500">✓</span> Card grid component
-            </div>
-            <div className="flex gap-2 items-center text-neutral-200 text-xs md:text-sm">
-              <span className="text-green-500">✓</span> Startup template Aceternity
-            </div>
-            <div className="flex gap-2 items-center text-neutral-200 text-xs md:text-sm">
-              <span className="text-green-500">✓</span> Random file upload lol
-            </div>
-            <div className="flex gap-2 items-center text-neutral-200 text-xs md:text-sm">
-              <span className="text-green-500">✓</span> Himesh Reshammiya Music CD
-            </div>
-            <div className="flex gap-2 items-center text-neutral-200 text-xs md:text-sm">
-              <span className="text-green-500">✓</span> Salman Bhai Fan Club registrations open
-            </div>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            JWOC begins! Mentors and mentees, register now to grow our developer community!
+            </p>
+           
           </div>
-          <div className="grid grid-cols-2 gap-4" />
         </div>
-      )
-    }
+      ),
+      tags: ["Registration", "Program Start", "Community Building"]
+    },
+    {
+      title: "30th January",
+      content: (
+        <div className="space-y-4">
+          <p className="text-lg font-medium text-blue-50">
+            Project Announcement Day
+          </p>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            Project announcement day! Mentees explore projects, mentors share goals—kickstarting collaborations!
+            </p>
+          
+          </div>
+        </div>
+      ),
+      tags: ["Projects", "Announcements", "Selection"]
+    },
+    {
+      title: "4th February",
+      content: (
+        <div className="space-y-4">
+          <p className="text-lg font-medium text-blue-50">
+            Registration Closure & Community Bonding
+          </p>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            Registrations close! Community bonding begins for mentors and mentees to connect and plan.
+            </p>
+          
+          </div>
+        </div>
+      ),
+      tags: ["Registration End", "Community", "Team Formation"]
+    },
+    {
+      title: "5th February",
+      content: (
+        <div className="space-y-4">
+          <p className="text-lg font-medium text-blue-50">
+            Coding Phase 1 Launch
+          </p>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            Coding begins! Participants start building projects and laying foundations.
+            </p>
+           
+          </div>
+        </div>
+      ),
+      tags: ["Coding", "Development", "Phase 1"]
+    },
+    {
+      title: "20th February",
+      content: (
+        <div className="space-y-4">
+          <p className="text-lg font-medium text-blue-50">
+            Phase Transition
+          </p>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            Phase 1 ends, Phase 2 begins! Advanced features and complex tasks start.
+            </p>
+            
+          </div>
+        </div>
+      ),
+      tags: ["Phase Transition", "Milestones", "Progress"]
+    },
+    {
+      title: "30th February",
+      content: (
+        <div className="space-y-4">
+          <p className="text-lg font-medium text-blue-50">
+            Program Conclusion
+          </p>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            JWOC ends! Final submissions mark project completion.
+            </p>
+           
+          </div>
+        </div>
+      ),
+      tags: ["Program End", "Completion", "Submissions"]
+    },
+    {
+      title: "5th March",
+      content: (
+        <div className="space-y-4">
+          <p className="text-lg font-medium text-blue-50">
+            Results Day
+          </p>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            Results announced! Contributions recognized, and certificates awarded.
+            </p>
+          
+          </div>
+        </div>
+      ),
+      tags: ["Results", "Recognition", "Achievements"]
+    },
   ];
 
   return (
-    <div className="w-full mr-32 ml-28 h-full min-h-screen ">
+    <div className="w-full mr-32 mt-12 ml-[5vh] h-full min-h-screen">
       <Timeline data={data} />
     </div>
   );
 }
+
+export default TimelineDemo;

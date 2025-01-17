@@ -123,6 +123,9 @@ const Starvideo = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+  // const scrollToSection = (ref) => {
+  //   ref.current.scrollIntoView({ behavior: 'smooth' });
+  // };
 
   return (
     <div>
@@ -288,7 +291,7 @@ const Starvideo = () => {
 </div>
       </div>
 
-      <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4">
+      <div className="z-50 py-4 px-4 sm:mr-4 sm:ml-4" >
         <AboutJWoC />
       </div>
 
@@ -333,7 +336,7 @@ const Starvideo = () => {
           className="border rounded-lg overflow-hidden"
         >
           <button
-            className="w-full p-4 text-left hover:bg-gray-50 flex justify-between items-center"
+            className="w-full p-4 text-left hover:bg-gray-500 flex justify-between items-center"
             onClick={() => setActiveIndex(activeIndex === index ? null : index)}
           >
             <span className="font-medium">{faq.question}</span>
