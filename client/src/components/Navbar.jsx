@@ -1,6 +1,6 @@
 import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, Users2, X } from "lucide-react";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavbarDemo = () => {
   const navigate = useNavigate();
@@ -53,13 +53,13 @@ const NavbarDemo = () => {
       <div className="w-full mx-auto max-w-[70rem]">
         <div className="flex items-center justify-between py-2">
           {/* Logo */}
-          <div className="flex items-center h-12 w-24 cursor-pointer">
+          <Link to="/" className="flex items-center h-12 w-24 cursor-pointer">
             <img
               src="jwoc-2024.svg"
               alt="Logo"
               className="h-10 w-auto object-contain"
             />
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="backdrop-blur-lg h-12  md:max-w-[45rem]  bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center space-x-6">
