@@ -39,19 +39,14 @@ router.get(
 // GitHub callback route with logger for debugging
 router.get(
   "/github/callback",
-  logger, // Debugging middleware
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
     const mentorId = req.user?.id;
-    console.log("GitHub Callback - User:", req.user);
-    console.log("GitHub Callback - MentorId:", mentorId);
     if (mentorId) {
-      // Ensure the URL is properly constructed
-      const redirectUrl = `${process.env.CLIENT_URL}/dashboard?mentorId=${mentorId}`;
-      console.log("Redirecting to:", redirectUrl);
-      res.redirect(redirectUrl);
+      const redirectUrl = new URL("/dashboard", process.env.CLIENT_URL);
+      redirectUrl.searchParams.append("mentorId", mentorId);
+      res.redirect(redirectUrl.toString());
     } else {
-      console.log("No mentorId found, redirecting to login");
       res.redirect("/login");
     }
   }
