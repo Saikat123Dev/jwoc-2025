@@ -1,8 +1,9 @@
 const express = require("express");
 const passport = require("../config/mentor-passport");
+const { Prisma, PrismaClient } = require("@prisma/client");
 require("dotenv").config();
 const router = express.Router();
-
+const prisma = new PrismaClient()
 // Logger middleware for debugging
 const logger = (req, res, next) => {
   console.log(`Auth Route: ${req.method} ${req.url}`);
