@@ -25,7 +25,7 @@ const MentorDashboard = () => {
     }
 
     axios
-      .get("https://jwoc-2025.onrender.com/auth/user", { withCredentials: true })
+      .get("https://jwoc-2025.vercel.app/auth/user", { withCredentials: true })
       .then((response) => {
         const userData = response.data;
         setUser(userData);
