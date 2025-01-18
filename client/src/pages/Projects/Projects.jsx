@@ -11,7 +11,7 @@ export default function Projects() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:5000/api/mentor/project/getAllProjects"
+                    "https://jwoc-2025.onrender.com/api/mentor/project/getAllProjects"
                 );
                 setData(response.data.projects);
                 setFilteredData(response.data.projects);
