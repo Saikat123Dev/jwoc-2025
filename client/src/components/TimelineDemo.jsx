@@ -14,11 +14,11 @@ export function TimelineDemo() {
             <p className="text-neutral-200 text-sm leading-relaxed">
             JWOC begins! Mentors and mentees, register now to grow our developer community!
             </p>
-           
+
           </div>
         </div>
       ),
-      tags: ["Registration", "Program Start", "Community Building"]
+      tags: ["Registration", "Program Start"]
     },
     {
       title: "30th January",
@@ -31,7 +31,7 @@ export function TimelineDemo() {
             <p className="text-neutral-200 text-sm leading-relaxed">
             Project announcement day! Mentees explore projects, mentors share goals—kickstarting collaborations!
             </p>
-          
+
           </div>
         </div>
       ),
@@ -41,18 +41,18 @@ export function TimelineDemo() {
       title: "4th February",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
+          <p className="text-lg  font-extrabold text-blue-50 flex justify-center items-center">
             Registration Closure & Community Bonding
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
             <p className="text-neutral-200 text-sm leading-relaxed">
             Registrations close! Community bonding begins for mentors and mentees to connect and plan.
             </p>
-          
+
           </div>
         </div>
       ),
-      tags: ["Registration End", "Community", "Team Formation"]
+      tags: ["Registration End", "Community Bonding", "Team Formation"]
     },
     {
       title: "5th February",
@@ -65,7 +65,7 @@ export function TimelineDemo() {
             <p className="text-neutral-200 text-sm leading-relaxed">
             Coding begins! Participants start building projects and laying foundations.
             </p>
-           
+
           </div>
         </div>
       ),
@@ -82,7 +82,7 @@ export function TimelineDemo() {
             <p className="text-neutral-200 text-sm leading-relaxed">
             Phase 1 ends, Phase 2 begins! Advanced features and complex tasks start.
             </p>
-            
+
           </div>
         </div>
       ),
@@ -99,7 +99,7 @@ export function TimelineDemo() {
             <p className="text-neutral-200 text-sm leading-relaxed">
             JWOC ends! Final submissions mark project completion.
             </p>
-           
+
           </div>
         </div>
       ),
@@ -116,7 +116,7 @@ export function TimelineDemo() {
             <p className="text-neutral-200 text-sm leading-relaxed">
             Results announced! Contributions recognized, and certificates awarded.
             </p>
-          
+
           </div>
         </div>
       ),

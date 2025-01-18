@@ -1,5 +1,5 @@
+import { Github, Linkedin } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { Linkedin, Twitter, Github } from 'lucide-react';
 
 export default function Team() {
     const [shuffledMembers, setShuffledMembers] = useState([]);

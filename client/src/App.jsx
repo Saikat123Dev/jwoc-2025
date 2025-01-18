@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import AddProject from "./components/AddProject.jsx";
 import Footer from "./components/Footer.jsx";
 import MenteeRegistration from "./components/MenteeRegistration.jsx";
@@ -19,6 +19,7 @@ import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [animationComplete, setAnimationComplete] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <StarryNightBackground>
-      {isLoading ? (
+      {isLoading && (location.pathname === "/")? (
         <LoadingScreen />
       ) : (
         <div>
