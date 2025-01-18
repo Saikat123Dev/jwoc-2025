@@ -53,7 +53,7 @@ const NavbarDemo = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-14 px-4 lg:bg-transparent lg:backdrop-blur-xl lg:bg-opacity-40
+    <div className="fixed  top-0 left-0 right-0 z-50 h-14 px-4 lg:bg-transparent lg:backdrop-blur-xl lg:bg-opacity-40
     2xl:bg-transparent 2xl:backdrop-blur-xl 2xl:bg-opacity-40
     ">
 

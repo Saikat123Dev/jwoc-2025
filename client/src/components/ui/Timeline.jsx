@@ -2,8 +2,6 @@ import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import React from 'react';
 
-
-
 const TimelineItem = ({ item, index, isEven }) => {
   const containerVariants = {
     hidden: { opacity: 0, x: isEven ? 50 : -50 },
@@ -37,7 +35,7 @@ const TimelineItem = ({ item, index, isEven }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="relative w-full"
+      className="relative w-full px-4 sm:px-0"
     >
       <div
         className={`flex flex-col items-center ${
@@ -45,7 +43,7 @@ const TimelineItem = ({ item, index, isEven }) => {
         } gap-8 lg:gap-4`}
       >
         <motion.div
-          className={`w-full sm:w-[calc(45%-1rem)]`}
+          className="w-full sm:w-[45%]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{
             opacity: 1,
@@ -55,9 +53,9 @@ const TimelineItem = ({ item, index, isEven }) => {
           viewport={{ once: true }}
         >
           <h1
-            className={`font-space-grotesk pt-10 lg:pt-0 text-2xl md:text-4xl font-bold mb-1 bg-clip-text
+            className={`font-space-grotesk pt-10 lg:pt-0 text-xl sm:text-2xl md:text-4xl font-bold mb-1 bg-clip-text
               bg-gradient-to-r ${isEven ? 'from-blue-400 via-cyan-300 to-white' : 'from-white via-cyan-300 to-blue-400'}
-              tracking-wide leading-snug font-bold flex justify-center
+              tracking-wide leading-snug font-bold text-center sm:text-left
               `}
           >
             {item.title}
@@ -66,7 +64,7 @@ const TimelineItem = ({ item, index, isEven }) => {
             className="bg-gradient-to-br from-white/10 to-white/5
                         hover:from-white/15 hover:to-white/10 transition-all duration-300
                         backdrop-blur-md rounded-lg p-4
-                        border border-blue-300/10 shadow-md"
+                        border border-blue-300/10 shadow-md w-full"
           >
             <div className="prose prose-sm prose-invert max-w-none">
               <p
@@ -95,11 +93,11 @@ const TimelineItem = ({ item, index, isEven }) => {
 
         <motion.div
           variants={dotVariants}
-          className="absolute left-1/2 transform -translate-x-1/2 z-10  justify-center items-center hidden lg:block
+          className="absolute left-1/2 transform -translate-x-1/2 z-10 justify-center items-center hidden lg:block
                     sm:top-1/2 sm:-translate-y-1/2 top-4"
         >
-          <div className="group relative ">
-            <div className="h-16 w-16 rounded-full
+          <div className="group relative">
+            <div className="h-10 w-10 rounded-full
                           bg-gradient-to-br from-blue-400/30 to-purple-500/30
                           backdrop-blur-md flex items-center justify-center
                           border border-blue-300/30 shadow-lg shadow-blue-500/20
@@ -126,31 +124,27 @@ const TimelineItem = ({ item, index, isEven }) => {
   );
 };
 
-
-
 const Timeline = ({ data }) => {
   return (
-    <div className="min-h-screen overflow-hidden font-inter">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="py-8 text-center"
-        >
+    <div className="min-h-screen   overflow-hidden font-inter">
+    <div className="container pl-28  mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="py-8 text-center"
+      >
           <div className="relative inline-block text-center mt-7">
-
-
-      {/* Title */}
-      <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
-      <h1 className="relative font-extrabold font-rubik text-6xl text-white ">
-        Journey through time
-      </h1>
-    </div>
+          <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
+            <h1 className="relative font-extrabold font-rubik text-4xl sm:text-6xl text-white">
+              Journey through time
+            </h1>
+          </div>
         </motion.div>
 
-        <div className="relative pb-20">
-          <div className="absolute left-1/2 top-0 transform -translate-x-1/2 h-full w-[3px]">
+        <div className="relative  pb-20">
+          {/* Timeline line container with improved mobile centering */}
+          <div className="absolute left-[calc(50%-1.5px)] sm:left-1/2 top-0 transform sm:-translate-x-1/2 h-full w-[3px]">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-300/30 to-transparent" />
             <motion.div
               initial={{ height: "0%" }}
@@ -163,14 +157,16 @@ const Timeline = ({ data }) => {
             <div className="absolute inset-0 blur-sm bg-blue-400/20" />
           </div>
 
-          {data.map((item, index) => (
-            <TimelineItem
-              key={index}
-              item={item}
-              index={index}
-              isEven={index % 2 === 0}
-            />
-          ))}
+          <div className="relative sm:pr-14 z-10">
+            {data.map((item, index) => (
+              <TimelineItem
+                key={index}
+                item={item}
+                index={index}
+                isEven={index % 2 === 0}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

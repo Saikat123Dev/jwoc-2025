@@ -125,7 +125,7 @@ export function TimelineDemo() {
   ];
 
   return (
-    <div className="w-full mr-32 mt-12 ml-[5vh] h-full min-h-screen">
+    <div className="w-full  mr-44 mt-12 ml-[-7vh] lg:ml-[5vh] h-full min-h-screen">
       <Timeline data={data} />
     </div>
   );
