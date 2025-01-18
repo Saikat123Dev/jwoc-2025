@@ -53,8 +53,8 @@ const NavbarDemo = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-14 px-4 lg:bg-transparent lg:backdrop-blur-xl lg:bg-opacity-30
-    xl:bg-transparent xl:backdrop-blur-xl xl:bg-opacity-30
+    <div className="fixed top-0 left-0 right-0 z-50 h-14 px-4 lg:bg-transparent lg:backdrop-blur-2xl lg:bg-opacity-40
+    xl:bg-transparent xl:backdrop-blur-2xl xl:bg-opacity-40
     ">
       <div className="w-full mx-auto lg:max-w-[85rem]">
         <div className="flex items-center justify-between py-2">
