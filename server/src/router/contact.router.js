@@ -5,8 +5,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'your-email@gmail.com', // Your Gmail email address
-    pass: 'your-app-password' // Your Gmail app password
+    user: 'jwoc.official.2025@gmail.com',
+    pass: 'pkzhcjxcfvopauau ' // Your Gmail app password
   }
 });
 
@@ -15,8 +15,8 @@ const sendEmail = async (to, subject, text) => {
   try {
     // Configure email options
     const mailOptions = {
-      from: 'your-email@gmail.com',
-      to: to,
+      from: from,
+      to: 'jwoc.official.2025@gmail.com',
       subject: subject,
       text: text
     };
@@ -33,9 +33,9 @@ const sendEmail = async (to, subject, text) => {
 
 // Example usage in Express route
 app.post('/send-email', async (req, res) => {
-  const { to, subject, text } = req.body;
+  const { from, subject, text } = req.body;
 
-  const result = await sendEmail(to, subject, text);
+  const result = await sendEmail(from, subject, text);
 
   if (result) {
     res.status(200).json({ message: 'Email sent successfully' });
@@ -43,3 +43,4 @@ app.post('/send-email', async (req, res) => {
     res.status(500).json({ message: 'Failed to send email' });
   }
 });
+module.exports = router;

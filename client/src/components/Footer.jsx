@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Footer() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Prepare data to send
+    const emailData = {
+      from: formData.email, // Sender's email
+      subject: `${formData.name} (JWoC Query)`, // Name concatenated with "JWoC Query"
+      text: formData.message, // User's message
+    };
+
+    try {
+      const response = await fetch("https://jwoc-2025.onrender.com/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(emailData),
+      });
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("Failed to send the message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setStatus("An error occurred. Please try again later.");
+    }
+  };
   return (
     <footer className="relative max-w-full backdrop-blur-xl">
 
@@ -228,50 +271,71 @@ function Footer() {
                 Contact Us
               </h3>
 
-              <form className="space-y-3">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-blue-100">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10"
-                    placeholder="Bhupendra Jogi"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-email" className="block text-sm font-medium text-blue-100">
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="contact-email"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10"
-                    placeholder="Bhupendra@doe.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-blue-100">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={1}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10 resize-none"
-                    placeholder="Your message here..."
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full rounded-lg bg-gradient-to-r from-blue-400 to-purple-500 px-4 py-3 text-base font-medium text-white shadow-lg transition-all duration-200 hover:from-blue-500 hover:to-purple-600 hover:shadow-xl focus:ring-2 focus:ring-purple-300 focus:ring-opacity-50 focus:outline-none transform hover:-translate-y-0.5"
+              <form onSubmit={handleSubmit} className="space-y-3">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-blue-100"
                 >
-                  Send Message
-                </button>
-              </form>
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full rounded-lg border h-10 border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10"
+                  placeholder="Bhupendra Jogi"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-blue-100"
+                >
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full h-10 rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10"
+                  placeholder="Bhupendra@doe.com"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-blue-100"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={2}
+                  className="w-full rounded-lg border border-white/10 bg-white/5 p-3 text-white placeholder-blue-200/60 backdrop-blur-sm focus:border-blue-300 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 focus:outline-none transition-all duration-200 hover:bg-white/10 resize-none"
+                  placeholder="Your message here..."
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full rounded-lg bg-gradient-to-r from-blue-400 to-purple-500 px-4 py-3 text-base font-medium text-white shadow-lg transition-all duration-200 hover:from-blue-500 hover:to-purple-600 hover:shadow-xl focus:ring-2 focus:ring-purple-300 focus:ring-opacity-50 focus:outline-none transform hover:-translate-y-0.5"
+              >
+                Send Message
+              </button>
+            </form>
+            {status && (
+              <p className="text-center text-sm mt-4 text-blue-200">{status}</p>
+            )}
             </div>
           </div>
         </div>

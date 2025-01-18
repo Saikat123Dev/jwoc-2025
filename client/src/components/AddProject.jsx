@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from 'react';
+import { useFieldArray, useForm } from "react-hook-form";
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { useForm, useFieldArray } from "react-hook-form";
-import { ToastContainer, toast, Bounce } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const AddProject = () => {
   const [focusedField, setFocusedField] = useState(null);
@@ -87,7 +87,7 @@ const AddProject = () => {
       if (!mentorId) {
         throw new Error('Mentor ID not found. Please login again.');
       }
-      
+
       const transformedProjects = data.projects.map(project => ({
         projectName: project.projectName,
         projectLink: project.projectLink,
@@ -100,7 +100,7 @@ const AddProject = () => {
         projectOwnerId: mentorId
       }));
 
-      const response = await fetch('http://localhost:5000/api/mentor/project/addProject', {
+      const response = await fetch('https://jwoc-2025.onrender.com/api/mentor/project/addProject', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,42 +172,42 @@ const AddProject = () => {
   };
 
   const formFields = [
-    { 
-      name: 'projectName', 
-      label: 'Project Name:', 
-      placeholder: 'Enter the name of your project (e.g., Weather Tracker)', 
-      required: true 
+    {
+      name: 'projectName',
+      label: 'Project Name:',
+      placeholder: 'Enter the name of your project (e.g., Weather Tracker)',
+      required: true
     },
-    { 
-      name: 'projectLink', 
-      label: 'Project Link:', 
-      placeholder: 'Enter the live project link (e.g., https://example.com)', 
-      required: false 
+    {
+      name: 'projectLink',
+      label: 'Project Link:',
+      placeholder: 'Enter the live project link (e.g., https://example.com)',
+      required: false
     },
-    { 
-      name: 'github', 
-      label: 'GitHub Link:', 
-      placeholder: 'Enter the GitHub repository link (e.g., https://github.com/username/repository)', 
-      required: true 
+    {
+      name: 'github',
+      label: 'GitHub Link:',
+      placeholder: 'Enter the GitHub repository link (e.g., https://github.com/username/repository)',
+      required: true
     },
-    { 
-      name: 'projectTypes', 
-      label: 'Project Type:', 
-      placeholder: 'Select the type of project (e.g., Frontend, Backend, AI/ML, Full Stack)', 
-      required: true 
+    {
+      name: 'projectTypes',
+      label: 'Project Type:',
+      placeholder: 'Select the type of project (e.g., Frontend, Backend, AI/ML, Full Stack)',
+      required: true
     },
-    { 
-      name: 'details', 
-      label: 'Project Details:', 
-      placeholder: 'Provide a brief description of the project (e.g., A weather app showing real-time data)', 
-      required: false, 
-      type: 'textarea' 
+    {
+      name: 'details',
+      label: 'Project Details:',
+      placeholder: 'Provide a brief description of the project (e.g., A weather app showing real-time data)',
+      required: false,
+      type: 'textarea'
     },
-    { 
-      name: 'projecttags', 
-      label: 'Tags:', 
-      placeholder: 'Add relevant technologies (e.g., ReactJS, HTML, CSS, Node.js)', 
-      required: false 
+    {
+      name: 'projecttags',
+      label: 'Tags:',
+      placeholder: 'Add relevant technologies (e.g., ReactJS, HTML, CSS, Node.js)',
+      required: false
     }
   ];
 
@@ -250,7 +250,7 @@ const AddProject = () => {
           }}
           init={init}
         />
-        
+
         <motion.div
           className="w-full max-w-3xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg"
           variants={containerVariants}
@@ -406,11 +406,11 @@ const AddProject = () => {
           max-width: 350px !important;
           padding: 0 !important;
         }
-        
+
         .Toastify__toast {
           margin-bottom: 1rem !important;
         }
-        
+
         .custom-toast {
           background: rgba(40, 40, 40, 0.95) !important;
           backdrop-filter: blur(10px) !important;
@@ -418,17 +418,17 @@ const AddProject = () => {
           border-radius: 10px !important;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
         }
-        
+
         .custom-toast-body {
           font-family: system-ui, -apple-system, sans-serif !important;
           padding: 0 !important;
         }
-        
+
         .Toastify__close-button {
           color: #ffffff !important;
           opacity: 0.7 !important;
         }
-        
+
         .Toastify__close-button:hover {
           opacity: 1 !important;
         }

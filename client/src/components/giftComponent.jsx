@@ -60,7 +60,7 @@ const PrizeCards = () => {
               className="reward_card rounded-lg p-6 shadow-md transition-transform duration-300 border border-white border-opacity-30  backdrop-blur-md"
             >
 
-              <div className="relative flex justify-center mb-4 z-[10]">
+              <div className="relative flex justify-center items-center pt-10 mb-4 z-[10]">
 
                 <img
                   src={perk.src}
@@ -69,7 +69,7 @@ const PrizeCards = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-xl opacity-30"></div>
               </div>
-              <h4 className="text-center font-semibold text-lg">{perk.title}</h4>
+              <h4 className="text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title}</h4>
             </motion.div>
           ))}
         </div>

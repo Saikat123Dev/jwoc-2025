@@ -45,7 +45,7 @@ const RegistrationCards = () => {
 
             <Link
               to="/mentee-registration"
-              className="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-lg flex items-center justify-center group-hover:opacity-90 hover:text-white hover:scale-110 transition-opacity"
+              className="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-md flex items-center justify-center group-hover:opacity-90 hover:text-white  hover:from-purple-600 hover:to-purple-700 transition-all"
             >
               Register Now
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -84,7 +84,7 @@ const RegistrationCards = () => {
 
             <Link
               to="/mentor"
-              className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-lg flex items-center justify-center group-hover:opacity-90  hover:text-white hover:scale-110 transition-opacity"
+              className="w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-3 px-6 rounded-lg flex items-center justify-center group-hover:opacity-90  hover:text-white hover:from-indigo-600 hover:to-indigo-700 transition-all"
             >
               Register Now
               <ArrowRight className="ml-2 h-5 w-5" />

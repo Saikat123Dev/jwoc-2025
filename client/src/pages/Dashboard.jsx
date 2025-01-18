@@ -150,6 +150,7 @@ const MentorDashboard = () => {
     year,
     githubLink,
     linkedIn,
+    projectNumber,
     RegisteredProjectId = [],
     acceptedProjectId = [],
   } = authState.user.user || {};
@@ -263,7 +264,7 @@ const MentorDashboard = () => {
                     <h3 className="text-lg font-semibold text-gray-700">Project Statistics</h3>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-4 bg-blue-50 rounded-lg text-center">
-                        <p className="text-2xl font-bold text-blue-600">{RegisteredProjectId.length}</p>
+                        <p className="text-2xl font-bold text-blue-600">{projectNumber}</p>
                         <p className="text-sm text-gray-600">Registered Projects</p>
                       </div>
                       <div className="p-4 bg-green-50 rounded-lg text-center">

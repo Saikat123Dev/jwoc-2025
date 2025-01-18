@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 export default function MentorRegistration() {
   const navigate = useNavigate();
@@ -33,10 +32,17 @@ export default function MentorRegistration() {
         throw new Error('Mentor ID not found in localStorage');
       }
 
-      // Add mentorId to the form data
-      const payload = { ...data, id };
+      // Ensure gender and GitHub fields are properly handled
+      const payload = {
+        ...data,
+        id,
+        gender: data.gender,
+        github: data.github,
+        linkedin: data.linkedin,
 
-      const response = await fetch('http://localhost:5000/api/mentor/registerMentor', {
+      };
+
+      const response = await fetch('https://jwoc-2025.onrender.com/api/mentor/registerMentor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +58,7 @@ export default function MentorRegistration() {
       const result = await response.json();
       setSubmitSuccess(true);
       reset();
-      localStorage.setItem('isProfileComplete',true);
+      localStorage.setItem('isProfileComplete', true);
       console.log('Registration successful:', result);
       navigate('/dashboard');
     } catch (error) {
@@ -88,7 +94,7 @@ export default function MentorRegistration() {
 
   return (
     <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
-      <Particles
+      {/* <Particles
         options={{
           particles: {
             color: {
@@ -119,7 +125,7 @@ export default function MentorRegistration() {
           }
         }}
         init={init}
-      />
+      /> */}
 
       <motion.div
         className="w-full max-w-4xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg"
@@ -297,6 +303,21 @@ export default function MentorRegistration() {
             />
             {errors.github && (
               <p className="text-red-400 text-sm mt-1">{errors.github.message}</p>
+            )}
+          </motion.div>
+
+          <motion.div variants={fieldVariants}>
+            <label className="text-white font-medium">Linkedin:</label>
+            <motion.input
+              {...register("linkedin", { required: "Linkedin is required" })}
+              className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your Linkedin username"
+              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
+              onFocus={() => setFocusedField("linkedin")}
+              onBlur={() => setFocusedField(null)}
+            />
+            {errors.linkedin && (
+              <p className="text-red-400 text-sm mt-1">{errors.linkdin.message}</p>
             )}
           </motion.div>
 

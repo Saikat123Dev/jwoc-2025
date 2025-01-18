@@ -1,4 +1,4 @@
-import { BookOpen, Briefcase, Clock, Menu, Trophy, Users2, X } from "lucide-react";
+import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, Users2, X } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -18,20 +18,20 @@ const NavbarDemo = () => {
     >
       <a
         href={`/${id}`}
-        className={`flex items-center space-x-2 px-3 py-1 group ${
+        className={`flex items-center space-x-2 px-3 Clockpy-1 group ${
           isMobile ? "w-full" : ""
         } ${isRegister ? "text-cyan-400 font-semibold" : ""}`}
         onClick={() => isMobile && setIsMobileMenuOpen(false)}
       >
         <Icon
-          className={`h-5 w-5 transition-colors duration-200 ${
+          className={`h-4 w-4 transition-colors duration-200 ${
             hoveredItem === id || isRegister
               ? "text-cyan-400"
               : "text-gray-400 dark:text-gray-300"
           }`}
         />
         <span
-          className={`text-sm font-semibold transition-colors duration-200 ${
+          className={`text-md font-semibold transition-colors duration-200 ${
             hoveredItem === id || isRegister
               ? "text-cyan-400"
               : "text-gray-400 dark:text-gray-300"
@@ -48,7 +48,7 @@ const NavbarDemo = () => {
 
   return (
     <div className="fixed top-3 left-0 right-0 z-50 px-4 bg-transparent">
-      <div className="w-full mx-auto max-w-[75rem]">
+      <div className="w-full mx-auto lg:max-w-[75rem]">
         <div className="flex items-center justify-between py-2">
           {/* Logo */}
           <Link to="/" className="flex items-center h-12 w-24 cursor-pointer">
@@ -59,10 +59,17 @@ const NavbarDemo = () => {
             />
           </Link>
 
-          <div className="backdrop-blur-lg h-12 md:max-w-[45rem] bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center items-center space-x-6">
+          <div className="backdrop-blur-lg h-12 md:max-w-[55rem] bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center items-center space-x-6">
+          <NavItem id="/" label="Home" Icon={Home} />
             <NavItem id="timeline" label="Timeline" Icon={Clock} />
+
+
             <NavItem id="team" label="Team" Icon={Users2} />
+
+
             <NavItem id="projects" label="Projects" Icon={BookOpen} />
+
+
             <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
 
             {/* Separator Line */}
@@ -102,9 +109,17 @@ const NavbarDemo = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 mt-2 p-4 backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-lg border border-white/30 shadow-lg shadow-black/10">
             <div className="flex flex-col space-y-3">
+            <NavItem id="/" label="Home" Icon={Home} isMobile={true} />
               <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
+
+
+
               <NavItem id="team" label="Team" Icon={Users2} isMobile={true} />
+
+
               <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
+
+
               <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} isMobile={true} />
 
               {/* Mobile Separator */}

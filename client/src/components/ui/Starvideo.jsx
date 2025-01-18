@@ -51,6 +51,8 @@ const Starvideo = () => {
   //   await loadFull(engine);
   // }, []);
 
+
+
   useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -152,7 +154,7 @@ const Starvideo = () => {
 <div className="relative ">
 <span className="absolute inset-0 w-[620px] h-[80px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-900 via-[rgba(0, 255, 255, 0.2)] to-cyan-800 blur-lg"></span>
 
-  
+
   <h1 className="relative font-extrabold font-rubik text-8xl text-white">
     JWoC - 2025
   </h1>
@@ -212,7 +214,7 @@ const Starvideo = () => {
           }
         }
 
-       
+
 
         .glow-subtext {
           animation: glow-subtext 2s ease-in-out infinite;
@@ -322,19 +324,22 @@ const Starvideo = () => {
           className="border rounded-lg overflow-hidden"
         >
           <button
-            className="w-full p-4 text-left hover:bg-gray-500 flex justify-between items-center"
+          className="w-full backdrop-blur-md p-4 text-left hover:text-cyan-200 flex justify-between items-center rounded-lg border border-white/10 bg-white/5  transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl"
             onClick={() => setActiveIndex(activeIndex === index ? null : index)}
           >
-            <span className="font-medium">{faq.question}</span>
-            <span className="ml-6 transform transition-transform duration-200">
-              {activeIndex === index ? '−' : '+'}
+            <span className="font-medium text-white">{faq.question}</span>
+  <span
+    className={`ml-6 text-white text-2xl font-light transform transition-transform duration-300 ${
+      activeIndex === index ? 'rotate-180' : 'rotate-0'
+    }`}
+  >
             </span>
           </button>
 
           <div
             className={`overflow-hidden transition-all duration-200 ${
               activeIndex === index ? 'max-h-40 p-4  bg-white/20' : 'max-h-0'
-            }`}
+              }`}
           >
             <p className="text-gray-200 ">{faq.answer}</p>
           </div>
