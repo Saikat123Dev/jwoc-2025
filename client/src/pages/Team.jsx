@@ -7,80 +7,80 @@ export default function Team() {
     const teamMembers = [
         {
             name: "Shahil Afroz",
-            role: "Software Engineer",
+            role: "Web Team",
             imageUrl: "p1.jpg",
             linkedin: "https://www.linkedin.com/in/shahil-afroz/",
             Github: "https://github.com/shahil-afroz"
         },
         {
-            name: "Michael Chen",
-            role: "Product Designer",
+            name: "Surajit Maity",
+            role: "Web Team",
             imageUrl: "p2.jpg",
+            linkedin: "https://www.linkedin.com/in/surajit-maity23/",
+            Github: "https://github.com/Surajit0573"
+        },
+        {
+            name: "Saikat Bera",
+            role: "Web Team Lead",
+            imageUrl: "p3.jpg",
+            linkedin: "https://www.linkedin.com/in/saikat-bera-29a9b5250/",
+            Github: "https://github.com/Saikat123Dev"
+        },
+        {
+            name: "Akash Saha",
+            role: "Web Team",
+            imageUrl: "p4.jpg",
+            linkedin: "https://www.linkedin.com/in/akash-saha-731440257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            Github: "https://github.com/Akash4701"
+        },
+        {
+            name: "Bishnudev Sardar",
+            role: "Web Team",
+            imageUrl: "p5.jpg",
+            linkedin: "https://www.linkedin.com/in/bishnudev-sardar-047b83256/",
+            Github: "https://github.com/bishnudev35"
+        },
+        {
+            name: "Urnisha Paul",
+            role: " Outreach Team",
+            imageUrl: "p6.jpg",
+            linkedin: "https://www.linkedin.com/in/urnisha-paul-277689254/",
+            Github: "https://github.com/flawed-hooman"
+        },
+        {
+            name: "Atanu Basak ",
+            role: "Lead",
+            imageUrl: "p7.jpg",
             linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
+            Github: "https://twitter.com/michaelchen"
         },
         {
             name: "Michael Chen",
             role: "Product Designer",
             imageUrl: "/api/placeholder/300/300",
             linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
+            Github: "https://twitter.com/michaelchen"
         },
         {
             name: "Michael Chen",
             role: "Product Designer",
             imageUrl: "/api/placeholder/300/300",
             linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
+            Github: "https://twitter.com/michaelchen"
         },
         {
             name: "Michael Chen",
             role: "Product Designer",
             imageUrl: "/api/placeholder/300/300",
             linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
+            Github: "https://twitter.com/michaelchen"
         },
         {
             name: "Michael Chen",
             role: "Product Designer",
             imageUrl: "/api/placeholder/300/300",
             linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
-        },
-        {
-            name: "Michael Chen",
-            role: "Product Designer",
-            imageUrl: "/api/placeholder/300/300",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
-        },
-        {
-            name: "Michael Chen",
-            role: "Product Designer",
-            imageUrl: "/api/placeholder/300/300",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
-        },
-        {
-            name: "Michael Chen",
-            role: "Product Designer",
-            imageUrl: "/api/placeholder/300/300",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
-        },
-        {
-            name: "Michael Chen",
-            role: "Product Designer",
-            imageUrl: "/api/placeholder/300/300",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
-        },
-        {
-            name: "Michael Chen",
-            role: "Product Designer",
-            imageUrl: "/api/placeholder/300/300",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            twitter: "https://twitter.com/michaelchen"
+            Github: "https://twitter.com/michaelchen"
         },
     ];
 
@@ -134,31 +134,30 @@ export default function Team() {
             </div>
 
             {/* Cards grid with higher z-index */}
-            <div className="flex flex-col h-auto relative min-h-screen mx-4 md:ml-[27vh] mt-9 w-auto md:w-3/4 justify-center py-8 md:py-12 z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-16 px-2 md:px-8">
+            <div className="flex flex-col h-auto relative min-h-screen mx-4 md:ml-[27vh] mt-9 w-auto md:w-3/4  justify-center py-8 md:py-12 z-10">
+                <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-16 px-2 md:px-8">
                     {shuffledMembers.map((member, index) => (
                         <div
                             key={index}
-                            className="relative overflow-hidden backdrop-blur-md bg-white/10 border-2 border-black/20
-                                 transform hover:scale-105 transition-transform duration-200
-                                 shadow-lg hover:shadow-xl rounded-xl
-                                 hover:border-black"
+                            className="relative overflow-hidden bg-gradient-to-br border border-gray-200
+                                 transform hover:scale-105 transition-transform duration-300
+                                 shadow-lg hover:shadow-2xl rounded-xl"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
                             <img
                                 src={member.imageUrl}
                                 alt={member.name}
-                                className="w-full h-48 object-fill"
+                                className="w-full h-48 object-crop rounded-t-xl"
                             />
-                            <div className="p-4 md:p-5 relative backdrop-blur-sm bg-white/10">
-                                <h3 className="text-lg md:text-xl font-semibold text-black mb-1">{member.name}</h3>
-                                <p className="text-gray-800 text-sm md:text-base mb-3 md:mb-4">{member.role}</p>
+                            <div className="p-4 md:p-5 flex flex-col justify-center items-center relative bg-white rounded-b-xl">
+                                <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-1">{member.name}</h3>
+                                <div className="text-gray-800 text-sm md:text-base mb-3 md:mb-4 p-2 border border-gray-300 rounded-md bg-cyan-100 font-bold">{member.role}</div>
                                 <div className="flex space-x-4 pt-1 md:pt-2">
                                     <a
                                         href={member.linkedin}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-black hover:text-gray-600 transition-colors duration-300"
+                                        className="text-gray-800 hover:text-indigo-600 transition-colors duration-300"
                                     >
                                         <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
                                     </a>
@@ -166,7 +165,7 @@ export default function Team() {
                                         href={member.twitter || member.Github}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-black hover:text-gray-600 transition-colors duration-300"
+                                        className="text-gray-800 hover:text-indigo-600 transition-colors duration-300"
                                     >
                                         <Github className="w-5 h-5 md:w-6 md:h-6" />
                                     </a>
