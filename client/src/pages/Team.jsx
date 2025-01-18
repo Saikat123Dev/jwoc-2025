@@ -34,9 +34,9 @@ export default function Team() {
             Github: "https://github.com/Akash4701"
         },
         {
-            name: "Niggadev Sardar",
+            name: "Bishnudev Sardar",
             role: "Web Team",
-            imageUrl: "p5.jpg",
+            imageUrl: "b.jpeg",
             linkedin: "https://www.linkedin.com/in/bishnudev-sardar-047b83256/",
             Github: "https://github.com/bishnudev35"
         },
@@ -97,7 +97,7 @@ export default function Team() {
         // Separate lead and non-lead members
         const leadMember = teamMembers.find(member => member.role === "Lead");
         const nonLeadMembers = teamMembers.filter(member => member.role !== "Lead");
-        
+
         // Shuffle only non-lead members and combine with lead
         const shuffledNonLead = shuffleArray(nonLeadMembers);
         setShuffledMembers([leadMember, ...shuffledNonLead]);

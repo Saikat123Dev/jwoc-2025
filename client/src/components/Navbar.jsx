@@ -1,29 +1,68 @@
-import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, Users2, X } from "lucide-react";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  BookOpen,
+  Briefcase,
+  Clock,
+  Home,
+  Menu,
+  Trophy,
+  Users2,
+  X,
+} from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const NavbarDemo = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Detect scroll position and apply styles
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleMentorClick = () => {
     navigate("/mentor");
     setIsMobileMenuOpen(false);
   };
-
+  const handleNavigation = (id) => {
+    if (id === 'timeline') {
+      if (location.pathname !== '/') {
+        navigate('/', { state: { scrollToTimeline: true }});
+      } else {
+        const timelineSection = document.querySelector('.timeline-section');
+        if (timelineSection) {
+          timelineSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    } else if (id === '') {
+      navigate('/');
+    } else {
+      navigate(`/${id}`);
+    }
+    setIsMobileMenuOpen(false);
+  };
   const NavItem = ({ id, label, Icon, isMobile = false, isRegister = false }) => (
     <div
       className={`relative flex items-center ${!isMobile ? "hidden lg:block" : ""}`}
       onMouseEnter={() => setHoveredItem(id)}
       onMouseLeave={() => setHoveredItem(null)}
     >
-      <a
-        href={`/${id}`}
-        className={`flex items-center space-x-2 px-3 py-1 group ${
+      <div
+        onClick={() => handleNavigation(id)}
+        className={`flex items-center  space-x-2 px-3 py-1 group ${
           isMobile ? "w-full" : ""
         } ${isRegister ? "text-cyan-400 font-semibold" : ""}`}
-        onClick={() => isMobile && setIsMobileMenuOpen(false)}
       >
         <Icon
           className={`h-4 w-4 transition-colors duration-200 ${
@@ -41,22 +80,26 @@ const NavbarDemo = () => {
         >
           {label}
         </span>
-      </a>
+      </div>
       {!isMobile && hoveredItem === id && (
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 transition-transform duration-300" />
       )}
     </div>
   );
 
+
   const Divider = () => (
     <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30 mx-4" />
   );
 
   return (
-    <div className="fixed  top-0 left-0 right-0 z-50 h-14 px-4 lg:bg-transparent lg:backdrop-blur-xl lg:bg-opacity-40
-    2xl:bg-transparent 2xl:backdrop-blur-xl 2xl:bg-opacity-40
-    ">
-
+    <div
+      className={`fixed top-0 left-0 right-0 z-50 h-14 px-4 transition-all duration-300 ${
+        isScrolled
+          ? " dark:bg-black shadow-lg lg:backdrop-blur-xl lg:bg-opacity-40 2xl:bg-opacity-40"
+          : "bg-transparent lg:bg-transparent lg:backdrop-blur-xl"
+      }`}
+    >
       <div className="w-full mx-auto lg:max-w-[85rem]">
         <div className="flex items-center justify-between py-2">
           <div className="z-50">

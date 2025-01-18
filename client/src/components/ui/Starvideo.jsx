@@ -44,6 +44,7 @@ const Starvideo = () => {
   const headingRef = useRef(null);
   const buttonRef = useRef(null);
   const contentRef = useRef(null);
+  const timelineRef = useRef(null); // Add this ref
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -102,7 +103,6 @@ const Starvideo = () => {
       "<+=0.2"
     );
 
-    // Exclude the navbar logo from the GSAP animation
     gsap.to("img:not(.navbar-logo)", {
       y: -30,
       ease: "none",
@@ -118,6 +118,7 @@ const Starvideo = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+
 
   return (
     <div>
@@ -223,9 +224,9 @@ const Starvideo = () => {
       <div className="py-4 px-4 sm:mr-4 sm:ml-4">
         <InfinityCard />
       </div>
-      <div className="px-4">
-        <TimelineDemo />
-      </div>
+      <div className="px-4 timeline-section"> {/* Add timeline-section class */}
+  <TimelineDemo />
+</div>
       <div>
         <Card />
       </div>
