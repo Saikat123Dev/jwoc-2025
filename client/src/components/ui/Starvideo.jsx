@@ -123,7 +123,7 @@ const Starvideo = () => {
     <div>
       <div
         ref={videoContainerRef}
-        className="relative min-h-screen w-full mt-12 overflow-hidden flex flex-col items-center justify-center"
+        className="relative min-h-screen w-full  overflow-hidden flex flex-col items-center justify-center"
         style={{
           minHeight: "100vh",
           height: "100dvh",
