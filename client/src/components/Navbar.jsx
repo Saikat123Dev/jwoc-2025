@@ -61,8 +61,14 @@ const NavbarDemo = () => {
 
           <div className="backdrop-blur-lg h-12 md:max-w-[45rem] bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center items-center space-x-6">
             <NavItem id="timeline" label="Timeline" Icon={Clock} />
+            <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30" />
+
             <NavItem id="team" label="Team" Icon={Users2} />
+            <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30" />
+
             <NavItem id="projects" label="Projects" Icon={BookOpen} />
+            <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30" />
+
             <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
 
             {/* Separator Line */}
@@ -103,8 +109,15 @@ const NavbarDemo = () => {
           <div className="lg:hidden absolute top-full left-0 right-0 mt-2 p-4 backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-lg border border-white/30 shadow-lg shadow-black/10">
             <div className="flex flex-col space-y-3">
               <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
+              <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30" />
+
+
               <NavItem id="team" label="Team" Icon={Users2} isMobile={true} />
+              <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30" />
+
               <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
+              <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30" />
+
               <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} isMobile={true} />
 
               {/* Mobile Separator */}
