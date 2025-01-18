@@ -24,7 +24,7 @@ export function TimelineDemo() {
       title: "30th January",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-medium text-blue-50">
+          <p className="text-lg font- text-blue-50">
             Project Announcement Day
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
@@ -41,7 +41,7 @@ export function TimelineDemo() {
       title: "4th February",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-medium text-blue-50">
+          <p className="text-lg font-pacifico text-blue-50">
             Registration Closure & Community Bonding
           </p>
           <div className="bg-white/5 p-4 rounded-lg">

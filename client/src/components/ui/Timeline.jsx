@@ -35,8 +35,6 @@ const FloatingStars = () => {
   );
 };
 
-
-
 const TimelineItem = ({ item, index, isEven }) => {
   const containerVariants = {
     hidden: { opacity: 0, x: isEven ? 50 : -50 },
@@ -57,7 +55,7 @@ const TimelineItem = ({ item, index, isEven }) => {
       scale: 1,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.2,
         delay: (index * 0.3) + 0.2,
         ease: "backOut"
       }
@@ -72,38 +70,48 @@ const TimelineItem = ({ item, index, isEven }) => {
       viewport={{ once: true, margin: "-100px" }}
       className="relative w-full"
     >
-      <div className={`flex items-center justify-center w-full ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 pt-16`}>
+      <div className={`flex items-center justify-center w-full ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 `}>
         <motion.div 
           className={`w-full md:w-[calc(45%-2rem)] ${isEven ? 'md:text-right' : 'md:text-left'}`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, delay: (index * 0.3) + 0.4 }
+            transition: { duration: 0.3, delay: (index * 0.2) + 0.4 }
           }}
           viewport={{ once: true }}
         >
-          <h3 className={`text-2xl md:text-3xl font-bold mb-4 bg-clip-text text-transparent 
-                        bg-gradient-to-r ${isEven ? 'from-blue-200 to-white' : 'from-white to-blue-200'}
-                        drop-shadow-[0_0_15px_rgba(219,234,254,0.4)]`}>
-            {item.title}
-          </h3>
+        <h1
+  className={`font-space-grotesk text-2xl md:text-4xl font-extrabold mb-1 bg-clip-text text-transparent 
+              bg-gradient-to-r ${isEven ? 'from-blue-400 via-cyan-300 to-white' : 'from-white via-cyan-300 to-blue-400'}
+              tracking-wide leading-snug text-glow font-bold flex justify-center 
+              `}
+>
+  {item.title}
+</h1>
+
           <div className="group bg-gradient-to-br from-white/10 to-white/5 
                         hover:from-white/15 hover:to-white/10 transition-all duration-300 
                         backdrop-blur-lg rounded-xl p-6 
                         border border-blue-300/10 shadow-xl 
                         hover:shadow-2xl hover:shadow-blue-500/10">
             <div className="prose prose-invert max-w-none">
-              <div className="text-blue-50 leading-relaxed space-y-4 text-base md:text-lg ">
-                {item.content}
-              </div>
+            <div
+  className="font-lobster text-blue-50 leading-loose tracking-wide space-y-6 text-base md:text-lg 
+             bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent
+             drop-shadow-[0_2px_8px_rgba(56,189,248,0.6)] hover:drop-shadow-[0_4px_12px_rgba(56,189,248,0.8)]
+             transition-all duration-300 ease-in-out font-greatvibes  "
+>
+  {item.content}
+</div>
+
               {item.tags && (
-                <div className={`flex flex-wrap gap-2 mt-4 pt-4 border-t border-blue-200/10 
+                <div className={`flex flex-wrap gap-2 mt-2 pt-1 border-t border-blue-200/10 
                               ${isEven ? 'justify-end' : 'justify-start'}`}>
                   {item.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-sm rounded-full 
+                      className="font-mono px-3 py-1 text-sm rounded-full 
                                bg-blue-400/10 text-blue-200 border border-blue-300/20
                                hover:bg-blue-400/20 transition-colors duration-300"
                     >
@@ -118,10 +126,10 @@ const TimelineItem = ({ item, index, isEven }) => {
 
         <motion.div
           variants={dotVariants}
-          className="absolute left-1/2 transform -translate-x-1/2 z-10"
+          className="absolute left-1/2 transform -translate-x-1/2 z-10 flex justify-center items-center"
         >
-          <div className="relative group">
-            <div className="h-15 w-15 rounded-full 
+          <div className="group relative">
+            <div className="h-16 w-16 rounded-full
                           bg-gradient-to-br from-blue-400/30 to-purple-500/30 
                           backdrop-blur-md flex items-center justify-center 
                           border border-blue-300/30 shadow-lg shadow-blue-500/20
@@ -131,13 +139,13 @@ const TimelineItem = ({ item, index, isEven }) => {
                             bg-gradient-to-r from-blue-400 to-purple-400 
                             border border-blue-300/50 animate-pulse 
                             shadow-lg shadow-blue-400/30
-                            group-hover:scale-110 transition-transform duration-300" />
+                            group-hover:scale-110 transition-transform duration-600" />
               <div className="absolute inset-0 rounded-full bg-blue-400/20 animate-ping" />
               <div className="absolute -inset-2 rounded-full bg-blue-400/10 
-                            group-hover:bg-blue-400/20 transition-colors duration-300" />
+                            group-hover:bg-blue-400/20 transition-colors duration-600" />
               <Star 
                 className="absolute text-white/50 animate-spin"
-                style={{ animation: 'spin 4s linear infinite' }}
+                style={{ animation: 'spin 2s linear infinite' }}
                 size={24}
               />
             </div>
@@ -152,23 +160,23 @@ const TimelineItem = ({ item, index, isEven }) => {
 
 const Timeline = ({ data }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black overflow-hidden">
+    <div className="min-h-screen overflow-hidden font-inter">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="py-16 text-center"
+          transition={{ duration: 0.7 }}
+          className="py-8 text-center"
         >
-          <h1 className="text-4xl font-extrabold font-rubik  text-cyan-500 text-glow lg:text-5xl mb-6">
+           <h1 className="text-4xl font-extrabold font-rubik  text-cyan-500 text-glow lg:text-5xl mb-6">
           
-            Journey Through Time
-          </h1>
-          <p className="text-blue-100 text-lg mx-auto max-w-2xl leading-relaxed 
-                       drop-shadow-[0_0_8px_rgba(219,234,254,0.3)]">
-            Tracking the evolution and milestones of our project. Each step represents a significant 
-            achievement in our ongoing journey to create something extraordinary.
-          </p>
+          Journey Through Time
+        </h1>
+        <p className="text-blue-100 text-lg mx-auto max-w-2xl leading-relaxed 
+                     drop-shadow-[0_0_8px_rgba(219,234,254,0.3)]">
+          Tracking the evolution and milestones of our project. Each step represents a significant 
+          achievement in our ongoing journey to create something extraordinary.
+        </p>
         </motion.div>
 
         <div className="relative pb-20">
@@ -184,8 +192,6 @@ const Timeline = ({ data }) => {
             />
             <div className="absolute inset-0 blur-sm bg-blue-400/20" />
           </div>
-
-       
 
           {data.map((item, index) => (
             <TimelineItem 
