@@ -53,7 +53,7 @@ export default function Projects() {
         //         </div>
         //     </div>
         // </div>
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#1a0540] to-[#0b0035]">
+        <div className="min-h-screen flex items-center justify-center  ">
             <div className="text-center p-8">
                 <h1 className="text-6xl md:text-8xl font-rubik font-bold text-cyan-500 mb-8 animate-pulse">
                     Coming Soon
