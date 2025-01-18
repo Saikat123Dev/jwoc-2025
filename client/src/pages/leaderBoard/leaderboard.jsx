@@ -169,7 +169,7 @@ const App = () => {
 
     //   </div>
     // </div>
-    <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-black via-[#1a0540] to-[#0b0035] overflow-hidden relative">
+    <div className="h-screen w-screen flex items-center justify-center  overflow-hidden relative">
       <Particles
         options={{
           particles: {
