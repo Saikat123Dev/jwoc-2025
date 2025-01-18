@@ -122,7 +122,7 @@ const MentorDashboard = () => {
   if (authState.error || !authState.user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center space-y-4 p-8 bg-white rounded-xl shadow-lg animate-fade-in">
+        <div className="text-center space-y-4 p-8 bg-white/10 rounded-xl shadow-lg animate-fade-in">
           <AlertTriangle className="w-12 h-12 text-red-500 mx-auto" />
           <p className="text-lg font-medium text-gray-800">
             {authState.error || "Unable to load user data"}
@@ -158,7 +158,7 @@ const MentorDashboard = () => {
   return (
     <div className="min-h-screen mt-9 pt-20 pb-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="transform transition-all duration-500 hover:scale-[1.01] bg-white rounded-2xl shadow-xl p-6 mb-8">
+        <header className="transform transition-all duration-500 hover:scale-[1.01] bg-white/10 rounded-2xl shadow-xl p-6 mb-8">
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-4">
               <div className="relative">
@@ -182,7 +182,7 @@ const MentorDashboard = () => {
           </div>
         </header>
 
-        <main className="transform transition-all duration-500 hover:scale-[1.01] bg-white rounded-2xl shadow-xl p-8">
+        <main className="transform transition-all duration-500 hover:scale-[1.01] bg-white/10 rounded-2xl shadow-xl p-8">
           {!authState.isProfileComplete ? (
             <div className="relative overflow-hidden bg-yellow-50 rounded-xl p-6 border border-yellow-200">
               <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-200 rounded-full opacity-50 animate-pulse" />
