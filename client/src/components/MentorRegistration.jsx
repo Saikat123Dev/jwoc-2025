@@ -32,8 +32,13 @@ export default function MentorRegistration() {
         throw new Error('Mentor ID not found in localStorage');
       }
 
-      // Add mentorId to the form data
-      const payload = { ...data, id };
+      // Ensure gender and GitHub fields are properly handled
+      const payload = {
+        ...data,
+        id,
+        gender: data.gender,
+        github: data.github,
+      };
 
       const response = await fetch('https://jwoc-2025.onrender.com/api/mentor/registerMentor', {
         method: 'POST',
@@ -51,7 +56,7 @@ export default function MentorRegistration() {
       const result = await response.json();
       setSubmitSuccess(true);
       reset();
-      localStorage.setItem('isProfileComplete',true);
+      localStorage.setItem('isProfileComplete', true);
       console.log('Registration successful:', result);
       navigate('/dashboard');
     } catch (error) {

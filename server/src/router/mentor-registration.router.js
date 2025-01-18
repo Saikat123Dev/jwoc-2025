@@ -13,12 +13,12 @@ router.post("/registerMentor", async (req, res) => {
             ipAddress,
             college,
             year,
-            githubLink,
+            github,
             linkedIn,
             answer1,
             answer2,
         } = req.body;
-        console.log(githubLink)
+        console.log(github)
         if (!name || !college || !year || !answer1 || !answer2) {
             return res.status(400).json({ message: "All required fields must be provided." });
         }
