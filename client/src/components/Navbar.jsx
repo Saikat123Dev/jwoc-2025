@@ -48,8 +48,8 @@ const NavbarDemo = () => {
 
   return (
     <div className="fixed top-3 left-0 right-0 z-50 px-4 bg-transparent">
-      <div className="w-full mx-auto max-w-[75rem]">
-        <div className="flex items-center justify-evenly py-2">
+      <div className="w-full mx-auto lg:max-w-[75rem]">
+        <div className="flex items-center justify-between py-2">
           {/* Logo */}
           <Link to="/" className="flex items-center h-12 w-24 cursor-pointer">
             <img
