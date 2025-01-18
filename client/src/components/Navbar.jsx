@@ -47,29 +47,23 @@ const NavbarDemo = () => {
   );
 
   return (
-    <div className="fixed top-3 left-0 right-0 z-50 px-4 bg-transparent">
-      <div className="w-full mx-auto lg:max-w-[75rem]">
+    <div className="fixed top-0 left-0 right-0 z-50 px-4 bg-transparent backdrop-blur-lg bg-opacity-30">
+      <div className="w-full mx-auto lg:max-w-[85rem]">
         <div className="flex items-center justify-between py-2">
-          {/* Logo */}
-          <Link to="/" className="flex items-center h-12 w-24 cursor-pointer">
-            <img
-              src="jwoc_icon.svg"
-              alt="Logo"
-              className="h-10 w-auto object-contain"
-            />
-          </Link>
-
+        <div className=" z-50">
+  <Link to="/" className="flex items-center h-12  w-24 cursor-pointer">
+  <img
+  src="jwoc_icon.svg"
+  alt="Logo"
+  className="h-10 w-auto object-contain navbar-logo"
+/>
+  </Link>
+</div>
           <div className="backdrop-blur-lg h-12 md:max-w-[55rem] bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center items-center space-x-6">
-          <NavItem id="/" label="Home" Icon={Home} />
+            <NavItem id="/" label="Home" Icon={Home} />
             <NavItem id="timeline" label="Timeline" Icon={Clock} />
-
-
             <NavItem id="team" label="Team" Icon={Users2} />
-
-
             <NavItem id="projects" label="Projects" Icon={BookOpen} />
-
-
             <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
 
             {/* Separator Line */}
@@ -109,17 +103,10 @@ const NavbarDemo = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 mt-2 p-4 backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-lg border border-white/30 shadow-lg shadow-black/10">
             <div className="flex flex-col space-y-3">
-            <NavItem id="/" label="Home" Icon={Home} isMobile={true} />
+              <NavItem id="/" label="Home" Icon={Home} isMobile={true} />
               <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
-
-
-
               <NavItem id="team" label="Team" Icon={Users2} isMobile={true} />
-
-
               <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
-
-
               <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} isMobile={true} />
 
               {/* Mobile Separator */}
