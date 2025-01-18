@@ -60,7 +60,7 @@ const PrizeCards = () => {
               className="reward_card rounded-lg p-6 shadow-md transition-transform duration-300 border border-white border-opacity-30  backdrop-blur-md"
             >
 
-              <div className="relative flex justify-center mb-4 z-[10]">
+              <div className="relative flex justify-center items-center pt-10 mb-4 z-[10]">
 
                 <img
                   src={perk.src}
