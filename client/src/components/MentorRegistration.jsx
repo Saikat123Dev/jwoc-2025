@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 export default function MentorRegistration() {
   const navigate = useNavigate();
@@ -88,7 +87,7 @@ export default function MentorRegistration() {
 
   return (
     <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
-      <Particles
+      {/* <Particles
         options={{
           particles: {
             color: {
@@ -119,7 +118,7 @@ export default function MentorRegistration() {
           }
         }}
         init={init}
-      />
+      /> */}
 
       <motion.div
         className="w-full max-w-4xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg"
