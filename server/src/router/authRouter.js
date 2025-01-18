@@ -82,7 +82,7 @@ router.get("/user", (req, res) => {
       })
         .then(user => {
           if (user) {
-            console.log(user);
+
             res.json({
               success: true,
               user: user
