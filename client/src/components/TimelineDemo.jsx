@@ -7,7 +7,7 @@ export function TimelineDemo() {
       title: "20th January",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-medium text-blue-50">
+          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
             Program Kickoff: Registration Phase
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
@@ -24,7 +24,7 @@ export function TimelineDemo() {
       title: "30th January",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font- text-blue-50">
+          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
             Project Announcement Day
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
@@ -41,7 +41,7 @@ export function TimelineDemo() {
       title: "4th February",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-pacifico text-blue-50">
+          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
             Registration Closure & Community Bonding
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
@@ -58,7 +58,7 @@ export function TimelineDemo() {
       title: "5th February",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-medium text-blue-50">
+          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
             Coding Phase 1 Launch
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
@@ -75,7 +75,7 @@ export function TimelineDemo() {
       title: "20th February",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-medium text-blue-50">
+          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
             Phase Transition
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
@@ -92,7 +92,7 @@ export function TimelineDemo() {
       title: "30th February",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-medium text-blue-50">
+          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
             Program Conclusion
           </p>
           <div className="bg-white/5 p-4 rounded-lg">
@@ -109,7 +109,7 @@ export function TimelineDemo() {
       title: "5th March",
       content: (
         <div className="space-y-4">
-          <p className="text-lg font-medium text-blue-50">
+          <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
             Results Day
           </p>
           <div className="bg-white/5 p-4 rounded-lg">

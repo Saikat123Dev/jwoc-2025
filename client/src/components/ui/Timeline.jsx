@@ -168,15 +168,15 @@ const Timeline = ({ data }) => {
           transition={{ duration: 0.7 }}
           className="py-8 text-center"
         >
-           <h1 className="text-4xl font-extrabold font-rubik  text-cyan-500 text-glow lg:text-5xl mb-6">
-          
-          Journey Through Time
-        </h1>
-        <p className="text-blue-100 text-lg mx-auto max-w-2xl leading-relaxed 
-                     drop-shadow-[0_0_8px_rgba(219,234,254,0.3)]">
-          Tracking the evolution and milestones of our project. Each step represents a significant 
-          achievement in our ongoing journey to create something extraordinary.
-        </p>
+          <div className="relative inline-block text-center mt-7">
+      
+     
+      {/* Title */}
+      <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
+      <h1 className="relative font-extrabold font-rubik text-6xl text-white ">
+        Journey through time
+      </h1>
+    </div>
         </motion.div>
 
         <div className="relative pb-20">
