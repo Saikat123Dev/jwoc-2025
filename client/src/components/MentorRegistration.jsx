@@ -38,6 +38,8 @@ export default function MentorRegistration() {
         id,
         gender: data.gender,
         github: data.github,
+        linkedin: data.linkedin,
+
       };
 
       const response = await fetch('https://jwoc-2025.onrender.com/api/mentor/registerMentor', {
@@ -301,6 +303,21 @@ export default function MentorRegistration() {
             />
             {errors.github && (
               <p className="text-red-400 text-sm mt-1">{errors.github.message}</p>
+            )}
+          </motion.div>
+
+          <motion.div variants={fieldVariants}>
+            <label className="text-white font-medium">Linkedin:</label>
+            <motion.input
+              {...register("linkedin", { required: "Linkedin is required" })}
+              className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your Linkedin username"
+              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
+              onFocus={() => setFocusedField("linkedin")}
+              onBlur={() => setFocusedField(null)}
+            />
+            {errors.linkedin && (
+              <p className="text-red-400 text-sm mt-1">{errors.linkdin.message}</p>
             )}
           </motion.div>
 
