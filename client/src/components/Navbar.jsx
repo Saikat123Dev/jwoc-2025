@@ -54,7 +54,7 @@ const NavbarDemo = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 h-14 px-4 lg:bg-transparent lg:backdrop-blur-2xl lg:bg-opacity-40
-    xl:bg-transparent xl:backdrop-blur-2xl xl:bg-opacity-40
+    2xl:bg-transparent 2xl:backdrop-blur-2xl 2xl:bg-opacity-40
     ">
       <div className="w-full mx-auto lg:max-w-[85rem]">
         <div className="flex items-center justify-between py-2">
