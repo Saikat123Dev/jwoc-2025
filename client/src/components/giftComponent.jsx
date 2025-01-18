@@ -69,7 +69,7 @@ const PrizeCards = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-xl opacity-30"></div>
               </div>
-              <h4 className="text-center font-semibold text-lg">{perk.title}</h4>
+              <h4 className="text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title}</h4>
             </motion.div>
           ))}
         </div>
