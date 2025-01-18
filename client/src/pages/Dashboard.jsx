@@ -153,7 +153,7 @@ const MentorDashboard = () => {
     RegisteredProjectId = [],
     acceptedProjectId = [],
   } = authState.user.user || {};
-
+  console.log(RegisteredProjectId);
   return (
     <div className="min-h-screen mt-9 pt-20 pb-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
