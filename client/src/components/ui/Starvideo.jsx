@@ -51,6 +51,8 @@ const Starvideo = () => {
   //   await loadFull(engine);
   // }, []);
 
+
+
   useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -152,7 +154,7 @@ const Starvideo = () => {
 <div className="relative ">
 <span className="absolute inset-0 w-[620px] h-[80px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-900 via-[rgba(0, 255, 255, 0.2)] to-cyan-800 blur-lg"></span>
 
-  
+
   <h1 className="relative font-extrabold font-rubik text-8xl text-white">
     JWoC - 2025
   </h1>
@@ -212,7 +214,7 @@ const Starvideo = () => {
           }
         }
 
-       
+
 
         .glow-subtext {
           animation: glow-subtext 2s ease-in-out infinite;
