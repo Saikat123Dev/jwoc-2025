@@ -67,7 +67,7 @@ const NavbarDemo = () => {
           </div>
           <div className="backdrop-blur-lg h-12 md:max-w-[55rem] bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center items-center">
             <div className="flex items-center space-x-2">
-              <NavItem id="/" label="Home" Icon={Home} />
+              <NavItem id="" label="Home" Icon={Home} />
               <Divider />
               <NavItem id="timeline" label="Timeline" Icon={Clock} />
               <Divider />
@@ -113,7 +113,7 @@ const NavbarDemo = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 mt-2 p-4 backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-lg border border-white/30 shadow-lg shadow-black/10">
             <div className="flex flex-col space-y-3">
-              <NavItem id="/" label="Home" Icon={Home} isMobile={true} />
+              <NavItem id="" label="Home" Icon={Home} isMobile={true} />
               <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
               <NavItem id="team" label="Team" Icon={Users2} isMobile={true} />
               <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
