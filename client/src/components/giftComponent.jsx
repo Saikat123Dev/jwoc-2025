@@ -34,6 +34,7 @@ const PrizeCards = () => {
             {
               src: "perk-1.png",
               title: "Paid Internship Opportunities",
+
             },
             {
               src: "perk-2.png",
@@ -69,7 +70,9 @@ const PrizeCards = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-xl opacity-30"></div>
               </div>
-              <h4 className="text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title}</h4>
+              <span className="bg-blue-800 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title2}</span>
+              <span className="bg-blue-600 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title}</span>
+
             </motion.div>
           ))}
         </div>

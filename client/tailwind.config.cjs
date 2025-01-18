@@ -11,6 +11,10 @@ module.exports = {
       },
       fontFamily: {
         rubik: ['Rubik', 'Jersey', 'sans-serif'],
+        pacifico: ['Pacifico', 'cursive'],
+        dancing: ['Dancing Script', 'cursive'],
+        greatvibes: ['Great Vibes', 'cursive'],
+        courgette: ['Courgette', 'cursive'],
       },
       colors: {},
       transformStyle: {

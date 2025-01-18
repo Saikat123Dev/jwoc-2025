@@ -366,7 +366,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* Social Media Links and Copyright */}
 
       </div>
     </footer>
