@@ -52,14 +52,13 @@ const TimelineItem = ({ item, index, isEven }) => {
           }}
           viewport={{ once: true }}
         >
-          <h1
-            className={`font-space-grotesk pt-10 lg:pt-0 text-xl sm:text-2xl md:text-4xl font-bold mb-1 bg-clip-text
-              bg-gradient-to-r ${isEven ? 'from-blue-400 via-cyan-300 to-white' : 'from-white via-cyan-300 to-blue-400'}
-              tracking-wide leading-snug font-bold text-center sm:text-left
-              `}
-          >
-            {item.title}
-          </h1>
+         <h1
+  className={`font-space-grotesk pt-10 lg:pt-0 text-xl sm:text-2xl md:text-4xl font-bold mb-1 tracking-wide leading-snug
+    text-indigo-500 text-center`}
+>
+  {item.title}
+</h1>
+
           <div
             className="bg-gradient-to-br from-white/10 to-white/5
                         hover:from-white/15 hover:to-white/10 transition-all duration-300
@@ -135,7 +134,7 @@ const Timeline = ({ data }) => {
         className="py-8 text-center"
       >
           <div className="relative inline-block text-center mt-7">
-          <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
+          <span className="absolute inset-0 mt-2 lg:mt-4  h-10 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
             <h1 className="relative font-extrabold font-rubik text-4xl sm:text-6xl text-white">
               Timeline
             </h1>

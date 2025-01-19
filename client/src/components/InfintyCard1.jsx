@@ -4,7 +4,7 @@ import Marquee from 'react-fast-marquee';
 const InfinityCard = () => {
   const imageArray = [
     'eventsInfo.jpg',
-    'Devfolio.png',
+    'devfolio_1.jpeg',
     'IIITA.GDSC.png',
     'IITK.GDSC.jpg',
     'NITG.GDSC.jpg',
@@ -17,6 +17,7 @@ const InfinityCard = () => {
   return (
     <div className="relative w-full max-w-full overflow-hidden">
       <div className="text-center py-4 sm:py-6">
+
         <h1 className="font-extrabold font-rubik text-xl sm:text-3xl lg:text-5xl text-white">
           Community Partners
         </h1>
@@ -34,7 +35,7 @@ const InfinityCard = () => {
               <img
                 src={image}
                 alt={`Community Partner ${index + 1}`}
-                className="h-24 w-24 sm:h-24 sm:w-24 lg:h-32 lg:w-32
+                className="h-28 w-28 lg:mx-2  sm:h-28 sm:w-28 lg:h-36 lg:w-36
                   rounded-lg object-contain
                   opacity-75 hover:opacity-100 transition-opacity duration-300"
               />

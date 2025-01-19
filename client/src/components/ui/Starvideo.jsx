@@ -251,8 +251,8 @@ const Starvideo = () => {
     <div className="w-full sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto p-4 sm:p-6 space-y-8">
         <div className="text-center mb-16">
           <div className="relative inline-block">
-          <span className="absolute  inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 blur-lg"></span>
-                      <h1 className="relative font-extrabold font-rubik text-6xl text-white">FAQs🤔💭</h1>
+          <span className="absolute  inset-0 h-10 mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 blur-lg"></span>
+                      <h1 className="relative font-extrabold font-rubik text-6xl text-white">FAQs 🤔</h1>
 
           </div>
         </div>
