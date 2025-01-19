@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Linkedin, Github } from 'lucide-react';
 import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { Github, Linkedin } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 export default function Team() {
     const [shuffledMembers, setShuffledMembers] = useState([]);
@@ -43,7 +43,7 @@ export default function Team() {
         },
         {
             name: "Urnisha Paul",
-            role: "Outreach Team",
+            role: "Sponsor & Outreach Team",
             imageUrl: "p6.jpg",
             linkedin: "https://www.linkedin.com/in/urnisha-paul-277689254/",
             Github: "https://github.com/flawed-hooman"
@@ -52,8 +52,8 @@ export default function Team() {
             name: "Atanu Basak",
             role: "Lead",
             imageUrl: "p7.jpg",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            Github: "https://twitter.com/michaelchen"
+            linkedin: "https://www.linkedin.com/in/atanu-basak-3a940a256/",
+            Github: "https://github.com/Atanu789"
         },
         {
             name: "Suman Chakraborty",
@@ -69,7 +69,7 @@ export default function Team() {
         },
         {
             name: "Aneek Karmakar",
-            role: " Graphics Design",
+            role: " Graphics Designer",
             imageUrl: "p10.jpg",
             linkedin: "https://www.linkedin.com/in/aneek-karmakar-3a578025b/",
         },
@@ -146,7 +146,7 @@ export default function Team() {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 </div>
-                                
+
                                 <div className="flex flex-col items-center justify-center p-3 w-full flex-grow">
                                     <div className="w-full text-center mb-2">
                                         <h3 className="text-lg font-bold text-white truncate px-1">

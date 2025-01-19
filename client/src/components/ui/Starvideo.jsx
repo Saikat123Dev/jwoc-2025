@@ -17,30 +17,31 @@ const Starvideo = () => {
 
   const faqs = [
     {
-      question: "I am not a Student of JGEC,can i particicpate?",
-      answer: "Yes, you can definitely participate",
+      question: "I am not a student of JGEC. Can I participate?",
+      answer: "Yes, you can definitely participate.",
     },
     {
-      question: "I am a beginner,can i participate?",
-      answer: "There is no such restriction but with some amount of development knowledge in any domain will be good to go.",
+      question: "I am a beginner. Can I participate?",
+      answer: "There is no restriction, but having some development knowledge in any domain will be helpful.",
     },
     {
-      question: "Can i participate as a team?",
+      question: "Can I participate as a team?",
       answer: "No, this is an individual event.",
     },
     {
-      question: "I don't know Open Source,can i participate?",
-      answer: "Then you must participate, because the aim of our event is to get more people into open source development.",
+      question: "I don't know about open source. Can I participate?",
+      answer: "Yes, you must participate because the aim of our event is to introduce more people to open source development.",
     },
     {
       question: "Can I participate both as a mentor and a mentee?",
-      answer: "No we don't encourage that.",
+      answer: "No, we don't encourage that.",
     },
     {
       question: "What perks will I get?",
-      answer: "Let's keep that a secret, but we promise you that you won't be dissapointed.",
+      answer: "Let's keep that a secret, but we promise you won't be disappointed.",
     },
   ];
+
 
   const videoContainerRef = useRef(null);
   const initialTextRef = useRef(null);
@@ -197,12 +198,13 @@ const Starvideo = () => {
         >
           <h1
             ref={headingRef}
-            className="text-4xl sm:text-3xl md:text-7xl font-bold text-center text-white mb-4 sm:mb-8"
+            className="text-4xl sm:text-3xl md:text-7xl bg-clip-text
+         text-transparent bg-gradient-to-r text-center from-cyan-400 via-blue-500 to-violet-600 mb-4 sm:mb-8"
             style={{
               fontFamily: "Jersey, sans-serif",
-              textShadow:
-                "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
-              opacity: 0.8,
+              // textShadow:
+              //   "0 0 10px rgba(0, 199, 255, 0.5), 0 0 20px rgba(0, 199, 255, 0.3)",
+              // opacity: 0.8,
             }}
           >
             Welcome To A Month Of Open-Source
@@ -210,7 +212,7 @@ const Starvideo = () => {
 
           <Link
             to="/registrationcard"
-            className="relative px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold text-sm sm:text-lg rounded-lg shadow-xl transform transition-all duration-300 hover:scale-110 hover:shadow-lg hover:text-cyan-200 flex items-center justify-center z-50"
+            className="relative px-6 sm:px-8 py-3 sm:py-4 text-white font-semibold lg:text-lg text-lg rounded-lg shadow-xl transform transition-all duration-300 hover:scale-110 hover:shadow-lg hover:text-cyan-200 flex items-center justify-center z-50"
             style={{
               background: "linear-gradient(45deg, #00cc66, #0066cc, #6600cc)",
               backgroundSize: "400% 400%",
@@ -251,7 +253,7 @@ const Starvideo = () => {
     <div className="w-full sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto p-4 sm:p-6 space-y-8">
         <div className="text-center mb-16">
           <div className="relative inline-block">
-          <span className="absolute  inset-0 h-10 mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 blur-lg"></span>
+
                       <h1 className="relative font-extrabold font-rubik text-6xl text-white">FAQs 🤔</h1>
 
           </div>

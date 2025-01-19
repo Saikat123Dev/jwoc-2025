@@ -71,12 +71,12 @@ const PrizeCards = () => {
                 <img
                   src={perk.src}
                   alt={perk.title}
-                  className="w-[10rem] h-[10rem] object-contain z-[20]"
+                  className="w-[10rem] rounded-lg h-[10rem] object-contain z-[20]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-xl opacity-30"></div>
               </div>
-              <span className="bg-blue-800 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title2}</span>
-              <span className="bg-blue-600 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title}</span>
+              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title2}</span>
+              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title}</span>
 
             </motion.div>
           ))}

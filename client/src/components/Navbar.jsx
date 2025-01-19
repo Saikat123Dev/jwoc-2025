@@ -133,8 +133,8 @@ const NavbarDemo = () => {
           </div>
           <button
             onClick={handleMentorClick}
-            className="hidden lg:flex items-center space-x-2 bg-gradient-to-r from-green-600 via-teal-800 hover:to-cyan-900
-            hover:from-green-700 hover:via-teal-700 to-cyan-800
+            className="hidden lg:flex items-center space-x-2 bg-gradient-to-r hover:from-green-600 hover:via-teal-800 to-cyan-900
+            from-green-700 via-teal-700 hover:to-cyan-800
             text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-xl transition-all duration-300"
           >
             <Briefcase className="h-4 w-4" />
