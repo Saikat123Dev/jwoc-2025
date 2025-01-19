@@ -246,7 +246,7 @@ const MentorDashboard = () => {
                       ].map((item) => (
                         <a
                           key={item.label}
-                          href={`https://github.com/${items.value}`}
+                          href={`https://github.com/${item.value}`}
 
                           target="_blank"
                           rel="noopener noreferrer"
