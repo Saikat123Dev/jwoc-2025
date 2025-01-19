@@ -13,7 +13,7 @@ import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import StarryNightBackground from "./pages/Projects/Style.jsx";
 import RegistrationCards from "./pages/RegistrationCard.jsx";
-import Team from "./pages/Team.jsx";
+import Team from "./pages/Team/Team.jsx";
 import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
 
 function App() {
