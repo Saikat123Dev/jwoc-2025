@@ -239,26 +239,26 @@ const MentorDashboard = () => {
                 <div className="space-y-6">
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-white">Professional Links</h3>
-                    <div className="space-y-3 text-gray-300">
-                      {[
-                        { label: "GitHub", value: githubLink, icon: "github" },
-                        { label: "LinkedIn", value: linkedIn, icon: "linkedin" },
-                      ].map((item) => (
-                        <a
-                          key={item.label}
-                          href={`https://github.com/${item.value}`}
+                    <div className="space-y-3 text-white">
+  {[
+    { label: "GitHub", value: githubLink, icon: "github", baseUrl: "https://github.com/" },
+    { label: "LinkedIn", value: linkedIn, icon: "linkedin", baseUrl: "https://www.linkedin.com/in/" },
+  ].map((item) => (
+    <a
+      key={item.label}
+      href={item.value ? `${item.baseUrl}${item.value}` : "#"}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex text-cyan-200 items-center space-x-2 p-3 bg-white/5 rounded-lg transition-all duration-200 group"
+    >
+      <span className="text-white font-medium group-hover:text-blue-600">{item.label}:</span>
+      <span className="text-blue-500 hover:underline truncate">
+        {item.value || "Not provided"}
+      </span>
+    </a>
+  ))}
+</div>
 
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex  items-center space-x-2 p-3 bg-white/5 rounded-lg  transition-all duration-200 group"
-                        >
-                          <span className="text-gray-600 font-medium group-hover:text-blue-600">{item.label}:</span>
-                          <span className="text-blue-500 hover:underline truncate">
-                            {item.value || "Not provided"}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
                   </div>
 
                   <div className="space-y-4">
