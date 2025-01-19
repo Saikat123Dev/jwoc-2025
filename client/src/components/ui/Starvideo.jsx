@@ -6,6 +6,7 @@ import AboutJWoC from "../AboutJWoc";
 import InfinityCard from "../InfintyCard";
 import { TimelineDemo } from "../TimelineDemo";
 import Card from "../giftComponent";
+import {ChevronDown} from "lucide-react"
 
 
 
