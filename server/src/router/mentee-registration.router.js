@@ -23,7 +23,14 @@ router.post("/register", async (req, res) => {
         } = req.body;
 
         console.log("Connecting to database...");
-
+        const alreadyMentor = await prisma.mentor.findUnique({
+          where: {
+            email: email,
+          },
+        });
+if(alreadyMentor){
+  return res.status(400).json({ message: "User already register as Mentor" });
+}else{
 
         const savedMentee = await prisma.mentee.create({
             data: {
@@ -45,6 +52,7 @@ router.post("/register", async (req, res) => {
 
 
         res.status(201).json({ message: "User registered successfully.", mentee: savedMentee });
+      }
     } catch (error) {
         console.error("Error registering mentee:", error);
 
