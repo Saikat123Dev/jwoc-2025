@@ -4,7 +4,7 @@ import Timeline from "./ui/Timeline";
 export function TimelineDemo() {
   const data = [
     {
-      title: "20th January",
+      title: "21th January",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
@@ -21,7 +21,7 @@ export function TimelineDemo() {
       tags: ["Registration", "Program Start"]
     },
     {
-      title: "30th January",
+      title: "5th February",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
@@ -38,7 +38,7 @@ export function TimelineDemo() {
       tags: ["Projects", "Announcements", "Selection"]
     },
     {
-      title: "4th February",
+      title: "9th February",
       content: (
         <div className="space-y-4">
           <p className="text-lg  font-extrabold text-blue-50 flex justify-center items-center">
@@ -55,7 +55,7 @@ export function TimelineDemo() {
       tags: ["Registration End", "Community Bonding", "Team Formation"]
     },
     {
-      title: "5th February",
+      title: "10th February",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
@@ -72,7 +72,7 @@ export function TimelineDemo() {
       tags: ["Coding", "Development", "Phase 1"]
     },
     {
-      title: "20th February",
+      title: "1st March",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
@@ -89,7 +89,7 @@ export function TimelineDemo() {
       tags: ["Phase Transition", "Milestones", "Progress"]
     },
     {
-      title: "2nd March",
+      title: "10th March",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
@@ -106,7 +106,7 @@ export function TimelineDemo() {
       tags: ["Program End", "Completion", "Submissions"]
     },
     {
-      title: "7th March",
+      title: "15th March",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
