@@ -137,7 +137,7 @@ const Timeline = ({ data }) => {
           <div className="relative inline-block text-center mt-7">
           <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
             <h1 className="relative font-extrabold font-rubik text-4xl sm:text-6xl text-white">
-              Journey through time
+              Timeline
             </h1>
           </div>
         </motion.div>

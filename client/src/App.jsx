@@ -10,11 +10,12 @@ import LoadingScreen from "./components/ui/Loading.jsx";
 import Starvideo from "./components/ui/Starvideo.jsx";
 import MentorDashboard from "./pages/Dashboard.jsx";
 import Home from "./pages/Home.jsx";
+import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import StarryNightBackground from "./pages/Projects/Style.jsx";
 import RegistrationCards from "./pages/RegistrationCard.jsx";
+import Sponsors from "./pages/Sponsor.jsx";
 import Team from "./pages/Team/Team.jsx";
-import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -80,6 +81,7 @@ function App() {
             <Route path="/leaderboard" element={<LeaderBoard />} />
             <Route path="/Mentor-registration" element={<MentorRegistration />} />
             <Route path="/mentee-registration" element={<MenteeRegistration />} />
+            <Route path="/sponsors" element={<Sponsors />} />
             <Route path="/add-project" element={<AddProject />} />
             <Route path="/registrationcard" element={<RegistrationCards />} />
           </Routes>

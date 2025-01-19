@@ -121,7 +121,7 @@ const NavbarDemo = () => {
               <Divider />
               <NavItem id="projects" label="Projects" Icon={BookOpen} />
               <Divider />
-              <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
+              <NavItem id="sponsors" label="Sponsors" Icon={Trophy} />
               <Divider />
               <NavItem
                 id="registrationcard"
@@ -163,7 +163,7 @@ const NavbarDemo = () => {
               <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
               <NavItem id="team" label="Team" Icon={Users2} isMobile={true} />
               <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
-              <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} isMobile={true} />
+              <NavItem id="sponsors" label="Sponsors" Icon={Trophy} isMobile={true} />
               <div className="h-px w-full bg-gray-400/30 dark:bg-gray-600/30 my-2" />
               <NavItem
                 id="registrationcard"

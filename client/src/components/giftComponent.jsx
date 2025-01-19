@@ -52,6 +52,11 @@ const PrizeCards = () => {
               src: "perk-5.png",
               title: "Verified Certificates",
             },
+            {
+              src: "internationalTrip.jpeg",
+              title: "International internship",
+
+            }
           ].map((perk, index) => (
             <motion.div
               key={index}
