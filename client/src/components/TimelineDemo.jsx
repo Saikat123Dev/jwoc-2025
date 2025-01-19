@@ -89,7 +89,7 @@ export function TimelineDemo() {
       tags: ["Phase Transition", "Milestones", "Progress"]
     },
     {
-      title: "30th February",
+      title: "2nd March",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
@@ -106,7 +106,7 @@ export function TimelineDemo() {
       tags: ["Program End", "Completion", "Submissions"]
     },
     {
-      title: "5th March",
+      title: "7th March",
       content: (
         <div className="space-y-4">
           <p className="text-lg font-extrabold text-blue-50 flex justify-center items-center">
