@@ -8,20 +8,24 @@ import { loadFull } from "tsparticles";
 
 const AddProject = () => {
   const [focusedField, setFocusedField] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { register, control, handleSubmit } = useForm({
-    defaultValues: {
-      projects: [
-        {
-          projectName: '',
-          projectLink: '',
-          github: '',
-          projectTypes: '',
-          details: '',
-          completionDate: ''
-        }
-      ]
-    }
+  const defaultValues = {
+    projects: [
+      {
+        projectName: '',
+        projectLink: '',
+        github: '',
+        projectTypes: '',
+        details: '',
+        completionDate: '',
+        projecttags: ''
+      }
+    ]
+  };
+
+  const { register, control, handleSubmit, reset } = useForm({
+    defaultValues
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -83,6 +87,7 @@ const AddProject = () => {
 
   const onSubmit = async (data) => {
     try {
+      setIsSubmitting(true);
       const mentorId = localStorage.getItem('mentorId');
       if (!mentorId) {
         throw new Error('Mentor ID not found. Please login again.');
@@ -110,6 +115,8 @@ const AddProject = () => {
 
       if (response.ok) {
         showSuccessToast();
+        // Instead of resetting to empty, reset to the default structure
+        reset(defaultValues);
       } else {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Project Submission failed');
@@ -117,6 +124,8 @@ const AddProject = () => {
     } catch (error) {
       console.error('An error occurred during adding of project:', error);
       showErrorToast(error.message || 'An error occurred.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -128,6 +137,7 @@ const AddProject = () => {
         github: '',
         projectTypes: '',
         details: '',
+        projecttags: ''
       });
     }
   };
@@ -358,14 +368,21 @@ const AddProject = () => {
 
             <motion.button
               type="submit"
-              className="w-full bg-indigo-500 text-white py-3 rounded-lg font-medium hover:bg-indigo-600 transition"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
+              className={`w-full bg-indigo-500 text-white py-3 rounded-lg font-medium transition ${
+                isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-indigo-600'
+              }`}
+              whileHover={isSubmitting ? {} : { scale: 1.02 }}
+              whileTap={isSubmitting ? {} : { scale: 0.98 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
-              {fields.length === 1 ? "Submit Project" : "Submit All Projects"}
+              {isSubmitting
+                ? "Submitting..."
+                : fields.length === 1
+                  ? "Submit Project"
+                  : "Submit All Projects"}
             </motion.button>
           </form>
         </motion.div>
@@ -431,6 +448,21 @@ const AddProject = () => {
 
         .Toastify__close-button:hover {
           opacity: 1 !important;
+        }
+
+        .Toastify__progress-bar {
+          background: linear-gradient(to right, #4f46e5, #818cf8) !important;
+        }
+
+        .Toastify__toast-icon {
+          margin-right: 12px !important;
+        }
+
+        @media (max-width: 480px) {
+          .Toastify__toast-container {
+            width: 100% !important;
+            padding: 0 16px !important;
+          }
         }
       `}</style>
     </>

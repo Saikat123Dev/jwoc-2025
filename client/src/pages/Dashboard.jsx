@@ -266,11 +266,11 @@ const MentorDashboard = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-4 bg-white/5 rounded-lg text-center">
                         <p className="text-2xl font-bold text-blue-600">{projectNumber}</p>
-                        <p className="text-sm text-gray-600">Registered Projects</p>
+                        <p className="text-sm text-white">Registered Projects</p>
                       </div>
-                      <div className="p-4 bg-green-50 rounded-lg text-center">
+                      <div className="p-4 bg-white/5 rounded-lg text-center">
                         <p className="text-2xl font-bold text-green-600">{acceptedProjectId.length}</p>
-                        <p className="text-sm text-gray-600">Accepted Projects</p>
+                        <p className="text-sm text-white">Accepted Projects</p>
                       </div>
                     </div>
                   </div>
