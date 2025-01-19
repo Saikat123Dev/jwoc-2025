@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import AddProject from "./components/AddProject.jsx";
 import Footer from "./components/Footer.jsx";
 import MenteeRegistration from "./components/MenteeRegistration.jsx";
@@ -19,7 +19,33 @@ import LeaderBoard from "./pages/leaderBoard/leaderboard.jsx";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
+  // Handle scroll-to-timeline navigation
+  useEffect(() => {
+    if (location.state?.scrollToTimeline) {
+      const timelineSection = document.querySelector('.timeline-section');
+      if (timelineSection) {
+        setTimeout(() => {
+          timelineSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Small delay to ensure content is loaded
+      }
+      // Clear the navigation state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
+  // Detect scrolling
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Loading screen and animation handling
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -39,11 +65,11 @@ function App() {
 
   return (
     <StarryNightBackground>
-      {isLoading ? (
+      {isLoading && location.pathname === "/" ? (
         <LoadingScreen />
       ) : (
         <div>
-          <NavbarDemo />
+          <NavbarDemo isScrolled={isScrolled} />
           <Routes>
             <Route path="/" element={<Starvideo />} />
             <Route path="/mentor" element={<Home />} />
