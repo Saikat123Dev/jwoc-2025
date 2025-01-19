@@ -70,18 +70,18 @@ export default function Team() {
             Github: "https://twitter.com/michaelchen"
         },
         {
-            name: "Michael Chen",
-            role: "Product Designer",
-            imageUrl: "/api/placeholder/300/300",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            Github: "https://twitter.com/michaelchen"
+            name: "Aneek Karmakar",
+            role: " Graphics Design",
+            imageUrl: "p10.jpg",
+            linkedin: "https://www.linkedin.com/in/aneek-karmakar-3a578025b/",
+          
         },
         {
-            name: "Michael Chen",
-            role: "Product Designer",
-            imageUrl: "/api/placeholder/300/300",
-            linkedin: "https://linkedin.com/in/michael-chen",
-            Github: "https://twitter.com/michaelchen"
+            name: "Anirban Roy",
+            role: "Outreach Team",
+            imageUrl: "p11.jpg",
+            linkedin: "https://www.linkedin.com/in/anirban-roy-694a15255/",
+            Github: "https://github.com/duceboi"
         },
     ];
 
@@ -146,7 +146,7 @@ export default function Team() {
                                     <img
                                         src={member.imageUrl}
                                         alt={member.name}
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover  rounded-2xl"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 </div>

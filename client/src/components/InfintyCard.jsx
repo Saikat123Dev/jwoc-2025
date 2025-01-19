@@ -60,7 +60,15 @@ const InfinityCard = () => {
     );
 
     return (
+     <div className=''>
+           <div className="relative inline-block text-center mt-7 flex-col justify-center ml-[79vh]">
+        <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
+          <h1 className="relative font-extrabold font-rubik text-4xl sm:text-6xl text-white">
+          OUTREACH
+          </h1>
+        </div>
         <div className="bg-white h-[30vh] overflow-hidden relative my-8 px-6 py-4 shadow-md rounded-lg">
+           
             <div 
                 ref={containerRef}
                 className="flex absolute"
@@ -74,6 +82,7 @@ const InfinityCard = () => {
                 {cardSet}
             </div>
         </div>
+     </div>
     );
 };
 
