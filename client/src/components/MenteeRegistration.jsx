@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import React, { useCallback, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
 export default function MenteeRegistration() {
@@ -74,38 +73,7 @@ export default function MenteeRegistration() {
 
   return (
     <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
-      <Particles
-        options={{
-          particles: {
-            color: {
-              value: "#fff"
-            },
-            number: {
-              value: 100,
-              density: {
-                enable: true,
-                area: 800,
-              },
-            },
-            opacity: {
-              value: { min: 0.3, max: 1 }
-            },
-            shape: {
-              type: "circle"
-            },
-            size: {
-              value: { min: 1, max: 3 }
-            },
-            move: {
-              direction: "bottom-right",
-              enable: true,
-              speed: { min: 1, max: 5 },
-              straight: true
-            }
-          }
-        }}
-        init={init}
-      />
+
 
       <motion.div
         className="w-full max-w-4xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg mb-20"
