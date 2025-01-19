@@ -75,8 +75,8 @@ const PrizeCards = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-xl opacity-30"></div>
               </div>
-              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title2}</span>
-              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold text-3xl xs:text-lg text-glow ">{perk.title}</span>
+              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold lg:text-lg text-sm text-glow ">{perk.title2}</span>
+              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold lg:text-lg text-sm text-glow ">{perk.title}</span>
 
             </motion.div>
           ))}
