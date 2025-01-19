@@ -9,6 +9,7 @@ router.post("/registerMentor", async (req, res) => {
              id,
             name,
             phone,
+            email,
             gender,
             whatsapp,
             ipAddress,

@@ -115,7 +115,7 @@ export default function MenteeRegistration() {
             <label className="text-white font-medium">Gender:</label>
             <motion.select
               {...register("gender")}
-              className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full mt-2 p-3  bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               defaultValue="Prefer not to say"
               whileFocus={{
                 scale: 1.01,
