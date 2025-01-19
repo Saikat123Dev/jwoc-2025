@@ -139,9 +139,16 @@ const Starvideo = () => {
         >
           <div className="relative">
             <span className="absolute inset-0 w-[620px] h-[80px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-900 via-[rgba(0, 255, 255, 0.2)] to-cyan-800 blur-lg"></span>
-            <h1 className="relative font-extrabold font-rubik text-8xl text-white">
-              JWoC - 2025
-            </h1>
+            <h1
+  className="relative font-extrabold font-rubik text-8xl text-white"
+  style={{
+    wordSpacing: window.innerWidth >= 1024 ? '0.5em' : 'normal',
+  }}
+>
+   JWoC 2025
+</h1>
+
+
           </div>
 
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-bold text-cyan-500 glow-subtext mt-2 sm:mt-3">
