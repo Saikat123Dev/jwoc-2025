@@ -60,21 +60,18 @@ export default function Team() {
             role: "Sponsor Team",
             imageUrl: "p8.jpg",
             linkedin: "https://www.linkedin.com/in/suman-chakraborty-99660a203",
-           
         },
         {
             name: "Sama Asif Laskar",
             role: "Sponsor Team",
             imageUrl: "p9.jpg",
             linkedin: "https://www.linkedin.com/in/sama-ashif-laskar-95669b258?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-            Github: "https://twitter.com/michaelchen"
         },
         {
-            name: "Aneek Karmakar",
+            name: "Aneek Karmakar",
             role: " Graphics Design",
             imageUrl: "p10.jpg",
             linkedin: "https://www.linkedin.com/in/aneek-karmakar-3a578025b/",
-          
         },
         {
             name: "Anirban Roy",
@@ -102,7 +99,7 @@ export default function Team() {
     }, []);
 
     return (
-        <div className="my-12 md:my-24 flex flex-col">
+        <div className="my-8 sm:my-12 md:my-24 flex flex-col">
             <div className="flex-col relative flex gap-y-3 items-center justify-center h-30 mt-1">
                 <div className="hidden md:flex fixed right-[150vh] top-[80vh]">
                     <div className="rounded-full opacity-20 bg-cyan-600 h-[15vh] w-[15vh]"></div>
@@ -122,11 +119,11 @@ export default function Team() {
                         transform: 'rotate(80deg)'
                     }}
                 ></div>
-                <div className="relative text-center md:text-left px-4 md:px-0">
-                    <p style={{fontFamily:"Jersey,sans-serif"}} className="text-lg md:text-2xl xl:text-3xl md:ml-32 xl:pt-2 font-bold text-cyan-500 glow-subtext mt-2">
+                <div className="relative text-center px-4 sm:px-0">
+                    <p style={{fontFamily:"Jersey,sans-serif"}} className="text-lg sm:text-xl md:text-2xl xl:text-3xl font-bold text-cyan-500 glow-subtext mt-2">
                         MEET OUR AWESOME
                     </p>
-                    <h1 className="text-transperent text-4xl md:text-5xl xl:text-6xl relative font-extrabold font-rubik text-white text-glow md:ml-10">
+                    <h1 className="text-transperent text-3xl sm:text-4xl md:text-5xl xl:text-6xl relative font-extrabold font-rubik text-white text-glow">
                         ORGANIZERS
                     </h1>
                 </div>
@@ -136,17 +133,16 @@ export default function Team() {
                 </div>
             </div>
 
-           
-            <div className="flex flex-col h-auto relative min-h-screen mx-4 md:mx-8 lg:mx-16 mt-9 w-auto justify-center py-8 md:py-12 z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+            <div className="flex flex-col h-auto relative min-h-screen px-4 sm:px-8 lg:px-16 mt-9 w-auto justify-center py-8 sm:py-12 z-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
                     {shuffledMembers.map((member, index) => (
-                        <CardSpotlight key={index} className="w-[260px] h-[380px]"> {/* Increased height from 340px to 380px */}
+                        <CardSpotlight key={index} className="w-full max-w-[260px] sm:w-[260px] h-[380px] rounded-3xl">
                             <div className="relative z-20 flex flex-col items-center w-full h-full">
                                 <div className="relative w-full h-[200px]">
                                     <img
                                         src={member.imageUrl}
                                         alt={member.name}
-                                        className="w-full h-full object-cover  rounded-2xl"
+                                        className="w-full h-full object-cover rounded-2xl"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 </div>
@@ -163,22 +159,26 @@ export default function Team() {
                                         </span>
                                     </div>
                                     <div className="flex space-x-4 mt-auto">
-                                        <a
-                                            href={member.linkedin}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                                        >
-                                            <Linkedin className="w-5 h-5" />
-                                        </a>
-                                        <a
-                                            href={member.Github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-cyan-400 hover:text-cyan-300 transition-colors"
-                                        >
-                                            <Github className="w-5 h-5" />
-                                        </a>
+                                        {member.linkedin && (
+                                            <a
+                                                href={member.linkedin}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                                            >
+                                                <Linkedin className="w-5 h-5" />
+                                            </a>
+                                        )}
+                                        {member.Github && (
+                                            <a
+                                                href={member.Github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                                            >
+                                                <Github className="w-5 h-5" />
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </div>

@@ -3,7 +3,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AboutJWoC from "../AboutJWoc";
-import InfinityCard from "../InfintyCard";
+import InfinityCard from "../InfintyCard1";
+import InfinityCard2 from "../infinityCard2";
 import { TimelineDemo } from "../TimelineDemo";
 import Card from "../giftComponent";
 import {ChevronDown} from "lucide-react"
@@ -224,8 +225,11 @@ const Starvideo = () => {
         <AboutJWoC />
       </div>
 
-      <div className="py-4 px-4 sm:mr-4 sm:ml-4">
+      <div className="py-2 px-2 sm:mr-4 sm:ml-4">
         <InfinityCard />
+      </div>
+      <div className="px-2 sm:mr-4 sm:ml-4">
+        <InfinityCard2/>
       </div>
       <div className="px-4 timeline-section"> {/* Add timeline-section class */}
   <TimelineDemo />
