@@ -26,14 +26,23 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
-const allowedOrigins = ["https://jwoc-2025.vercel.app", "https://jwoc.in"];
+const allowedOrigins = [
+  "https://jwoc-2025.vercel.app",
+  "https://jwoc.in",
+];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // Include credentials (cookies, authorization headers, etc.)
+};
+
+app.use(cors(corsOptions));
 
 // Enhanced Nodemailer configuration
 const transporter = nodemailer.createTransport({
