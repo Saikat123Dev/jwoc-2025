@@ -8,28 +8,26 @@ datasource db {
 }
 
 model Mentee {
-  id            String               @id @default(auto()) @map("_id") @db.ObjectId
-  type          String               @default("Mentee")
-  name          String
-  gender        String               @default("Prefer not to say")
-  email         String               @unique
-  phone         String
-  whatsapp      String
-  ipAddress     String?
-  ipDetails     Json?
-  college       String
-  year          String
-  github        String
-  linkedIn      String
-  question1     String               @default("What inspired you to join?")
-  answer1       String
-  isVerified    Boolean              @default(false)
-  isBanned      Boolean              @default(false)
-  TotalPoints   Int                  @default(0)
-  Ranking       Int                  @default(0)
-  createdAt     DateTime             @default(now()) @map("created_at")
-  updatedAt     DateTime             @updatedAt @map("updated_at")
-  oauthAccounts MenteeOAuthAccount[]
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  type        String   @default("Mentee")
+  name        String
+  gender      String   @default("Prefer not to say")
+  email       String   @unique
+  phone       String
+  whatsapp    String
+  ipAddress   String?
+  ipDetails   Json?
+  college     String
+  year        String
+  github      String
+  linkedIn    String
+  question1   String   @default("What inspired you to join?")
+  answer1     String
+  isBanned    Boolean  @default(false)
+  TotalPoints Int      @default(0)
+  Ranking     Int      @default(0)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 }
 
 model Mentor {
@@ -77,20 +75,6 @@ model MentorOAuthAccount {
 
   @@unique([provider, providerId])
   @@index([mentorId])
-}
-
-model MenteeOAuthAccount {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  menteeId     String  @db.ObjectId
-  provider     String // 'google' or 'github'
-  providerId   String // Unique ID from OAuth provider
-  accessToken  String?
-  refreshToken String?
-
-  mentee Mentee @relation(fields: [menteeId], references: [id])
-
-  @@unique([provider, providerId])
-  @@index([menteeId])
 }
 
 model Project {

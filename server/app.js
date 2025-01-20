@@ -8,7 +8,7 @@ const authRoutes = require("./src/router/authRouter");
 const menteeReg = require("./src/router/mentee-registration.router");
 const menteeBanned = require("./src/router/mentee-banned");
 const project = require("./src/router/projectRouter");
-const menteeAuth = require("./src/router/menteeAuthRouter");
+
 const mentorReg = require("./src/router/mentor-registration.router");
 
 const app = express();
