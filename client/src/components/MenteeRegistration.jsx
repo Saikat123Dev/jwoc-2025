@@ -73,11 +73,11 @@ export default function MenteeRegistration() {
 
   // Handle OAuth login
   const handleGoogleLogin = () => {
-    window.location.href = "https://jwoc-2025.onrender.com/auth/google";
+    window.location.href = "https://jwoc-2025.onrender.com/mentee-auth/google";
   };
 
   const handleGitHubLogin = () => {
-    window.location.href = "https://jwoc-2025.onrender.com/auth/github";
+    window.location.href = "https://jwoc-2025.onrender.com/mentee-auth/github";
   };
 
   // Animation variants
