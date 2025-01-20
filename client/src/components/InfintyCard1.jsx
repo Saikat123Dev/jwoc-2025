@@ -9,6 +9,7 @@ const InfinityCard = () => {
     'IITK.GDSC.jpg',
     'NITG.GDSC.jpg',
     'ProElevate.png',
+    'IndiaCollege.jpeg'
   ];
 
   // Repeat images to ensure seamless scrolling
