@@ -250,7 +250,8 @@ export default function MenteeRegistration() {
             <motion.input
               {...register("linkedIn", {
                 pattern: {
-                  value: /^https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9_-]+\/?$/,
+                  value: /^https?:\/\/(www|in)\.linkedin\.com\/.+$/,
+
                   message: "Please enter a valid LinkedIn profile URL"
                 }
               })}
