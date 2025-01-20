@@ -28,10 +28,11 @@ export default function MenteeRegistration() {
         setResponseMessage("Registration successful!");
         setShowSuccessModal(true);
 
-        // Only redirect after successful registration
+
         setTimeout(() => {
           setShowSuccessModal(false);
-          navigate("/");
+          window.location.href = 'https://www.jwoc.in'; // Redirect to external URL
+
         }, 3000);
       } else {
         throw new Error("Registration failed");
