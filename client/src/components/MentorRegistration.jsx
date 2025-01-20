@@ -292,7 +292,7 @@ export default function MentorRegistration() {
               {...register("linkedin", {
                 required: "LinkedIn profile is required",
                 pattern: {
-                  value: /^https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9_-]+\/?$/,
+                  value: /^https?:\/\/(www|in)\.linkedin\.com\/.+$/,
                   message: "Please enter a valid LinkedIn profile URL (e.g., https://linkedin.com/in/username)"
                 }
               })}
