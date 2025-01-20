@@ -8,8 +8,8 @@ const InfinityCard = () => {
     'IIITA.GDSC.png',
     'IITK.GDSC.jpg',
     'NITG.GDSC.jpg',
-    'ProElevate.png',
-    'IndiaCollege.jpeg'
+    'ProElevate.png'
+    // 'IndiaCollege.jpeg'
   ];
 
   // Repeat images to ensure seamless scrolling
@@ -24,7 +24,7 @@ const InfinityCard = () => {
         </h1>
       </div>
 
-      <div className="w-full">
+      <div className="max-w-full">
         <Marquee
           speed={40}
           gradient={false}
