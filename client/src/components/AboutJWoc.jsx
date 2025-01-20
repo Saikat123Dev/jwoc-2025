@@ -22,7 +22,7 @@ export default function AboutJWoC() {
       </div>
 
       <div className="text-gray-100 dark:text-gray-300 leading-relaxed w-full mx-4 my-5 px-6 text-lg md:text-base sm:text-sm">
-        <p className="mb-4 first-letter:text-5xl first-letter:font-bold first-letter:text-cyan-400 first-letter:mr-2 first-letter:float-left">
+        <p className="mb-4 first-letter:text-5xl first-letter:font-bold first-letter:text-cyan-400 first-letter:mr-2 first-letter:float-left ">
           {content}
         </p>
         <p className="text-[0.7rem] italic text-gray-300">

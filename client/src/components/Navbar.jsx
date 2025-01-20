@@ -1,36 +1,16 @@
-import {
-  BookOpen,
-  Briefcase,
-  Clock,
-  Home,
-  Menu,
-  Trophy,
-  Users2,
-  X,
-} from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-
-const BASE_URL = "https://www.jwoc.in/";
+import { BookOpen, Briefcase, Clock, Home, Menu, Trophy, Users2, X } from "lucide-react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavbarDemo = () => {
-  const location = useLocation();
-
+  const navigate = useNavigate();
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Detect scroll position and apply styles
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const handleMentorClick = () => {
+    navigate("/mentor");
+    setIsMobileMenuOpen(false);
+  };
 
   const NavItem = ({ id, label, Icon, isMobile = false, isRegister = false }) => (
     <div
@@ -38,11 +18,12 @@ const NavbarDemo = () => {
       onMouseEnter={() => setHoveredItem(id)}
       onMouseLeave={() => setHoveredItem(null)}
     >
-      <Link
-        to={id === "" ? `${BASE_URL}/` : `${BASE_URL}/${id}`}
+      <a
+        href={`/${id}`}
         className={`flex items-center space-x-2 px-3 py-1 group ${
           isMobile ? "w-full" : ""
         } ${isRegister ? "text-cyan-400 font-semibold" : ""}`}
+        onClick={() => isMobile && setIsMobileMenuOpen(false)}
       >
         <Icon
           className={`h-4 w-4 transition-colors duration-200 ${
@@ -60,7 +41,7 @@ const NavbarDemo = () => {
         >
           {label}
         </span>
-      </Link>
+      </a>
       {!isMobile && hoveredItem === id && (
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 transition-transform duration-300" />
       )}
@@ -72,17 +53,11 @@ const NavbarDemo = () => {
   );
 
   return (
-    <div
-      className={`fixed top-0 left-0 right-0 z-50 h-14 px-4 transition-all duration-300 ${
-        isScrolled
-          ? "dark:bg-black shadow-lg lg:backdrop-blur-xl lg:bg-opacity-40 2xl:bg-opacity-40"
-          : "bg-transparent lg:bg-transparent lg:backdrop-blur-xl"
-      }`}
-    >
+    <div className="fixed top-0 left-0 right-0 z-50 h-14 px-4 bg-transparent backdrop-blur-lg bg-opacity-30">
       <div className="w-full mx-auto lg:max-w-[85rem]">
         <div className="flex items-center justify-between py-2">
           <div className="z-50">
-            <Link to={`${BASE_URL}/`} className="flex items-center h-12 w-24 cursor-pointer">
+            <Link to="/" className="flex items-center h-12 w-24 cursor-pointer">
               <img
                 src="jwoc_icon.svg"
                 alt="Logo"
@@ -92,7 +67,7 @@ const NavbarDemo = () => {
           </div>
           <div className="backdrop-blur-lg h-12 md:max-w-[55rem] bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-xl border border-white/30 shadow-lg shadow-black/10 px-6 py-2 w-full xl:w-[70rem] hidden lg:flex flex-1 justify-center items-center">
             <div className="flex items-center space-x-2">
-              <NavItem id="" label="Home" Icon={Home} />
+              <NavItem id="/" label="Home" Icon={Home} />
               <Divider />
               <NavItem id="timeline" label="Timeline" Icon={Clock} />
               <Divider />
@@ -100,7 +75,7 @@ const NavbarDemo = () => {
               <Divider />
               <NavItem id="projects" label="Projects" Icon={BookOpen} />
               <Divider />
-              <NavItem id="sponsors" label="Sponsors" Icon={Trophy} />
+              <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} />
               <Divider />
               <NavItem
                 id="registrationcard"
@@ -110,26 +85,26 @@ const NavbarDemo = () => {
               />
             </div>
           </div>
-          <Link
-            to={`${BASE_URL}/mentor`}
-            className="hidden lg:flex items-center space-x-2 bg-gradient-to-r hover:from-green-600 hover:via-teal-800 to-cyan-900
-            from-green-700 via-teal-700 hover:to-cyan-800
+          <button
+            onClick={handleMentorClick}
+            className="hidden lg:flex items-center space-x-2 bg-gradient-to-r from-green-600 via-teal-800 hover:to-cyan-900
+            hover:from-green-700 hover:via-teal-700 to-cyan-800
             text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-xl transition-all duration-300"
           >
             <Briefcase className="h-4 w-4" />
             <span>Mentor Locker</span>
-          </Link>
+          </button>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 border-white hover:bg-white/10 rounded-lg transition-colors duration-200"
+            className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
               <X className="h-5 w-5 text-gray-300" />
             ) : (
-              <Menu className="h-5 border-white w-5 text-gray-300" />
+              <Menu className="h-5 w-5 text-gray-300" />
             )}
           </button>
         </div>
@@ -138,11 +113,11 @@ const NavbarDemo = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 mt-2 p-4 backdrop-blur-lg bg-gradient-to-br from-white/20 to-white/10 dark:from-black/30 dark:to-black/20 rounded-lg border border-white/30 shadow-lg shadow-black/10">
             <div className="flex flex-col space-y-3">
-              <NavItem id="" label="Home" Icon={Home} isMobile={true} />
+              <NavItem id="/" label="Home" Icon={Home} isMobile={true} />
               <NavItem id="timeline" label="Timeline" Icon={Clock} isMobile={true} />
               <NavItem id="team" label="Team" Icon={Users2} isMobile={true} />
               <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
-              <NavItem id="sponsors" label="Sponsors" Icon={Trophy} isMobile={true} />
+              <NavItem id="leaderboard" label="Leaderboard" Icon={Trophy} isMobile={true} />
               <div className="h-px w-full bg-gray-400/30 dark:bg-gray-600/30 my-2" />
               <NavItem
                 id="registrationcard"
