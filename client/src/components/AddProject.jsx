@@ -215,10 +215,11 @@ const AddProject = () => {
       required: true,
       type: 'textarea',
       validate: (value) => {
-        const wordCount = value.trim().split(/\s+/).length;
-        return wordCount >= 100 || 'Project details must have at least 100 words.';
+        const charCount = value.trim().length;
+        return charCount >= 100 || 'Project details must have at least 100 characters.';
       },
-      errorMessage: 'Project details are required and must have at least 100 words.'
+      errorMessage: 'Project details are required and must have at least 100 characters.'
+
     },
     {
       name: 'projecttags',
