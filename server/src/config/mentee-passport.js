@@ -4,26 +4,29 @@ const GitHubStrategy = require("passport-github2").Strategy;
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+// Serialize user
 passport.serializeUser((user, done) => done(null, user.id));
 
+// Deserialize user
 passport.deserializeUser(async (id, done) => {
   const user = await prisma.mentee.findUnique({ where: { id } });
   done(null, user);
 });
 
+// Google OAuth Strategy
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL.replace('/auth/', '/mentee-auth/'),
+      callbackURL: process.env.GOOGLE_CALLBACK_URL, // Use exact callback URL from env
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        // First, try to find a mentee by email
+        // Find mentee by email
         let user = await prisma.mentee.findUnique({
           where: { email: profile.emails[0].value },
-          include: { oauthAccounts: true }
+          include: { oauthAccounts: true },
         });
 
         if (!user) {
@@ -41,30 +44,31 @@ passport.use(
               answer1: "", // Required field
               oauthAccounts: {
                 create: {
-                  provider: 'google',
-                  providerId: profile.id,
+                  provider: "google",
+                  providerId: profile.id, // Use Google profile ID
                   accessToken,
-                  refreshToken
-                }
-              }
+                  refreshToken,
+                },
+              },
             },
-            include: { oauthAccounts: true }
+            include: { oauthAccounts: true },
           });
         } else {
-          // If user exists but doesn't have a Google OAuth account, create one
+          // Check if user has a Google OAuth account
           const hasGoogleAccount = user.oauthAccounts.some(
-            account => account.provider === 'google'
+            (account) => account.provider === "google"
           );
 
           if (!hasGoogleAccount) {
+            // Create Google OAuth account for existing user
             await prisma.menteeOAuthAccount.create({
               data: {
                 menteeId: user.id,
-                provider: 'google',
-                providerId: profile.id,
+                provider: "google",
+                providerId: profile.id, // Use Google profile ID
                 accessToken,
-                refreshToken
-              }
+                refreshToken,
+              },
             });
           }
         }
@@ -78,26 +82,27 @@ passport.use(
   )
 );
 
+// GitHub OAuth Strategy
 passport.use(
   new GitHubStrategy(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: process.env.GITHUB_CALLBACK_URL.replace('/auth/', '/mentee-auth/'),
+      callbackURL: process.env.GITHUB_CALLBACK_URL, // Use exact callback URL from env
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        // Try to find mentee by GitHub username
+        // Find mentee by GitHub profile ID
         let user = await prisma.mentee.findFirst({
           where: {
             oauthAccounts: {
               some: {
-                provider: 'github',
-                providerId: profile.username
-              }
-            }
+                provider: "github",
+                providerId: profile.id.toString(), // Use GitHub profile ID (convert to string)
+              },
+            },
           },
-          include: { oauthAccounts: true }
+          include: { oauthAccounts: true },
         });
 
         if (!user) {
@@ -115,30 +120,31 @@ passport.use(
               answer1: "", // Required field
               oauthAccounts: {
                 create: {
-                  provider: 'github',
-                  providerId: profile.username,
+                  provider: "github",
+                  providerId: profile.id.toString(), // Use GitHub profile ID (convert to string)
                   accessToken,
-                  refreshToken
-                }
-              }
+                  refreshToken,
+                },
+              },
             },
-            include: { oauthAccounts: true }
+            include: { oauthAccounts: true },
           });
         } else {
-          // If user exists but doesn't have a GitHub OAuth account, create one
+          // Check if user has a GitHub OAuth account
           const hasGithubAccount = user.oauthAccounts.some(
-            account => account.provider === 'github'
+            (account) => account.provider === "github"
           );
 
           if (!hasGithubAccount) {
+            // Create GitHub OAuth account for existing user
             await prisma.menteeOAuthAccount.create({
               data: {
                 menteeId: user.id,
-                provider: 'github',
-                providerId: profile.username,
+                provider: "github",
+                providerId: profile.id.toString(), // Use GitHub profile ID (convert to string)
                 accessToken,
-                refreshToken
-              }
+                refreshToken,
+              },
             });
           }
         }

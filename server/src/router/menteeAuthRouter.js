@@ -15,19 +15,19 @@ const logger = (req, res, next) => {
 };
 
 // Google Authentication
+// Google Authentication
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 router.get(
-  "/google/callback",
+  "/auth/google/callback",  // Match GOOGLE_CALLBACK_URL
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
     res.redirect(`${process.env.CLIENT_URL}/mentee-registration`);
   }
 );
-
 
 // GitHub Authentication
 router.get(
@@ -36,7 +36,7 @@ router.get(
 );
 
 router.get(
-  "/github/callback",
+  "/auth/github/callback",  // Match GITHUB_CALLBACK_URL
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
     res.redirect(`${process.env.CLIENT_URL}/mentee-registration`);
