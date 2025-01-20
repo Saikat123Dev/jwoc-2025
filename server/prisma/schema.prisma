@@ -20,7 +20,7 @@ model Mentee {
   college     String
   year        String
   github      String
-  linkedIn    String
+  linkedIn    String?
   question1   String   @default("What inspired you to join?")
   answer1     String
   isBanned    Boolean  @default(false)

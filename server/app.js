@@ -26,10 +26,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate("session"));
+const allowedOrigins = ["https://jwoc-2025.vercel.app", "https://jwoc.in"];
 
 app.use(
   cors({
-    origin: "https://jwoc-2025.vercel.app",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
