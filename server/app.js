@@ -8,6 +8,7 @@ const authRoutes = require("./src/router/authRouter");
 const menteeReg = require("./src/router/mentee-registration.router");
 const menteeBanned = require("./src/router/mentee-banned");
 const project = require("./src/router/projectRouter");
+const menteeAuth = require("./src/router/menteeAuthRouter");
 const mentorReg = require("./src/router/mentor-registration.router");
 
 const app = express();
@@ -198,7 +199,7 @@ app.use("/api/mentee/", menteeReg);
 app.use("/api/mentee", menteeBanned);
 app.use("/api/mentor/project", project);
 app.use("/api/mentor/", mentorReg);
-
+app.use('/mentee-auth',menteeAuth );
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
