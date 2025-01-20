@@ -57,6 +57,7 @@ export default function MentorRegistration() {
       reset();
       localStorage.setItem('isProfileComplete', true);
       console.log('Registration successful:', result);
+      Navigate('/dashboard')
     } catch (error) {
       setSubmitError(error.message || 'An error occurred during registration');
       console.error('Registration error:', error);
