@@ -86,12 +86,14 @@ const MentorDashboard = () => {
         }
       });
       localStorage.removeItem("mentorId");
-      navigate("/");
+      window.location.href = 'https://www.jwoc.in'; // Redirect to external URL
+
     } catch (error) {
       console.error("Error during logout:", error);
       // Force logout even if API call fails
       localStorage.removeItem("mentorId");
-      navigate("/");
+      window.location.href = 'https://www.jwoc.in'; // Redirect to external URL
+
     }
   };
 
