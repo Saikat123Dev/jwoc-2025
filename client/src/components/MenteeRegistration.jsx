@@ -24,11 +24,11 @@ export default function MenteeRegistration() {
 
     try {
       const response = await axios.post("https://jwoc-2025.onrender.com/api/mentee/register", data);
-      console.log(response)
       if (response.data && response.status === 201) {
         setResponseMessage("Registration successful!");
         setShowSuccessModal(true);
 
+        // Only redirect after successful registration
         setTimeout(() => {
           setShowSuccessModal(false);
           navigate("/");
@@ -73,8 +73,6 @@ export default function MenteeRegistration() {
 
   return (
     <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
-
-
       <motion.div
         className="w-full max-w-4xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg mb-20"
         variants={containerVariants}
@@ -93,17 +91,15 @@ export default function MenteeRegistration() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Name */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Name:</label>
+            <label className="text-white font-medium">Name: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("name", { required: "Name is required" })}
+              {...register("name", {
+                required: "Name is required",
+                minLength: { value: 2, message: "Name must be at least 2 characters" }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your name"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
-              onFocus={() => setFocusedField("name")}
-              onBlur={() => setFocusedField(null)}
+              whileFocus={{ scale: 1.01 }}
             />
             {errors.name && (
               <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
@@ -112,41 +108,37 @@ export default function MenteeRegistration() {
 
           {/* Gender */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Gender:</label>
+            <label className="text-white font-medium">Gender: <span className="text-red-500">*</span></label>
             <motion.select
-              {...register("gender")}
-              className="w-full mt-2 p-3  bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              defaultValue="Prefer not to say"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
+              {...register("gender", { required: "Please select your gender" })}
+              className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              defaultValue=""
             >
+              <option value="" disabled className="text-black">Select your gender</option>
               <option value="Male" className="text-black">Male</option>
               <option value="Female" className="text-black">Female</option>
               <option value="Prefer not to say" className="text-black">Prefer not to say</option>
             </motion.select>
+            {errors.gender && (
+              <p className="text-red-400 text-sm mt-1">{errors.gender.message}</p>
+            )}
           </motion.div>
 
           {/* Email */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Email:</label>
+            <label className="text-white font-medium">Email: <span className="text-red-500">*</span></label>
             <motion.input
               {...register("email", {
                 required: "Email is required",
                 pattern: {
                   value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                  message: "Enter a valid email address",
+                  message: "Please enter a valid email address",
                 }
               })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your email"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
-              onFocus={() => setFocusedField("email")}
-              onBlur={() => setFocusedField(null)}
+              type="email"
+              whileFocus={{ scale: 1.01 }}
             />
             {errors.email && (
               <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
@@ -155,18 +147,19 @@ export default function MenteeRegistration() {
 
           {/* Phone */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Phone:</label>
+            <label className="text-white font-medium">Phone: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("phone", { required: "Phone is required" })}
+              {...register("phone", {
+                required: "Phone number is required",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Please enter a valid 10-digit phone number"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your phone number"
-              type="number"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
-              onFocus={() => setFocusedField("phone")}
-              onBlur={() => setFocusedField(null)}
+              type="tel"
+              whileFocus={{ scale: 1.01 }}
             />
             {errors.phone && (
               <p className="text-red-400 text-sm mt-1">{errors.phone.message}</p>
@@ -175,18 +168,19 @@ export default function MenteeRegistration() {
 
           {/* WhatsApp */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">WhatsApp:</label>
+            <label className="text-white font-medium">WhatsApp: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("whatsapp", { required: "WhatsApp is required" })}
+              {...register("whatsapp", {
+                required: "WhatsApp number is required",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Please enter a valid 10-digit WhatsApp number"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your WhatsApp number"
-              type="number"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
-              onFocus={() => setFocusedField("whatsapp")}
-              onBlur={() => setFocusedField(null)}
+              type="tel"
+              whileFocus={{ scale: 1.01 }}
             />
             {errors.whatsapp && (
               <p className="text-red-400 text-sm mt-1">{errors.whatsapp.message}</p>
@@ -195,17 +189,15 @@ export default function MenteeRegistration() {
 
           {/* College */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">College:</label>
+            <label className="text-white font-medium">College: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("college", { required: "College is required" })}
+              {...register("college", {
+                required: "College name is required",
+                minLength: { value: 3, message: "College name must be at least 3 characters" }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your college"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
-              onFocus={() => setFocusedField("college")}
-              onBlur={() => setFocusedField(null)}
+              whileFocus={{ scale: 1.01 }}
             />
             {errors.college && (
               <p className="text-red-400 text-sm mt-1">{errors.college.message}</p>
@@ -214,15 +206,11 @@ export default function MenteeRegistration() {
 
           {/* Year */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Year:</label>
+            <label className="text-white font-medium">Year: <span className="text-red-500">*</span></label>
             <motion.select
-              {...register("year", { required: "Year is required" })}
+              {...register("year", { required: "Please select your year" })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               defaultValue=""
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
             >
               <option value="" disabled className="text-black">Select your year</option>
               <option value="1" className="text-black">1st Year</option>
@@ -237,46 +225,55 @@ export default function MenteeRegistration() {
 
           {/* GitHub */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">GitHub:</label>
+            <label className="text-white font-medium">GitHub: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("github")}
+              {...register("github", {
+                required: "GitHub profile URL is required",
+                pattern: {
+                  value: /^https?:\/\/github\.com\/[A-Za-z0-9_-]+\/?$/,
+                  message: "Please enter a valid GitHub profile URL"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter your GitHub profile URL"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
-              onFocus={() => setFocusedField("github")}
-              onBlur={() => setFocusedField(null)}
+              placeholder="Enter your GitHub profile URL (e.g., https://github.com/username)"
+              whileFocus={{ scale: 1.01 }}
             />
+            {errors.github && (
+              <p className="text-red-400 text-sm mt-1">{errors.github.message}</p>
+            )}
           </motion.div>
 
-          {/* LinkedIn */}
+          {/* LinkedIn (Optional) */}
           <motion.div variants={fieldVariants}>
             <label className="text-white font-medium">LinkedIn:</label>
             <motion.input
-              {...register("linkedIn")}
+              {...register("linkedIn", {
+                pattern: {
+                  value: /^https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9_-]+\/?$/,
+                  message: "Please enter a valid LinkedIn profile URL"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter your LinkedIn URL"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
+              placeholder="Enter your LinkedIn URL (optional)"
+              whileFocus={{ scale: 1.01 }}
             />
+            {errors.linkedIn && (
+              <p className="text-red-400 text-sm mt-1">{errors.linkedIn.message}</p>
+            )}
           </motion.div>
 
           {/* Answer1 */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Why do you want to be a mentee?</label>
+            <label className="text-white font-medium">Why do you want to be a mentee? <span className="text-red-500">*</span></label>
             <motion.textarea
-              {...register("answer1", { required: "This field is required" })}
+              {...register("answer1", {
+                required: "Please provide your answer",
+                minLength: { value: 50, message: "Please provide a detailed answer (minimum 50 characters)" }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Your answer"
               rows="4"
-              whileFocus={{
-                scale: 1.01,
-                transition: { duration: 0.2 }
-              }}
+              whileFocus={{ scale: 1.01 }}
             />
             {errors.answer1 && (
               <p className="text-red-400 text-sm mt-1">{errors.answer1.message}</p>
@@ -289,9 +286,6 @@ export default function MenteeRegistration() {
             className="w-full bg-indigo-500 text-white py-3 rounded-lg font-medium hover:bg-indigo-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
             disabled={isSubmitting}
           >
             {isSubmitting ? (
@@ -320,7 +314,9 @@ export default function MenteeRegistration() {
         )}
       </motion.div>
 
-      {showSuccessModal && (
+      {/* Success Modal */}
+     {/* Success Modal */}
+     {showSuccessModal && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

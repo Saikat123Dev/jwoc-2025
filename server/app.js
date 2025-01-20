@@ -30,6 +30,7 @@ const allowedOrigins = [
   "https://jwoc-2025.vercel.app",
   "https://www.jwoc.in",
   "https://jwoc.in",
+  "http://localhost:5173"
 ];
 
 const corsOptions = {

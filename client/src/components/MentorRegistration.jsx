@@ -1,10 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
 import { loadFull } from "tsparticles";
+
 export default function MentorRegistration() {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,14 +31,12 @@ export default function MentorRegistration() {
         throw new Error('Mentor ID not found in localStorage');
       }
 
-      // Ensure gender and GitHub fields are properly handled
       const payload = {
         ...data,
         id,
         gender: data.gender,
         github: data.github,
         linkedin: data.linkedin,
-
       };
 
       const response = await fetch('https://jwoc-2025.onrender.com/api/mentor/registerMentor', {
@@ -60,7 +57,6 @@ export default function MentorRegistration() {
       reset();
       localStorage.setItem('isProfileComplete', true);
       console.log('Registration successful:', result);
-      navigate('/dashboard');
     } catch (error) {
       setSubmitError(error.message || 'An error occurred during registration');
       console.error('Registration error:', error);
@@ -68,7 +64,6 @@ export default function MentorRegistration() {
       setIsSubmitting(false);
     }
   }
-
 
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -94,39 +89,6 @@ export default function MentorRegistration() {
 
   return (
     <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
-      {/* <Particles
-        options={{
-          particles: {
-            color: {
-              value: "#fff"
-            },
-            number: {
-              value: 100,
-              density: {
-                enable: true,
-                area: 800,
-              },
-            },
-            opacity: {
-              value: { min: 0.3, max: 1 }
-            },
-            shape: {
-              type: "circle"
-            },
-            size: {
-              value: { min: 1, max: 3 }
-            },
-            move: {
-              direction: "bottom-right",
-              enable: true,
-              speed: { min: 1, max: 5 },
-              straight: true
-            }
-          }
-        }}
-        init={init}
-      /> */}
-
       <motion.div
         className="w-full max-w-4xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg"
         variants={containerVariants}
@@ -169,14 +131,19 @@ export default function MentorRegistration() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Name */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Name:</label>
+            <label className="text-white font-medium">Name: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("name", { required: "Name is required" })}
+              {...register("name", {
+                required: "Name is required",
+                minLength: { value: 2, message: "Name must be at least 2 characters long" },
+                pattern: {
+                  value: /^[A-Za-z\s]+$/,
+                  message: "Name should only contain letters and spaces"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your name"
               whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("name")}
-              onBlur={() => setFocusedField(null)}
             />
             {errors.name && (
               <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
@@ -185,35 +152,36 @@ export default function MentorRegistration() {
 
           {/* Gender */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Gender:</label>
+            <label className="text-white font-medium">Gender: <span className="text-red-500">*</span></label>
             <motion.select
-              {...register("gender")}
+              {...register("gender", { required: "Please select your gender" })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              defaultValue="Prefer not to say"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
+              defaultValue=""
             >
+              <option value="" disabled className="text-gray-800">Select gender</option>
               <option value="Male" className="text-gray-800">Male</option>
               <option value="Female" className="text-gray-800">Female</option>
               <option value="Prefer not to say" className="text-gray-800">Prefer not to say</option>
             </motion.select>
+            {errors.gender && (
+              <p className="text-red-400 text-sm mt-1">{errors.gender.message}</p>
+            )}
           </motion.div>
 
           {/* Email */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Email:</label>
+            <label className="text-white font-medium">Email: <span className="text-red-500">*</span></label>
             <motion.input
               {...register("email", {
                 required: "Email is required",
                 pattern: {
                   value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                  message: "Enter a valid email address",
-                },
+                  message: "Please enter a valid email address"
+                }
               })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your email"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("email")}
-              onBlur={() => setFocusedField(null)}
+              type="email"
             />
             {errors.email && (
               <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
@@ -222,14 +190,18 @@ export default function MentorRegistration() {
 
           {/* Phone */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Phone:</label>
+            <label className="text-white font-medium">Phone: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("phone", { required: "Phone is required" })}
+              {...register("phone", {
+                required: "Phone number is required",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Please enter a valid 10-digit phone number"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your phone number"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("phone")}
-              onBlur={() => setFocusedField(null)}
+              type="tel"
             />
             {errors.phone && (
               <p className="text-red-400 text-sm mt-1">{errors.phone.message}</p>
@@ -238,14 +210,18 @@ export default function MentorRegistration() {
 
           {/* WhatsApp */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">WhatsApp:</label>
+            <label className="text-white font-medium">WhatsApp: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("whatsapp", { required: "WhatsApp is required" })}
+              {...register("whatsapp", {
+                required: "WhatsApp number is required",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Please enter a valid 10-digit WhatsApp number"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your WhatsApp number"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("whatsapp")}
-              onBlur={() => setFocusedField(null)}
+              type="tel"
             />
             {errors.whatsapp && (
               <p className="text-red-400 text-sm mt-1">{errors.whatsapp.message}</p>
@@ -254,14 +230,14 @@ export default function MentorRegistration() {
 
           {/* College */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">College:</label>
+            <label className="text-white font-medium">College: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("college", { required: "College is required" })}
+              {...register("college", {
+                required: "College name is required",
+                minLength: { value: 3, message: "College name must be at least 3 characters long" }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter your college"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("college")}
-              onBlur={() => setFocusedField(null)}
             />
             {errors.college && (
               <p className="text-red-400 text-sm mt-1">{errors.college.message}</p>
@@ -270,16 +246,13 @@ export default function MentorRegistration() {
 
           {/* Year */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Year:</label>
+            <label className="text-white font-medium">Year: <span className="text-red-500">*</span></label>
             <motion.select
-              {...register("year", { required: "Year is required" })}
+              {...register("year", { required: "Please select your year" })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               defaultValue=""
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
             >
-              <option value="" disabled className="text-gray-800">
-                Select your year
-              </option>
+              <option value="" disabled className="text-gray-800">Select your year</option>
               <option value="1" className="text-gray-800">1st Year</option>
               <option value="2" className="text-gray-800">2nd Year</option>
               <option value="3" className="text-gray-800">3rd Year</option>
@@ -292,45 +265,53 @@ export default function MentorRegistration() {
 
           {/* GitHub */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">GitHub:</label>
+            <label className="text-white font-medium">GitHub: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("github", { required: "GitHub is required" })}
+              {...register("github", {
+                required: "GitHub profile is required",
+                pattern: {
+                  value: /^https?:\/\/github\.com\/[A-Za-z0-9_-]+\/?$/,
+                  message: "Please enter a valid GitHub profile URL (e.g., https://github.com/username)"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter your GitHub username"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("github")}
-              onBlur={() => setFocusedField(null)}
+              placeholder="Enter your GitHub profile URL"
             />
             {errors.github && (
               <p className="text-red-400 text-sm mt-1">{errors.github.message}</p>
             )}
           </motion.div>
 
+          {/* LinkedIn */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Linkedin:</label>
+            <label className="text-white font-medium">LinkedIn: <span className="text-red-500">*</span></label>
             <motion.input
-              {...register("linkedin", { required: "Linkedin is required" })}
+              {...register("linkedin", {
+                required: "LinkedIn profile is required",
+                pattern: {
+                  value: /^https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9_-]+\/?$/,
+                  message: "Please enter a valid LinkedIn profile URL (e.g., https://linkedin.com/in/username)"
+                }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter your Linkedin username"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("linkedin")}
-              onBlur={() => setFocusedField(null)}
+              placeholder="Enter your LinkedIn profile URL"
             />
             {errors.linkedin && (
-              <p className="text-red-400 text-sm mt-1">{errors.linkdin.message}</p>
+              <p className="text-red-400 text-sm mt-1">{errors.linkedin.message}</p>
             )}
           </motion.div>
 
           {/* Answer1 */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">Why do you want to mentor?</label>
+            <label className="text-white font-medium">Why do you want to mentor? <span className="text-red-500">*</span></label>
             <motion.textarea
-              {...register("answer1", { required: "Answer is required" })}
+              {...register("answer1", {
+                required: "Please provide your answer",
+                minLength: { value: 50, message: "Please provide a detailed answer (minimum 50 characters)" }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Your answer"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("answer1")}
-              onBlur={() => setFocusedField(null)}
+              rows="4"
             />
             {errors.answer1 && (
               <p className="text-red-400 text-sm mt-1">{errors.answer1.message}</p>
@@ -339,14 +320,15 @@ export default function MentorRegistration() {
 
           {/* Answer2 */}
           <motion.div variants={fieldVariants}>
-            <label className="text-white font-medium">What is your most valuable skill?</label>
+            <label className="text-white font-medium">What is your most valuable skill? <span className="text-red-500">*</span></label>
             <motion.textarea
-              {...register("answer2", { required: "Answer is required" })}
+              {...register("answer2", {
+                required: "Please provide your answer",
+                minLength: { value: 50, message: "Please provide a detailed answer (minimum 50 characters)" }
+              })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Your answer"
-              whileFocus={{ scale: 1.01, transition: { duration: 0.2 } }}
-              onFocus={() => setFocusedField("answer2")}
-              onBlur={() => setFocusedField(null)}
+              rows="4"
             />
             {errors.answer2 && (
               <p className="text-red-400 text-sm mt-1">{errors.answer2.message}</p>
