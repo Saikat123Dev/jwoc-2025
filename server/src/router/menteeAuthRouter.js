@@ -6,6 +6,15 @@ require("dotenv").config();
 const router = express.Router();
 const prisma = new PrismaClient();
 
+// Middleware to check if user is authenticated
+const ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next(); // User is authenticated, proceed to the next middleware/route
+  }
+  // User is not authenticated, redirect to login
+  res.status(401).json({ message: "Please authenticate using Google or GitHub first." });
+};
+
 // Logger middleware
 const logger = (req, res, next) => {
   console.log(`Mentee Auth Route: ${req.method} ${req.url}`);
@@ -15,16 +24,18 @@ const logger = (req, res, next) => {
 };
 
 // Google Authentication
-// Google Authentication
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 router.get(
-  "/auth/google/callback",  // Match GOOGLE_CALLBACK_URL
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: null }), // Remove failureRedirect
   (req, res) => {
+    if (!req.user) {
+      return res.status(401).json({ message: "Authentication failed." });
+    }
     res.redirect(`${process.env.CLIENT_URL}/mentee-registration`);
   }
 );
@@ -36,64 +47,26 @@ router.get(
 );
 
 router.get(
-  "/auth/github/callback",  // Match GITHUB_CALLBACK_URL
-  passport.authenticate("github", { failureRedirect: "/login" }),
+  "/auth/github/callback",
+  passport.authenticate("github", { failureRedirect: null }), // Remove failureRedirect
   (req, res) => {
+    if (!req.user) {
+      return res.status(401).json({ message: "Authentication failed." });
+    }
     res.redirect(`${process.env.CLIENT_URL}/mentee-registration`);
   }
 );
+
 // Get Current User
-router.get("/user", (req, res) => {
-  console.log("Session:", req.session);
-  console.log("User object:", req.user);
-  console.log("Cookies:", req.cookies);
-
-  if (req.isAuthenticated() && req.user) {
-    res.json({
-      success: true,
-      user: req.user
-    });
-  } else {
-    // Try to get menteeId from Authorization header as fallback
-    const authHeader = req.headers.authorization;
-    const menteeId = authHeader?.split(' ')?.[1];
-
-    if (menteeId) {
-      prisma.mentee.findUnique({
-        where: { id: menteeId },
-        include: { oauthAccounts: true }
-      })
-        .then(user => {
-          if (user) {
-            res.json({
-              success: true,
-              user: user
-            });
-          } else {
-            res.status(401).json({
-              success: false,
-              message: "User not found"
-            });
-          }
-        })
-        .catch(err => {
-          console.error("Database error:", err);
-          res.status(500).json({
-            success: false,
-            message: "Server error"
-          });
-        });
-    } else {
-      res.status(401).json({
-        success: false,
-        message: "Unauthorized"
-      });
-    }
-  }
+router.get("/user", ensureAuthenticated, (req, res) => {
+  res.json({
+    success: true,
+    user: req.user,
+  });
 });
 
 // Logout Route
-router.get("/logout", (req, res, next) => {
+router.get("/logout", ensureAuthenticated, (req, res, next) => {
   req.logout((err) => {
     if (err) {
       console.error("Error during logout:", err);

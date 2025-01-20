@@ -5,8 +5,6 @@ require("dotenv").config();
 const router = express.Router();
 const prisma = new PrismaClient();
 
-
-
 router.post("/register", async (req, res) => {
   try {
     // Check if user is authenticated
