@@ -9,10 +9,11 @@ import {
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+const BASE_URL = "https://www.jwoc.in/";
 
 const NavbarDemo = () => {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -31,36 +32,15 @@ const NavbarDemo = () => {
     };
   }, []);
 
-  const handleMentorClick = () => {
-    navigate("/mentor");
-    setIsMobileMenuOpen(false);
-  };
-  const handleNavigation = (id) => {
-    if (id === 'timeline') {
-      if (location.pathname !== '/') {
-        navigate('/', { state: { scrollToTimeline: true }});
-      } else {
-        const timelineSection = document.querySelector('.timeline-section');
-        if (timelineSection) {
-          timelineSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    } else if (id === '') {
-      navigate('/');
-    } else {
-      navigate(`/${id}`);
-    }
-    setIsMobileMenuOpen(false);
-  };
   const NavItem = ({ id, label, Icon, isMobile = false, isRegister = false }) => (
     <div
       className={`relative flex items-center ${!isMobile ? "hidden lg:block" : ""}`}
       onMouseEnter={() => setHoveredItem(id)}
       onMouseLeave={() => setHoveredItem(null)}
     >
-      <div
-        onClick={() => handleNavigation(id)}
-        className={`flex items-center  space-x-2 px-3 py-1 group ${
+      <Link
+        to={id === "" ? `${BASE_URL}/` : `${BASE_URL}/${id}`}
+        className={`flex items-center space-x-2 px-3 py-1 group ${
           isMobile ? "w-full" : ""
         } ${isRegister ? "text-cyan-400 font-semibold" : ""}`}
       >
@@ -80,13 +60,12 @@ const NavbarDemo = () => {
         >
           {label}
         </span>
-      </div>
+      </Link>
       {!isMobile && hoveredItem === id && (
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 transition-transform duration-300" />
       )}
     </div>
   );
-
 
   const Divider = () => (
     <div className="h-6 w-px bg-gray-400/30 dark:bg-gray-600/30 mx-4" />
@@ -96,14 +75,14 @@ const NavbarDemo = () => {
     <div
       className={`fixed top-0 left-0 right-0 z-50 h-14 px-4 transition-all duration-300 ${
         isScrolled
-          ? " dark:bg-black shadow-lg lg:backdrop-blur-xl lg:bg-opacity-40 2xl:bg-opacity-40"
+          ? "dark:bg-black shadow-lg lg:backdrop-blur-xl lg:bg-opacity-40 2xl:bg-opacity-40"
           : "bg-transparent lg:bg-transparent lg:backdrop-blur-xl"
       }`}
     >
       <div className="w-full mx-auto lg:max-w-[85rem]">
         <div className="flex items-center justify-between py-2">
           <div className="z-50">
-            <Link to="/" className="flex items-center h-12 w-24 cursor-pointer">
+            <Link to={`${BASE_URL}/`} className="flex items-center h-12 w-24 cursor-pointer">
               <img
                 src="jwoc_icon.svg"
                 alt="Logo"
@@ -131,15 +110,15 @@ const NavbarDemo = () => {
               />
             </div>
           </div>
-          <button
-            onClick={handleMentorClick}
+          <Link
+            to={`${BASE_URL}/mentor`}
             className="hidden lg:flex items-center space-x-2 bg-gradient-to-r hover:from-green-600 hover:via-teal-800 to-cyan-900
             from-green-700 via-teal-700 hover:to-cyan-800
             text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-xl transition-all duration-300"
           >
             <Briefcase className="h-4 w-4" />
             <span>Mentor Locker</span>
-          </button>
+          </Link>
 
           {/* Mobile Menu Toggle */}
           <button

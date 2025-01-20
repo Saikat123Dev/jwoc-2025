@@ -24,7 +24,7 @@ const AddProject = () => {
     ]
   };
 
-  const { register, control, handleSubmit, reset } = useForm({
+  const { register, control, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues
   });
 
@@ -210,14 +210,14 @@ const AddProject = () => {
       name: 'details',
       label: 'Project Details:',
       placeholder: 'Provide a brief description of the project (e.g., A weather app showing real-time data)',
-      required: false,
+      required: true,
       type: 'textarea'
     },
     {
       name: 'projecttags',
       label: 'Tags:',
       placeholder: 'Add relevant technologies (e.g., ReactJS, HTML, CSS, Node.js)',
-      required: false
+      required: true
     }
   ];
 
@@ -344,6 +344,9 @@ const AddProject = () => {
                           onFocus={() => setFocusedField(`${index}-${formField.name}`)}
                           onBlur={() => setFocusedField(null)}
                         />
+                      )}
+                      {errors?.projects?.[index]?.[formField.name] && (
+                        <span className="text-red-400 text-sm">This field is required</span>
                       )}
                     </motion.div>
                   ))}

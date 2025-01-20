@@ -11,7 +11,7 @@ router.post("/addProject", async (req, res) => {
         const { projects } = req.body;
         const mentorId = req.body.projects[0].projectOwnerId;
 
-  
+
         const mentor = await prisma.mentor.findUnique({
             where: { id: mentorId },
         });
@@ -20,7 +20,7 @@ router.post("/addProject", async (req, res) => {
             return res.status(400).json({ message: "Mentor couldn't be found" });
         }
 
-       
+
         const existingProjects = await prisma.project.count({
             where: { projectOwnerId: mentorId }
         });
@@ -57,7 +57,7 @@ router.post("/addProject", async (req, res) => {
             )
         );
 
-      
+
         await prisma.mentor.update({
             where: { id: mentorId },
             data: {

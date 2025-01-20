@@ -80,7 +80,7 @@ model MentorOAuthAccount {
 model Project {
   id                 String   @id @default(auto()) @map("_id") @db.ObjectId
   projectName        String
-  projectLink        String
+  projectLink        String?
   projectDescription String
   isDeleted          Boolean  @default(false)
   projectTypes       String
