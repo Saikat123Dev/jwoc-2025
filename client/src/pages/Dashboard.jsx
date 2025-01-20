@@ -241,12 +241,12 @@ const MentorDashboard = () => {
                     <h3 className="text-lg font-semibold text-white">Professional Links</h3>
                     <div className="space-y-3 text-white">
   {[
-    { label: "GitHub", value: githubLink, icon: "github", baseUrl: "https://github.com/" },
-    { label: "LinkedIn", value: linkedIn, icon: "linkedin", baseUrl: "https://www.linkedin.com/in/" },
+    { label: "GitHub", value: githubLink, icon: "github" },
+    { label: "LinkedIn", value: linkedIn, icon: "linkedin" },
   ].map((item) => (
     <a
       key={item.label}
-      href={item.value ? `${item.baseUrl}${item.value}` : "#"}
+      href={item.value ? `${item.value}` : "#"}
       target="_blank"
       rel="noopener noreferrer"
       className="flex text-cyan-200 items-center space-x-2 p-3 bg-white/5 rounded-lg transition-all duration-200 group"
