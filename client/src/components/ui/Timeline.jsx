@@ -9,21 +9,21 @@ const TimelineItem = ({ item, index, isEven }) => {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.8,
-        delay: index * 0.3,
+        duration: 0.3, // Faster overall duration
+        delay: index * 0.1, // Slightly increased delay between items for better visual flow
         ease: "easeOut",
       },
     },
   };
-
+  
   const dotVariants = {
     hidden: { scale: 0, opacity: 0 },
     visible: {
       scale: 1,
       opacity: 1,
       transition: {
-        duration: 0.2,
-        delay: index * 0.3 + 0.2,
+        duration: 0.2, // Faster dot animation
+        delay: index * 0.1, // Matching delay with container
         ease: "backOut",
       },
     },
@@ -34,7 +34,7 @@ const TimelineItem = ({ item, index, isEven }) => {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }} // Reduced margin to trigger animation sooner
       className="relative w-full px-4 sm:px-0"
     >
       <div
@@ -44,20 +44,20 @@ const TimelineItem = ({ item, index, isEven }) => {
       >
         <motion.div
           className="w-full sm:w-[45%]"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }} // Reduced initial y offset
           whileInView={{
             opacity: 1,
             y: 0,
-            transition: { duration: 0.3, delay: index * 0.2 + 0.4 },
+            transition: { duration: 0.3, delay: index * 0.1 }, // Faster animation, consistent delay
           }}
           viewport={{ once: true }}
         >
-         <h1
-  className={`font-space-grotesk pt-10 lg:pt-0 text-xl sm:text-2xl md:text-4xl font-bold mb-1 tracking-wide leading-snug
-    text-indigo-500 text-center`}
->
-  {item.title}
-</h1>
+          <h1
+            className={`font-space-grotesk pt-10 lg:pt-0 text-xl sm:text-2xl md:text-4xl font-bold mb-1 tracking-wide leading-snug
+              text-indigo-500 text-center`}
+          >
+            {item.title}
+          </h1>
 
           <div
             className="bg-gradient-to-br from-white/10 to-white/5
@@ -125,30 +125,29 @@ const TimelineItem = ({ item, index, isEven }) => {
 
 const Timeline = ({ data }) => {
   return (
-    <div className="min-h-screen   overflow-hidden font-inter">
-    <div className="container pl-28  mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="py-8 text-center"
-      >
+    <div className="min-h-screen overflow-hidden font-inter">
+      <div className="container pl-28 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }} // Faster initial animation
+          className="py-8 text-center"
+        >
           <div className="relative inline-block text-center mt-7">
-          <span className="absolute inset-0 mt-2 lg:mt-4  h-10 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
+            <span className="absolute inset-0 mt-2 lg:mt-4 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
             <h1 className="relative font-extrabold font-rubik text-4xl sm:text-6xl text-white">
               Timeline
             </h1>
           </div>
         </motion.div>
 
-        <div className="relative  pb-20">
-          {/* Timeline line container with improved mobile centering */}
+        <div className="relative pb-20">
           <div className="absolute left-[calc(50%-1.5px)] sm:left-1/2 top-0 transform sm:-translate-x-1/2 h-full w-[3px]">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-300/30 to-transparent" />
             <motion.div
               initial={{ height: "0%" }}
               animate={{ height: "100%" }}
-              transition={{ duration: 2, ease: "easeInOut" }}
+              transition={{ duration: 0.5, ease: "easeOut" }} // Faster line animation
               className="absolute inset-x-0 top-0 w-full bg-gradient-to-b
                          from-blue-400 via-blue-300 to-transparent
                          shadow-[0_0_15px_rgba(59,130,246,0.5)]"
