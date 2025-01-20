@@ -58,7 +58,7 @@ router.get(
 );
 
 // Get Current User
-router.get("/user", ensureAuthenticated, (req, res) => {
+router.get("/mentee/user", ensureAuthenticated, (req, res) => {
   res.json({
     success: true,
     user: req.user,
