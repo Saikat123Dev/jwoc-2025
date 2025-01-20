@@ -1,9 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useCallback, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { loadFull } from "tsparticles";
-
 export default function MentorRegistration() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -57,7 +59,7 @@ export default function MentorRegistration() {
       reset();
       localStorage.setItem('isProfileComplete', true);
       console.log('Registration successful:', result);
-      Navigate('/dashboard')
+      navigate('/dashboard')
     } catch (error) {
       setSubmitError(error.message || 'An error occurred during registration');
       console.error('Registration error:', error);
