@@ -30,7 +30,7 @@ router.get(
 );
 
 router.get(
-  "/mentee-auth/google/callback",
+  "/google/callback",
   passport.authenticate("google", { failureRedirect: null }), // Remove failureRedirect
   (req, res) => {
     if (!req.user) {
