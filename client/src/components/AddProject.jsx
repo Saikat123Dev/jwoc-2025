@@ -18,7 +18,6 @@ const AddProject = () => {
         github: '',
         projectTypes: '',
         details: '',
-        completionDate: '',
         projecttags: ''
       }
     ]
@@ -115,7 +114,6 @@ const AddProject = () => {
 
       if (response.ok) {
         showSuccessToast();
-        // Instead of resetting to empty, reset to the default structure
         reset(defaultValues);
       } else {
         const errorData = await response.json();
@@ -186,38 +184,48 @@ const AddProject = () => {
       name: 'projectName',
       label: 'Project Name:',
       placeholder: 'Enter the name of your project (e.g., Weather Tracker)',
-      required: true
+      required: true,
+      errorMessage: 'Project name is required.'
     },
     {
       name: 'projectLink',
       label: 'Project Link:',
       placeholder: 'Enter the live project link (e.g., https://example.com)',
-      required: false
+      required: false,
+      errorMessage: 'Please provide a valid project link.'
     },
     {
       name: 'github',
       label: 'GitHub Link:',
       placeholder: 'Enter the GitHub repository link (e.g., https://github.com/username/repository)',
-      required: true
+      required: true,
+      errorMessage: 'GitHub link is required.'
     },
     {
       name: 'projectTypes',
       label: 'Project Type:',
       placeholder: 'Select the type of project (e.g., Frontend, Backend, AI/ML, Full Stack)',
-      required: true
+      required: true,
+      errorMessage: 'Please select a project type.'
     },
     {
       name: 'details',
       label: 'Project Details:',
-      placeholder: 'Provide a brief description of the project (e.g., A weather app showing real-time data)',
+      placeholder: 'Provide a brief description of the project (minimum 100 words required)',
       required: true,
-      type: 'textarea'
+      type: 'textarea',
+      validate: (value) => {
+        const wordCount = value.trim().split(/\s+/).length;
+        return wordCount >= 100 || 'Project details must have at least 100 words.';
+      },
+      errorMessage: 'Project details are required and must have at least 100 words.'
     },
     {
       name: 'projecttags',
       label: 'Tags:',
       placeholder: 'Add relevant technologies (e.g., ReactJS, HTML, CSS, Node.js)',
-      required: true
+      required: true,
+      errorMessage: 'Please add relevant tags for your project.'
     }
   ];
 
@@ -317,7 +325,8 @@ const AddProject = () => {
                       {formField.type === 'textarea' ? (
                         <motion.textarea
                           {...register(`projects.${index}.${formField.name}`, {
-                            required: formField.required
+                            required: formField.required,
+                            validate: formField.validate,
                           })}
                           className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                           placeholder={formField.placeholder}
@@ -333,7 +342,8 @@ const AddProject = () => {
                         <motion.input
                           type={formField.type || 'text'}
                           {...register(`projects.${index}.${formField.name}`, {
-                            required: formField.required
+                            required: formField.required,
+                            validate: formField.validate,
                           })}
                           className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                           placeholder={formField.placeholder}
@@ -346,7 +356,9 @@ const AddProject = () => {
                         />
                       )}
                       {errors?.projects?.[index]?.[formField.name] && (
-                        <span className="text-red-400 text-sm">This field is required</span>
+                        <span className="text-red-400 text-sm">
+                          {errors?.projects?.[index]?.[formField.name]?.message || formField.errorMessage}
+                        </span>
                       )}
                     </motion.div>
                   ))}
@@ -354,120 +366,31 @@ const AddProject = () => {
               ))}
             </AnimatePresence>
 
-            {fields.length < 3 && (
+            <div className="flex justify-between">
               <motion.button
                 type="button"
                 onClick={addProjectSection}
-                className="w-full bg-gray-800 text-white py-3 rounded-lg font-medium hover:bg-gray-700 transition"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
+                className="bg-indigo-600 text-white py-2 px-6 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Add More
+                Add Project
               </motion.button>
-            )}
-
-            <motion.button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full bg-indigo-500 text-white py-3 rounded-lg font-medium transition ${
-                isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-indigo-600'
-              }`}
-              whileHover={isSubmitting ? {} : { scale: 1.02 }}
-              whileTap={isSubmitting ? {} : { scale: 0.98 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-            >
-              {isSubmitting
-                ? "Submitting..."
-                : fields.length === 1
-                  ? "Submit Project"
-                  : "Submit All Projects"}
-            </motion.button>
+              <motion.button
+                type="submit"
+                className="bg-blue-600 text-white py-2 px-6 rounded-lg"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </motion.button>
+            </div>
           </form>
         </motion.div>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-          transition={Bounce}
-          limit={3}
-          style={{
-            width: 'auto',
-            maxWidth: '350px',
-          }}
-          toastStyle={{
-            backgroundColor: 'rgba(40, 40, 40, 0.95)',
-            backdropFilter: 'blur(10px)',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: '10px',
-            color: '#ffffff',
-            fontSize: '14px',
-            padding: '12px 16px',
-          }}
-        />
       </div>
 
-      <style jsx global>{`
-        .Toastify__toast-container {
-          width: auto !important;
-          max-width: 350px !important;
-          padding: 0 !important;
-        }
-
-        .Toastify__toast {
-          margin-bottom: 1rem !important;
-        }
-
-        .custom-toast {
-          background: rgba(40, 40, 40, 0.95) !important;
-          backdrop-filter: blur(10px) !important;
-          border: 1px solid rgba(255, 255, 255, 0.1) !important;
-          border-radius: 10px !important;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        .custom-toast-body {
-          font-family: system-ui, -apple-system, sans-serif !important;
-          padding: 0 !important;
-        }
-
-        .Toastify__close-button {
-          color: #ffffff !important;
-          opacity: 0.7 !important;
-        }
-
-        .Toastify__close-button:hover {
-          opacity: 1 !important;
-        }
-
-        .Toastify__progress-bar {
-          background: linear-gradient(to right, #4f46e5, #818cf8) !important;
-        }
-
-        .Toastify__toast-icon {
-          margin-right: 12px !important;
-        }
-
-        @media (max-width: 480px) {
-          .Toastify__toast-container {
-            width: 100% !important;
-            padding: 0 16px !important;
-          }
-        }
-      `}</style>
+      <ToastContainer transition={Bounce} />
     </>
   );
 };
