@@ -27,7 +27,12 @@ router.post("/register", async (req, res) => {
         const alreadyAsMentor = await prisma.mentor.findFirst({
           where: { email: email },
       });
-
+ const alreadyAMentee = await prisma.mentee.findFirst({
+  where: { email: email },
+});
+  if(alreadyAMentee){
+    return res.status(400).json({ message: "User is already registered as a mentee." });
+  }
       if (alreadyAsMentor) {
           return res.status(400).json({ message: "User is already registered as a mentor." });
       }

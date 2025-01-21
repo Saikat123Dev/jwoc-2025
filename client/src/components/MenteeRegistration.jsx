@@ -32,8 +32,7 @@ export default function MenteeRegistration() {
 
         setTimeout(() => {
           setShowSuccessModal(false);
-          window.location.href = 'https://www.jwoc.in'; // Redirect to external URL
-
+          window.location.href = 'https://www.jwoc.in';
         }, 3000);
       } else {
         throw new Error("Registration failed");
