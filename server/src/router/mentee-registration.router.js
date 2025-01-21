@@ -15,6 +15,7 @@ router.post("/register", async (req, res) => {
             phone,
             whatsapp,
             college,
+            gender,
             year,
             github,
             linkedIn,
@@ -38,7 +39,7 @@ router.post("/register", async (req, res) => {
                 email,
                 phone,
                 whatsapp,
-
+gender,
                 college,
                 year,
                 github,

@@ -18,6 +18,7 @@ export default function MenteeRegistration() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+    console.log(data)
     setIsSubmitting(true);
     setResponseMessage("");
     setShowSuccessModal(false);
@@ -108,17 +109,17 @@ export default function MenteeRegistration() {
           </motion.div>
 
           {/* Gender */}
-          <motion.div variants={fieldVariants}>
+           <motion.div variants={fieldVariants}>
             <label className="text-white font-medium">Gender: <span className="text-red-500">*</span></label>
             <motion.select
               {...register("gender", { required: "Please select your gender" })}
               className="w-full mt-2 p-3 bg-transparent border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               defaultValue=""
             >
-              <option value="" disabled className="text-black">Select your gender</option>
-              <option value="Male" className="text-black">Male</option>
-              <option value="Female" className="text-black">Female</option>
-              <option value="Prefer not to say" className="text-black">Prefer not to say</option>
+              <option value="" disabled className="text-gray-800">Select gender</option>
+              <option value="Male" className="text-gray-800">Male</option>
+              <option value="Female" className="text-gray-800">Female</option>
+              <option value="Prefer not to say" className="text-gray-800">Prefer not to say</option>
             </motion.select>
             {errors.gender && (
               <p className="text-red-400 text-sm mt-1">{errors.gender.message}</p>
