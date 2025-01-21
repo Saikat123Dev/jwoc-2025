@@ -62,7 +62,7 @@ export default function Team() {
             linkedin: "https://www.linkedin.com/in/suman-chakraborty-99660a203",
         },
         {
-            name: "Sama Asif Laskar",
+            name: "Sama Ashif Laskar",
             role: "Sponsor Team",
             imageUrl: "p9.jpg",
             linkedin: "https://www.linkedin.com/in/sama-ashif-laskar-95669b258?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
