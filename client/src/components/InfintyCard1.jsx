@@ -5,10 +5,11 @@ const InfinityCard = () => {
   const imageArray = [
     'eventsInfo.jpg',
     'devfolio_1.jpeg',
-    'IIITA.GDSC.png',
-    'IITK.GDSC.jpg',
+    // 'IIITA.GDSC.png',
+    // 'IITK.GDSC.jpg',
     'NITG.GDSC.jpg',
     'ProElevate.png',
+    'Codess.Cafe.jpg',
      'IndiaCollege.jpeg'
   ];
 
@@ -36,7 +37,7 @@ const InfinityCard = () => {
               <img
                 src={image}
                 alt={`Community Partner ${index + 1}`}
-                className="h-28 w-28 lg:mx-1  sm:h-28 sm:w-28 lg:h-36 lg:w-36
+                className="h-28 w-28 lg:mx-1  sm:h-28 sm:w-28 lg:h-40 lg:w-40
                   rounded-lg object-contain
                   opacity-75 hover:opacity-100 transition-opacity duration-300"
               />
