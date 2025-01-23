@@ -8,10 +8,8 @@ const PrizeCards = () => {
         {/* Heading */}
         <div className="text-center mb-8">
           <div className="relative inline-block">
-
-            <span className="absolute  inset-0  h-10 mt-4 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
+            <span className="absolute inset-0 h-10 mt-4 bg-gradient-to-r from-blue-500 to-indigo-500 blur-lg"></span>
             <h1 className="relative font-extrabold font-rubik text-6xl text-white">Rewards✨</h1>
-
           </div>
         </div>
 
@@ -24,7 +22,7 @@ const PrizeCards = () => {
         >
           <h2 className="text-2xl text-glow font-semibold mb-2">
             Why you must register for
-            <span className="bg-blue-800 px-2 py-1 rounded ml-2 ">JWoC 2025</span>?
+            <span className="bg-blue-800 px-2 py-1 rounded ml-2">JWoC 2025</span>
           </h2>
         </motion.div>
 
@@ -34,7 +32,6 @@ const PrizeCards = () => {
             {
               src: "perk-1.png",
               title: "Paid Internship Opportunities",
-
             },
             {
               src: "perk-2.png",
@@ -55,7 +52,6 @@ const PrizeCards = () => {
             {
               src: "internationalTrip.jpeg",
               title: "International internship",
-
             }
           ].map((perk, index) => (
             <motion.div
@@ -63,11 +59,9 @@ const PrizeCards = () => {
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: index * 0.1 }}
-              className="reward_card rounded-lg p-6 shadow-md transition-transform duration-300 border border-white border-opacity-30  backdrop-blur-md"
+              className="reward_card rounded-lg p-6 shadow-md transition-transform duration-300 border border-white border-opacity-30 backdrop-blur-md"
             >
-
               <div className="relative flex justify-center items-center pt-10 mb-4 z-[10]">
-
                 <img
                   src={perk.src}
                   alt={perk.title}
@@ -75,9 +69,11 @@ const PrizeCards = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-xl opacity-30"></div>
               </div>
-              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold lg:text-lg text-[1.2rem] text-glow ">{perk.title2}</span>
-              <span className="bg-indigo-900 px-2 py-1 rounded ml-2 text-center font-semibold lg:text-lg text-[1.2rem] text-glow ">{perk.title}</span>
-
+              <div className="flex flex-col items-center space-y-2">
+                <span className="bg-indigo-900 px-2 py-1 rounded text-center font-semibold lg:text-lg text-[1.2rem] text-glow">
+                  {perk.title}
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>
