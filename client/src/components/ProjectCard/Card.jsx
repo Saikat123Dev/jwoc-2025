@@ -1,4 +1,4 @@
-import { User, Link as LinkIcon } from "lucide-react";
+import { User, Link as LinkIcon, Github } from "lucide-react";
 
 const Card = ({ data }) => {
     const truncateText = (text, maxLength = 150) => {
@@ -32,6 +32,17 @@ const Card = ({ data }) => {
                     </span>
                 </div>
 
+                {data.projectMentors && data.projectMentors.length > 0 && (
+                    <div className="mb-4">
+                        <span className="opacity-80 font-semibold mr-2 text-sm">
+                            Mentors:
+                        </span>
+                        <span className="opacity-70 text-sm">
+                            {data.projectMentors.map(mentor => mentor.name).join(", ")}
+                        </span>
+                    </div>
+                )}
+
                 <p className="opacity-70 mb-6 text-sm leading-relaxed">
                     {truncateText(data.projectDescription)}
                 </p>
@@ -45,15 +56,29 @@ const Card = ({ data }) => {
                     </span>
                 </div>
 
-                <a
-                    href={data.GitHubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center opacity-80 hover:opacity-100 transition-opacity mb-4 text-sm gap-2"
-                >
-                    <LinkIcon className="w-4 h-4" />
-                    View Project
-                </a>
+                {data.projectLink && (
+                    <a
+                        href={data.projectLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center opacity-80 hover:opacity-100 transition-opacity mb-4 text-sm gap-2"
+                    >
+                        <LinkIcon className="w-4 h-4" />
+                        View Project
+                    </a>
+                )}
+
+                {data.GitHubLink && (
+                    <a
+                        href={data.GitHubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center opacity-80 hover:opacity-100 transition-opacity mb-4 text-sm gap-2 ml-4"
+                    >
+                        <Github className="w-4 h-4" />
+                        GitHub Repo
+                    </a>
+                )}
 
                 <div className="flex flex-wrap gap-2 mt-4">
                     {data.projectTags.map((tag, index) => (
