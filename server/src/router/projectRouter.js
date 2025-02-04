@@ -120,23 +120,36 @@ router.get("/getAll", async (req, res) => {
 
 router.get("/getAllProjects", async (req, res) => {
   try {
-    // Optional: Uncomment and use this block if authentication is required
-    // if (!req.isAuthenticated()) {
-    //     return res.status(401).json({ message: "Unauthorized request" });
-    // }
+    // Fetch projects where isDeleted is false
+    const projects = await prisma.project.findMany({
+      where: { isDeleted: false },
+      include: {
+        projectOwner: true, // Fetch project owner details
+      },
+    });
 
-    // Fetch all projects
-    const projects = await prisma.project.findMany();
-
-    // Handle case when no projects are found
     if (projects.length === 0) {
       return res.status(404).json({ message: "No projects found." });
     }
 
-    // Respond with the fetched projects
+    // Fetch mentor details for each project based on projectMentors IDs
+    const projectsWithMentors = await Promise.all(
+      projects.map(async (project) => {
+        const mentors = await prisma.mentor.findMany({
+          where: { id: { in: project.projectMentors } }, // Fetch mentors using IDs
+        });
+
+        return {
+          ...project,
+          projectMentors: mentors, // Replace mentor IDs with actual mentor objects
+        };
+      })
+    );
+
+    // Respond with the filtered projects
     return res.status(200).json({
       message: "Projects retrieved successfully.",
-      projects,
+      projects: projectsWithMentors,
     });
   } catch (error) {
     console.error("Error fetching projects:", error.message);
@@ -148,6 +161,7 @@ router.get("/getAllProjects", async (req, res) => {
     });
   }
 });
+
 
 
 // PATCH: Update project details or toggle selection
