@@ -47,7 +47,7 @@ export default function Projects() {
         <div className="flex flex-col items-center p-4 gap-y-6">
             <div className="my-[100px] w-full max-w-5xl">
                 <div className="flex flex-col items-center text-center gap-y-4">
-                    <h1 className="text-cyan-500 font-rubik text-3xl font-semibold text-glow">
+                    <h1 className="text-cyan-500 pb-4 font-rubik text-6xl font-semibold text-glow">
                         Projects
                     </h1>
                     <div className="w-full max-w-md">
