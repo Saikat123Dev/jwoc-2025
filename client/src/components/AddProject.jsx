@@ -236,7 +236,7 @@ const AddProject = () => {
 
   return (
     <>
-      <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
+      <div className="w-screen min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
         <Particles
           options={{
             particles: {

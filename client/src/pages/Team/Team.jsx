@@ -99,7 +99,7 @@ export default function Team() {
     }, []);
 
     return (
-        <div className="my-8 sm:my-12 md:my-24 flex flex-col">
+        <div className=" w-screen my-8 sm:my-12 md:my-24 flex flex-col">
             <div className="flex-col relative flex gap-y-3 items-center justify-center h-30 mt-1">
                 <div className="hidden md:flex fixed right-[150vh] top-[80vh]">
                     <div className="rounded-full opacity-20 bg-cyan-600 h-[15vh] w-[15vh]"></div>

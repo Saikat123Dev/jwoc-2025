@@ -56,8 +56,8 @@ const MentorDashboard = () => {
           throw new Error("Invalid user data received");
         }
       } catch (error) {
-        console.log("Error fetching user data:",error);
-        const errorMessage = error ;
+        console.log("Error fetching user data:", error);
+        const errorMessage = error;
 
         setAuthState(prev => ({
           ...prev,
@@ -110,7 +110,7 @@ const MentorDashboard = () => {
 
   if (authState.loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="w-screen flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center space-y-4">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
           <p className="text-lg font-medium text-gray-600 animate-pulse">
@@ -123,7 +123,7 @@ const MentorDashboard = () => {
 
   if (authState.error || !authState.user) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="w-screen flex items-center justify-center min-h-screen">
         <div className="text-center space-y-4 p-8 bg-white/10 rounded-xl shadow-lg animate-fade-in">
           <AlertTriangle className="w-12 h-12 text-red-500 mx-auto" />
           <p className="text-lg font-medium text-gray-800">
@@ -158,7 +158,7 @@ const MentorDashboard = () => {
   } = authState.user.user || {};
 
   return (
-    <div className="min-h-screen mt-9 pt-20 pb-12">
+    <div className="w-screen min-h-screen mt-9 pt-20 pb-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <header className="transform transition-all duration-500 hover:scale-[1.01] bg-white/10 rounded-2xl shadow-xl p-6 mb-8">
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
@@ -242,24 +242,24 @@ const MentorDashboard = () => {
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-white">Professional Links</h3>
                     <div className="space-y-3 text-white">
-  {[
-    { label: "GitHub", value: githubLink, icon: "github" },
-    { label: "LinkedIn", value: linkedIn, icon: "linkedin" },
-  ].map((item) => (
-    <a
-      key={item.label}
-      href={item.value ? `${item.value}` : "#"}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex text-cyan-200 items-center space-x-2 p-3 bg-white/5 rounded-lg transition-all duration-200 group"
-    >
-      <span className="text-white font-medium group-hover:text-blue-600">{item.label}:</span>
-      <span className="text-blue-500 hover:underline truncate">
-        {item.value || "Not provided"}
-      </span>
-    </a>
-  ))}
-</div>
+                      {[
+                        { label: "GitHub", value: githubLink, icon: "github" },
+                        { label: "LinkedIn", value: linkedIn, icon: "linkedin" },
+                      ].map((item) => (
+                        <a
+                          key={item.label}
+                          href={item.value ? `${item.value}` : "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex text-cyan-200 items-center space-x-2 p-3 bg-white/5 rounded-lg transition-all duration-200 group"
+                        >
+                          <span className="text-white font-medium group-hover:text-blue-600">{item.label}:</span>
+                          <span className="text-blue-500 hover:underline truncate">
+                            {item.value || "Not provided"}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
 
                   </div>
 

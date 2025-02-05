@@ -91,7 +91,7 @@ export default function MentorRegistration() {
   };
 
   return (
-    <div className="min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
+    <div className="w-screen min-h-screen pt-20 flex mt-10 flex-col items-center relative overflow-hidden">
       <motion.div
         className="w-full max-w-4xl p-8 rounded-2xl shadow-lg bg-opacity-10 bg-white backdrop-blur-lg"
         variants={containerVariants}
