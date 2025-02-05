@@ -8,6 +8,7 @@ export default function Projects() {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,6 +20,8 @@ export default function Projects() {
                 setFilteredData(response.data.projects);
             } catch (error) {
                 console.error("Error fetching projects:", error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchData();
@@ -27,13 +30,11 @@ export default function Projects() {
     useEffect(() => {
         const filtered = data.filter((project) => {
             const searchLower = searchQuery.toLowerCase();
-            const nameMatch = project.projectName.toLowerCase().includes(searchLower);
-            const tagMatch = project.projectTags.some((tag) =>
-                tag.toLowerCase().includes(searchLower)
+            return (
+                project.projectName.toLowerCase().includes(searchLower) ||
+                project.projectTags.some((tag) => tag.toLowerCase().includes(searchLower)) ||
+                project.projectOwner?.name?.toLowerCase().includes(searchLower)
             );
-            const ownerMatch = project.projectOwner?.name?.toLowerCase().includes(searchLower);
-
-            return nameMatch || tagMatch || ownerMatch;
         });
 
         setFilteredData(filtered);
@@ -54,18 +55,27 @@ export default function Projects() {
                         <SearchBar onSearch={handleSearch} />
                     </div>
                 </div>
-                <div className="flex flex-wrap mt-10 justify-center gap-6">
-                    {filteredData.map((item, i) => (
-                        <Card key={i} data={item} />
-                    ))}
-                </div>
+
+                {/* Show loading indicator */}
+                {loading ? (
+                    <div className="mt-10 flex justify-center items-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+                    </div>
+                ) : (
+                    <div className="flex flex-wrap mt-10 justify-center gap-6">
+                        {filteredData.length > 0 ? (
+                            filteredData.map((item, i) => <Card key={i} data={item} />)
+                        ) : (
+                            <p className="text-gray-500 text-lg">No projects found.</p>
+                        )}
+                    </div>
+                )}
             </div>
 
             {/* Footer message */}
             <div className="mt-12 text-center text-lg font-medium px-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 animate-fadeIn">
-    More exciting projects are on the way! Stay tuned and keep exploring. 🚀✨
-</div>
-
+                More exciting projects are on the way! Stay tuned and keep exploring. 🚀✨
+            </div>
         </div>
     );
 }
