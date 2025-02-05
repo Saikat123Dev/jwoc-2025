@@ -1,4 +1,4 @@
-import { User, Link as LinkIcon, Github } from "lucide-react";
+import { Github, Link as LinkIcon, User } from "lucide-react";
 
 const Card = ({ data }) => {
     const truncateText = (text, maxLength = 150) => {
@@ -35,7 +35,7 @@ const Card = ({ data }) => {
                 {data.projectMentors && data.projectMentors.length > 0 && (
                     <div className="mb-4">
                         <span className="opacity-80 font-semibold mr-2 text-sm">
-                            Mentors:
+                            Co-Authors:
                         </span>
                         <span className="opacity-70 text-sm">
                             {data.projectMentors.map(mentor => mentor.name).join(", ")}
