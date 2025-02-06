@@ -45,7 +45,8 @@ export default function Projects() {
     };
 
     return (
-        <div className="flex flex-col items-center p-4 gap-y-6">
+
+        <div className="w-screen flex flex-col items-center p-4 gap-y-6">
             <div className="my-[100px] w-full max-w-5xl">
                 <div className="flex flex-col items-center text-center gap-y-4">
                     <h1 className="text-cyan-500 pb-4 font-rubik text-6xl font-semibold text-glow">
@@ -58,7 +59,7 @@ export default function Projects() {
 
                 {/* Show loading indicator */}
                 {loading ? (
-                    <div className="mt-10 flex justify-center items-center">
+                    <div className="w-screen mt-10 flex justify-center items-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
                     </div>
                 ) : (

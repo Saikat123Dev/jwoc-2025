@@ -96,7 +96,7 @@ function Footer() {
       </a>
       {/* discord */}
       <a
-        href="https://discord.gg/Uk4aKa7K"
+        href="https://discord.gg/VW83TAydPx"
         target="_blank"
         rel="noreferrer"
         class="text-gray-400 hover:text-teal-400 transition transform hover:scale-110"
