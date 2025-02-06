@@ -45,9 +45,8 @@ export default function Projects() {
     };
 
     return (
-
         <div className="w-screen flex flex-col items-center p-4 gap-y-6">
-            <div className="my-[100px] w-full max-w-5xl">
+            <div className="my-[100px] w-full max-w-[1400px]">
                 <div className="flex flex-col items-center text-center gap-y-4">
                     <h1 className="text-cyan-500 pb-4 font-rubik text-6xl font-semibold text-glow">
                         Projects
