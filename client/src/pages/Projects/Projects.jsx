@@ -59,7 +59,7 @@ export default function Projects() {
 
                 {/* Show loading indicator */}
                 {loading ? (
-                    <div className="w-screen mt-10 flex justify-center items-center">
+                    <div className="mt-10 flex justify-center items-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
                     </div>
                 ) : (
