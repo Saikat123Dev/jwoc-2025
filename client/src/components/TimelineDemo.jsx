@@ -38,23 +38,6 @@ export function TimelineDemo() {
       tags: ["Projects", "Announcements", "Selection"]
     },
     {
-      title: "9th February",
-      content: (
-        <div className="space-y-4">
-          <p className="text-lg  font-extrabold text-blue-50 flex justify-center items-center">
-            Registration Closure & Community Bonding
-          </p>
-          <div className="bg-white/5 p-4 rounded-lg">
-            <p className="text-neutral-200 text-sm leading-relaxed">
-            Registrations close! Community bonding begins for mentors and mentees to connect and plan.
-            </p>
-
-          </div>
-        </div>
-      ),
-      tags: ["Registration End", "Community Bonding", "Team Formation"]
-    },
-    {
       title: "10th February",
       content: (
         <div className="space-y-4">
@@ -71,6 +54,24 @@ export function TimelineDemo() {
       ),
       tags: ["Coding", "Development", "Phase 1"]
     },
+    {
+      title: "11th February",
+      content: (
+        <div className="space-y-4">
+          <p className="text-lg  font-extrabold text-blue-50 flex justify-center items-center">
+            Registration Closure & Community Bonding
+          </p>
+          <div className="bg-white/5 p-4 rounded-lg">
+            <p className="text-neutral-200 text-sm leading-relaxed">
+            Registrations close! Community bonding begins for mentors and mentees to connect and plan.
+            </p>
+
+          </div>
+        </div>
+      ),
+      tags: ["Registration End", "Community Bonding", "Team Formation"]
+    },
+   
     {
       title: "1st March",
       content: (
