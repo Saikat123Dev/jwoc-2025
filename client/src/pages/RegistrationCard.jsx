@@ -104,7 +104,7 @@ const RegistrationCards = () => {
                   </h2>
                   <div className="flex justify-center">
                     <a
-                      href="https://discord.gg/VW83TAydPx"
+                      href="https://discord.gg/FtFwNPpr"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-2 px-4 rounded-md flex items-center justify-center hover:from-indigo-600 hover:to-indigo-700 transition-all cursor-pointer"
