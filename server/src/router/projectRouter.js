@@ -124,10 +124,6 @@ router.get("/getAllProjects", async (req, res) => {
     const projects = await prisma.project.findMany({
       where: {
         isDeleted: false,
-        OR: [
-          { isSelected: true }, // Fetch selected projects
-          // In case isSelected is not set
-        ],
       },
       include: {
         projectOwner: true, // Fetch project owner details
