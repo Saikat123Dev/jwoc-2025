@@ -8,7 +8,7 @@ const Sponsors = () => {
   ];
 
   return (
-    <div className="w-full pt-36 h-screen px-4 sm:px-6 lg:px-8">
+    <div className="w-screen pt-36 h-screen px-4 sm:px-6 lg:px-8">
       <div className="text-center mt-4 sm:mt-7 mb-6 sm:mb-11">
         <h1 className="font-extrabold font-rubik text-3xl sm:text-4xl lg:text-6xl text-white">
           SPONSORS

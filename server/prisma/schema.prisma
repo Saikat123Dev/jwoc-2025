@@ -88,6 +88,7 @@ model Project {
   projectTags        String[]
   projectOwner       Mentor   @relation(fields: [projectOwnerId], references: [id], name: "MentorProjects")
   projectOwnerId     String   @db.ObjectId
+  projectMentors     String[]
   GitHubLink         String
   PRMerged           Int      @default(0)
   isSelected         Boolean  @default(false)

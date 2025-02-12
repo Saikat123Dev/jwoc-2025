@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const RegistrationCards = () => {
   return (
-    <div className="relative min-h-screen mt-28 pt-11 flex items-center justify-center">
+    <div className="w-screen relative min-h-screen mt-28 pt-11 flex items-center justify-center">
       <div className="w-full">
         {/* Aurora Background - Moved inside content wrapper */}
         <div className="relative max-w-6xl mx-auto">
@@ -104,7 +104,7 @@ const RegistrationCards = () => {
                   </h2>
                   <div className="flex justify-center">
                     <a
-                      href="https://discord.gg/Uk4aKa7K"
+                      href="https://discord.gg/FtFwNPpr"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white py-2 px-4 rounded-md flex items-center justify-center hover:from-indigo-600 hover:to-indigo-700 transition-all cursor-pointer"

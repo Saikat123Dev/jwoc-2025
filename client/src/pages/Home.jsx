@@ -36,7 +36,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="w-screen min-h-screen flex flex-col">
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 z-0">
         <div className="mt-7 absolute slide-out-to-top-1/4 left-1/4 w-[600px] h-[200px] bg-gradient-to-br from-purple-500 via-indigo-500 to-purple-700 opacity-50 rounded-full blur-3xl"></div>

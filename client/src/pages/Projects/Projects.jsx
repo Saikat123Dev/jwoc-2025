@@ -8,6 +8,7 @@ export default function Projects() {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,15 +20,23 @@ export default function Projects() {
                 setFilteredData(response.data.projects);
             } catch (error) {
                 console.error("Error fetching projects:", error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchData();
     }, []);
 
     useEffect(() => {
-        const filtered = data.filter(project =>
-            project.projectName.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+        const filtered = data.filter((project) => {
+            const searchLower = searchQuery.toLowerCase();
+            return (
+                project.projectName.toLowerCase().includes(searchLower) ||
+                project.projectTags.some((tag) => tag.toLowerCase().includes(searchLower)) ||
+                project.projectOwner?.name?.toLowerCase().includes(searchLower)
+            );
+        });
+
         setFilteredData(filtered);
     }, [searchQuery, data]);
 
@@ -36,37 +45,35 @@ export default function Projects() {
     };
 
     return (
-        // <div className="gap-y-4 flex flex-col p-4">
-        //     <div className="my-[120px]">
-        //         <div className="flex-col relative flex gap-y-3 items-center project-title justify-center h-30">
-        //             <h1 className="text-transperent relative font-rubik text-cyan-500 text-glow">Projects</h1>
-        //             <div className="relative mt-3">
-        //                 <SearchBar onSearch={handleSearch} />
-        //             </div>
-        //         </div>
-        //         <div className="flex flex-wrap mt-11 justify-center">
-        //             {filteredData.map((items, i) => (
-        //                 <div key={i}>
-        //                     <Card data={items} />
-        //                 </div>
-        //             ))}
-        //         </div>
-        //     </div>
-        // </div>
-        <div className="min-h-screen flex items-center justify-center  ">
-            <div className="text-center p-8">
-                <h1 className="text-6xl md:text-8xl font-rubik font-bold text-cyan-500 mb-8 animate-pulse">
-                    Coming Soon
-                </h1>
-                <div className="text-xl md:text-2xl text-cyan-300 font-light">
-                    We're working on something awesome!
-                    <div className="mt-4 flex justify-center space-x-2">
-                        <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce"></div>
-                        <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
-                        <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+        <div className="w-screen flex flex-col items-center p-4 gap-y-6">
+            <div className="my-[100px] w-full max-w-[1400px]">
+                <div className="flex flex-col items-center text-center gap-y-4">
+                    <h1 className="text-cyan-500 pb-4 font-rubik text-6xl font-semibold text-glow">
+                        Projects
+                    </h1>
+                    <div className="w-full max-w-md">
+                        <SearchBar onSearch={handleSearch} />
                     </div>
                 </div>
+
+                {/* Show loading indicator */}
+                {loading ? (
+                    <div className="mt-10 flex justify-center items-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+                    </div>
+                ) : (
+                    <div className="flex flex-wrap mt-10 justify-center gap-6">
+                        {filteredData.length > 0 ? (
+                            filteredData.map((item, i) => <Card key={i} data={item} />)
+                        ) : (
+                            <p className="text-gray-500 text-lg">No projects found.</p>
+                        )}
+                    </div>
+                )}
             </div>
+
+            {/* Footer message */}
+
         </div>
     );
 }
