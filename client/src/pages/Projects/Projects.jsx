@@ -73,9 +73,7 @@ export default function Projects() {
             </div>
 
             {/* Footer message */}
-            <div className="mt-12 text-center text-lg font-medium px-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 animate-fadeIn">
-                More exciting projects are on the way! Stay tuned and keep exploring. 🚀✨
-            </div>
+
         </div>
     );
 }
