@@ -10,14 +10,25 @@ export default function Projects() {
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
 
+
+    const shuffleArray = (array) => {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
                     "https://jwoc-2025.onrender.com/api/mentor/project/getAllProjects"
                 );
-                setData(response.data.projects);
-                setFilteredData(response.data.projects);
+                const shuffledProjects = shuffleArray(response.data.projects);
+                setData(shuffledProjects);
+                setFilteredData(shuffledProjects);
             } catch (error) {
                 console.error("Error fetching projects:", error);
             } finally {
