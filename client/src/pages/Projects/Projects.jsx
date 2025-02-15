@@ -10,7 +10,7 @@ export default function Projects() {
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
 
-    // Fisher-Yates shuffle algorithm
+
     const shuffleArray = (array) => {
         const newArray = [...array];
         for (let i = newArray.length - 1; i > 0; i--) {
