@@ -8,7 +8,7 @@ const authRoutes = require("./src/router/authRouter");
 const menteeReg = require("./src/router/mentee-registration.router");
 const menteeBanned = require("./src/router/mentee-banned");
 const project = require("./src/router/projectRouter");
-
+const leaderboard =require("./src/router/LBRouter.js");
 const mentorReg = require("./src/router/mentor-registration.router");
 const { getMenteeCount } = require("./src/router/numbers.js");
 const { getMentorCount } = require("./src/router/numberOfMentor.js");
@@ -215,6 +215,36 @@ app.use("/api/mentor/project", project);
 app.use("/api/mentor/", mentorReg);
 app.use("/api/menteeCount",getMenteeCount )
 app.use("/api/mentorCount",getMentorCount )
+app.use("/api",leaderboard);
 // Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+
+  // Schedule leaderboard update every 30 minutes (30 * 60 * 1000 milliseconds)
+  setInterval(async () => {
+    try {
+      console.log("Starting scheduled leaderboard update...");
+      // Import fetchAllData from your module
+      const { fetchAllData } = require("./src/router/leaderboard/generate.js"); 
+      await fetchAllData();
+      console.log("Leaderboard updated successfully!");
+    } catch (error) {
+      console.error("Error updating leaderboard:", error);
+    }
+  }, 60*30*1000);
+});
+
+// app.listen(PORT, async () => {
+//   console.log(`Server running on port ${PORT}`);
+  
+//     try {
+//       console.log("Starting scheduled leaderboard update...");
+//       // Import fetchAllData from your module
+//       const { fetchAllData } = require("./src/router/leaderboard/generate.js"); 
+//       await fetchAllData();
+//       console.log("Leaderboard updated successfully!");
+//     } catch (error) {
+//       console.error("Error updating leaderboard:", error);
+//     }
+// });
