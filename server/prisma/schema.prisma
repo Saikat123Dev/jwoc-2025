@@ -26,6 +26,7 @@ model Mentee {
   isBanned    Boolean  @default(false)
   TotalPoints Int      @default(0)
   Ranking     Int      @default(0)
+  pr_urls     Json     @default("[]") // Stores PR details as JSON
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 }

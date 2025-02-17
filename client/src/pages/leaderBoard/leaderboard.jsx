@@ -1,226 +1,243 @@
-import React, { useCallback, useRef } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import React, { useEffect, useRef, useState } from "react";
 
 const App = () => {
-  const init = useCallback(async (engine) => {
-    await loadFull(engine);
-  }, []);
-
   const leaderboardRef = useRef(null);
+  const [data, setData] = useState([]);
+  const [selectedMentee, setSelectedMentee] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleMouseMove = (e) => {
-    const { clientX: x, clientY: y } = e;
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-
-    const rotateX = (y - centerY) / 50;
-    const rotateY = (centerX - x) / 50;
-
-    if (leaderboardRef.current) {
-      leaderboardRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    if (window.innerWidth >= 1024) {
+      const { clientX: x, clientY: y } = e;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const rotateX = (y - centerY) / 50;
+      const rotateY = (centerX - x) / 50;
+      if (leaderboardRef.current) {
+        leaderboardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
     }
   };
 
-  // #Random Data
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const githubUsername = "Surajit0573";
-  const rank = 10;
-  const githubAvatar = "https://avatars.githubusercontent.com/u/111490250?v=4";
-  const participantName = "Surajit Maity";
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("https://jwoc-2025.onrender.com/api/getALl");
+        const result = await response.json();
+        let fetchedData = result.mentees;
+        fetchedData = fetchedData.filter((d) => d.Ranking > 0).sort((a, b) => a.Ranking - b.Ranking);
+        setData(fetchedData);
+        if (fetchedData.length > 0) {
+          setSelectedMentee(fetchedData[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const githubUrl = selectedMentee?.github || "https://github.com/placeholder";
+  const githubUsername = githubUrl.split("https://github.com/")[1] || "username";
+  const githubAvatar = `https://avatars.githubusercontent.com/${githubUsername}?v=4`;
+  const participantName = selectedMentee?.name || "Participant Name";
+  const rank = selectedMentee?.Ranking || "-";
+  const totalPoints = selectedMentee?.TotalPoints || 0;
+  const totalPRs = selectedMentee?.pr_urls ? selectedMentee.pr_urls.length : 0;
+  const topThree = data.slice(0, 3);
 
   return (
-    // <div
-    //   className=" w-screen flex items-center justify-center bg-gradient-to-br from-black via-[#1a0540] to-[#0b0035] overflow-hidden relative"
-    //   onMouseMove={handleMouseMove}
-    // >
-    //   <Particles
-    //     options={{
-    //       particles: {
-    //         color: {
-    //           value: "#fff",
-    //         },
-    //         number: {
-    //           value: 200,
-    //           density: {
-    //             enable: true,
-    //             area: 800,
-    //           },
-    //         },
-    //         opacity: {
-    //           value: { min: 0.3, max: 1 },
-    //         },
-    //         shape: {
-    //           type: "star",
-    //         },
-    //         size: {
-    //           value: { min: 1, max: 3 },
-    //         },
-    //         move: {
-    //           direction: "bottom-right",
-    //           enable: true,
-    //           speed: { min: 3, max: 5 },
-    //           straight: true,
-    //         },
-    //       },
-    //     }}
-    //     init={init}
-    //   />
+    <div className="w-screen min-h-screen flex flex-col items-center px-4 py-20 gap-y-8 relative overflow-x-hidden">
+      <h1 className="text-cyan-500 font-rubik text-4xl md:text-5xl lg:text-6xl font-semibold drop-shadow-[0_0_10px_rgba(0,255,255,0.8)] mt-4">
+        Leaderboard
+      </h1>
 
-    //   {/* Aurora Effect */}
-    //   <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-indigo-800 via-purple-500 to-transparent opacity-30 blur-3xl animate-[move_10s_linear_infinite]"></div>
-    //   <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-to-r from-teal-800 via-blue-500 to-transparent opacity-30 blur-3xl animate-[move_10s_linear_infinite_reverse]"></div>
+      {/* Top-Three Cards - Hidden on smaller screens */}
+      <div className="hidden md:grid w-full max-w-5xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 mb-10">
+        {topThree.map((mentee, idx) => {
+          const url = mentee.github || "https://github.com/placeholder";
+          const username = url.split("https://github.com/")[1] || "username";
+          const avatar = `https://avatars.githubusercontent.com/${username}?v=4`;
+          return (
+            <a
+              key={idx}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setSelectedMentee(mentee)}
+              className="w-full bg-white/10 backdrop-blur-lg rounded-lg shadow-lg border border-transparent hover:border-cyan-400 transition-all cursor-pointer transform hover:scale-105 hover:rotate-3"
+            >
+              <div className="p-4 flex flex-col items-center text-center">
+                <img
+                  src={avatar}
+                  alt={`${mentee.name}'s Avatar`}
+                  className="w-16 h-16 rounded-full mb-2 border-2 border-cyan-400 shadow-md"
+                />
+                <h2 className="text-lg font-semibold text-white">{mentee.name}</h2>
+                <p className="text-sm text-cyan-300">Rank #{mentee.Ranking}</p>
+                <p className="text-sm text-green-400 mt-2">Points: {mentee.TotalPoints}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
 
-    //   <div
-    //     ref={leaderboardRef}
-    //     className="my-[200px] relative w-[90%] h-[500px] flex items-center justify-center [transform-style:preserve-3d] [perspective:1000px] transition-transform duration-500 ease-out hover:scale-105"
-    //   >
-    //     {/* Left Card */}
-    //     <a
-    //       href={`https://github.com/${githubUsername}`}
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //       className="w-[20%] h-full inset-y-0 bg-white bg-opacity-10 rounded-lg shadow-[5px_5px_15px_rgba(0,0,0,0.6),_10px_10px_20px_rgba(0,0,0,0.2),_inset_-5px_-5px_10px_rgba(255,255,255,0.1)] backdrop-blur-lg flex flex-col items-center justify-center font-bold text-white text-3xl transform origin-top-right skew-y-[-15deg] scale-y-[1] translate-x-[-100px] translate-z-[100px] [rotate-y:35deg] transition-transform duration-500 ease-out hover:translate-z-[150px] hover:skew-y-[-5deg] hover:scale-[1.05] hover:bg-opacity-20"
-    //     >
-    //       {/* Participant Name and Rank */}
-    //       <div className="w-full bg-opacity-20 bg-black text-lg font-semibold p-3 text-center rounded-t-lg">
-    //         {participantName} <span className="text-[#FFD700]">#{rank}</span>
-    //       </div>
-
-    //       {/* GitHub Profile Picture */}
-    //       <img
-    //         src={githubAvatar}
-    //         alt={`${participantName}'s GitHub Avatar`}
-    //         className="w-20 h-20 rounded-full mt-4 border-2 border-[#FFD700] shadow-lg"
-    //       />
-
-    //       {/* GitHub Username */}
-    //       <div className="text-white text-lg font-medium mt-3">@{githubUsername}</div>
-
-    //       {/* Total Points and PRs */}
-    //       <div className="mt-4 w-full text-center text-sm">
-    //         <p className="text-[#00FF00] font-semibold">Total Points: 100</p>
-    //         <p className="text-[#00BFFF] font-semibold">Total PRs: 10</p>
-    //       </div>
-    //     </a>
-
-
-    //     {/* Back Card */}
-    //     <div className="w-[35%] h-full inset-0 bg-white bg-opacity-10 rounded-lg shadow-[5px_5px_50px_rgba(0,0,0,0.7),_10px_10px_25px_rgba(0,0,0,0.3)] backdrop-blur-lg flex items-center justify-center font-bold text-white text-3xl transform scale-[0.9] -translate-z-[300px] transition-transform duration-500 ease-out hover:translate-z-[0] hover:rotate-y-[10deg] hover:scale-[1.1]">
-    //       <div className="w-full h-full overflow-hidden rounded-lg">
-    //         <table className="w-full h-full bg-transparent text-white text-center">
-    //           <thead>
-    //             <tr className="bg-opacity-20 bg-black text-lg font-semibold">
-    //               <th className="p-3">Sl No.</th>
-    //               <th className="p-3">Rank</th>
-    //               <th className="p-3">Participant Name</th>
-    //               <th className="p-3">Points</th>
-    //             </tr>
-    //           </thead>
-    //           <tbody className="text-base max-h-[400px] overflow-y-auto scroll-smooth">
-    //             {data.map((d, index) => (
-    //               <tr
-    //                 key={index}
-    //                 className={`${index % 2 === 0 ? "bg-opacity-20" : "bg-opacity-10"
-    //                   } bg-[#1e0649] hover:bg-opacity-40 transition duration-300`}
-    //               >
-    //                 <td className="p-3 border-b border-[#2c096c]">{index + 1}</td>
-    //                 <td className="p-3 border-b border-[#2c096c]">#{d}</td>
-    //                 <td className="p-3 border-b border-[#2c096c]">John Doe</td>
-    //                 <td className="p-3 border-b border-[#2c096c]">1200</td>
-    //               </tr>
-    //             ))}
-    //           </tbody>
-    //         </table>
-    //       </div>
-    //     </div>
-
-
-    //     {/* Right Card */}
-    //     <div className="w-[20%] h-full inset-y-0 bg-white bg-opacity-10 rounded-lg shadow-[5px_5px_15px_rgba(0,0,0,0.6),_10px_10px_20px_rgba(0,0,0,0.2),_inset_-5px_-5px_10px_rgba(255,255,255,0.1)] backdrop-blur-lg flex flex-col items-center font-bold text-white text-3xl transform origin-top-left skew-y-[15deg] scale-y-[1] translate-x-[100px] translate-z-[100px] [rotate-y:-35deg] transition-transform duration-500 ease-out hover:translate-z-[150px] hover:skew-y-[5deg] hover:scale-[1.05] overflow-hidden">
-    //       {/* Table Header */}
-    //       <div className="w-full bg-opacity-20 bg-black text-lg font-semibold p-3 text-center rounded-t-lg">
-    //         PR LINKS
-    //       </div>
-
-    //       {/* Table Content */}
-    //       <div className="w-full h-full p-4 overflow-y-auto text-sm text-left">
-    //         {data.map((d) => (
-    //           <div
-    //             key={d}
-    //             className="mb-4 bg-[#1e0649] bg-opacity-20 p-3 rounded-lg hover:bg-opacity-40 transition duration-300"
-    //           >
-    //             <a
-    //               href="https://github.com/Surajit0573/jwoc-leaderboard"
-    //               target="_blank"
-    //               rel="noopener noreferrer"
-    //               className="text-blue-400 underline block truncate"
-    //             >
-    //               https://github.com/Surajit0573/jwoc-leaderboard
-    //             </a>
-    //             <div className="mt-2">
-    //               <p className="text-[#FFD700] font-medium">Difficulty: Medium</p>
-    //               <p className="text-[#00FF00] font-medium">Phase: 2</p>
-    //             </div>
-    //           </div>
-    //         ))}
-    //       </div>
-    //     </div>
-
-    //   </div>
-    // </div>
-    <div className="h-screen w-screen flex items-center justify-center  overflow-hidden relative">
-      <Particles
-        options={{
-          particles: {
-            color: {
-              value: "#fff",
-            },
-            number: {
-              value: 200,
-              density: {
-                enable: true,
-                area: 800,
-              },
-            },
-            opacity: {
-              value: { min: 0.3, max: 1 },
-            },
-            shape: {
-              type: "star",
-            },
-            size: {
-              value: { min: 1, max: 3 },
-            },
-            move: {
-              direction: "bottom-right",
-              enable: true,
-              speed: { min: 3, max: 5 },
-              straight: true,
-            },
-          },
-        }}
-        init={init}
-      />
-
-      {/* Aurora Effect */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-indigo-800 via-purple-500 to-transparent opacity-30 blur-3xl animate-[move_10s_linear_infinite]"></div>
-      <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-to-r from-teal-800 via-blue-500 to-transparent opacity-30 blur-3xl animate-[move_10s_linear_infinite_reverse]"></div>
-
-      {/* Coming Soon Content */}
-      <div className="relative z-10 text-center">
-        <div className="text-6xl md:text-8xl font-bold text-white mb-8 animate-pulse">
-          Coming Soon
+      {/* Main Cards Section */}
+      {loading ? (
+        <div className="mt-10 flex justify-center items-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
         </div>
-        <div className="text-xl md:text-2xl text-cyan-300 font-light max-w-2xl mx-auto backdrop-blur-sm bg-white/5 p-6 rounded-lg shadow-lg">
-          We're working on something awesome!
-          <div className="mt-4 flex justify-center space-x-2">
-            <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce"></div>
-            <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
-            <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+      ) : (
+        <div
+          className="w-[95%] flex items-center justify-center relative px-4"
+          onMouseMove={handleMouseMove}
+          style={{ perspective: '2000px' }}
+        >
+          <div
+            ref={leaderboardRef}
+            className="w-full  max-w-[1400px] flex flex-col lg:flex-row gap-8 transition-transform duration-300 ease-out lg:items-stretch lg:mx-16"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            {/* Left Card - Selected Mentee Details */}
+            <div
+              className="w-full mr-14 lg:w-1/4 transform transition-all duration-500"
+              style={{
+                transform: window.innerWidth >= 1024
+                  ? 'perspective(2000px) rotateY(35deg) translateZ(100px)'
+                  : 'none',
+                transformStyle: 'preserve-3d'
+              }}
+            >
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full h-full bg-white/10 backdrop-blur-lg rounded-lg flex flex-col items-center justify-center p-4 shadow-lg hover:shadow-cyan-500/20 transition-all duration-500 block hover:scale-105 hover:z-50 lg:hover:transform lg:hover:rotate-y-0"
+              >
+                <div className="w-full bg-black/20 text-lg font-semibold p-3 text-center rounded-t-lg text-white">
+                  {participantName} <span className="text-[#FFD700]">#{rank}</span>
+                </div>
+                <img
+                  src={githubAvatar}
+                  alt={`${participantName}'s GitHub Avatar`}
+                  className="w-20 h-20 rounded-full mt-4 border-2 border-[#FFD700] shadow-lg"
+                />
+                <div className="text-white text-lg font-medium mt-3">
+                  @{githubUsername}
+                </div>
+                {/* New section for college name */}
+                <div className="text-sm text-white mt-2 text-center">
+                  {selectedMentee?.college ? `${selectedMentee.college}` : "N/A"}
+                </div>
+                <div className="mt-4 w-full text-center text-sm">
+                  <p className="text-[#00FF00] font-semibold">Total Points: {totalPoints}</p>
+                  <p className="text-[#00BFFF] font-semibold">Total PRs: {totalPRs}</p>
+                </div>
+              </a>
+            </div>
+            {/* Middle Card - Leaderboard Table */}
+            <div
+              className="w-full lg:w-2/4 transform transition-all duration-500"
+              style={{
+                transform: window.innerWidth >= 1024 ? 'perspective(2000px) translateZ(50px)' : 'none',
+                transformStyle: 'preserve-3d',
+              }}
+            >
+              <div className="w-full h-[500px] bg-white/10 backdrop-blur-lg rounded-lg flex flex-col overflow-hidden shadow-lg hover:shadow-cyan-500/20 transition-all duration-500 hover:scale-105 hover:z-50">
+                <div className="sticky top-0 z-10">
+                  <table className="w-full text-white table-fixed">
+                    <thead className="bg-black/20">
+                      <tr>
+                        <th className="p-3 text-sm md:text-base w-1/4">Sl No.</th>
+                        <th className="p-3 text-sm md:text-base w-1/4">Rank</th>
+                        <th className="p-3 text-sm md:text-base w-1/4">Name</th>
+                        <th className="p-3 text-sm md:text-base w-1/4">Points</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div className="overflow-auto">
+                  <table className="w-full text-white table-fixed">
+                    <tbody>
+                      {data.map((d, index) => (
+                        <tr
+                          key={index}
+                          onClick={() => setSelectedMentee(d)}
+                          className={`cursor-pointer ${selectedMentee?.github === d.github
+                            ? "bg-black/30 border-l-4 border-[#FFD700]"
+                            : index % 2 === 0
+                              ? "bg-white/5"
+                              : "bg-white/10"
+                            } hover:bg-white/20 transition duration-300`}
+                        >
+                          <td className="p-3 text-sm md:text-base border-b border-white/10 w-1/4">
+                            {index + 1}
+                          </td>
+                          <td className="p-3 text-sm md:text-base border-b border-white/10 w-1/4">
+                            {d.Ranking}
+                          </td>
+                          <td className="p-3 text-sm md:text-base border-b border-white/10 w-1/4">
+                            {d.name}
+                          </td>
+                          <td className="p-3 text-sm md:text-base border-b border-white/10 w-1/4">
+                            {d.TotalPoints}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+
+            {/* Right Card - PR Links */}
+            <div className="w-full lg:ml-14 lg:w-1/4 transform transition-all duration-500"
+              style={{
+                transform: window.innerWidth >= 1024 ? 'perspective(2000px) rotateY(-35deg) translateZ(100px)' : 'none',
+                transformStyle: 'preserve-3d'
+              }}>
+              <div className="w-full h-[500px] bg-white/10 backdrop-blur-lg rounded-lg flex flex-col shadow-lg overflow-hidden hover:shadow-cyan-500/20 transition-all duration-500 hover:scale-105 hover:z-50 lg:hover:transform lg:hover:rotate-y-0">
+                <div className="w-full bg-black/20 text-lg font-semibold p-3 text-center text-white rounded-t-lg">
+                  PR LINKS
+                </div>
+                <div className="flex-1 p-4 overflow-y-auto">
+                  {selectedMentee?.pr_urls?.length > 0 ? (
+                    selectedMentee.pr_urls.map((pr, index) => (
+                      <div
+                        key={index}
+                        className="mb-4 bg-white/5 p-3 rounded-lg hover:bg-white/10 transition duration-300"
+                      >
+                        <a
+                          href={pr.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-400 underline block text-sm break-words"
+                        >
+                          {pr.url}
+                        </a>
+                        <div className="mt-2 text-sm text-white">
+                          <p className="text-[#FFD700] font-medium">
+                            Difficulty: {pr.difficulty || "N/A"}
+                          </p>
+                          <p className="text-[#00FF00] font-medium">
+                            Phase: {pr.phase || "N/A"}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-center text-white">No PR links available</p>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

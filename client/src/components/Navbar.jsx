@@ -6,6 +6,7 @@ import {
   Menu,
   Trophy,
   Users2,
+  ChartColumn,
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -124,9 +125,9 @@ const NavbarDemo = () => {
               <NavItem id="sponsors" label="Sponsors" Icon={Trophy} />
               <Divider />
               <NavItem
-                id="registrationcard"
-                label="Register"
-                Icon={Briefcase}
+                id="leaderboard"
+                label="LeaderBoard"
+                Icon={ChartColumn}
                 isRegister={true}
               />
             </div>
@@ -166,9 +167,9 @@ const NavbarDemo = () => {
               <NavItem id="sponsors" label="Sponsors" Icon={Trophy} isMobile={true} />
               <div className="h-px w-full bg-gray-400/30 dark:bg-gray-600/30 my-2" />
               <NavItem
-                id="registrationcard"
-                label="Register"
-                Icon={Briefcase}
+                id="leaderboard"
+                label="LeaderBoard"
+                Icon={ChartColumn}
                 isMobile={true}
                 isRegister={true}
               />
