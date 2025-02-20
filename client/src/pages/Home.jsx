@@ -28,11 +28,11 @@ const GoogleIcon = () => (
 
 const Home = () => {
   const googleLogin = () => {
-    window.location.href = "https://jwoc-2025.onrender.com/auth/google";
+    window.location.href = "https://jwoc-2025-1.onrender.com/auth/google";
   };
 
   const githubLogin = () => {
-    window.location.href = "https://jwoc-2025.onrender.com/auth/github";
+    window.location.href = "https://jwoc-2025-1.onrender.com/auth/github";
   };
 
   return (

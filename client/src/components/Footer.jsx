@@ -25,7 +25,7 @@ function Footer() {
     };
 
     try {
-      const response = await fetch("https://jwoc-2025.onrender.com/send-email", {
+      const response = await fetch("https://jwoc-2025-1.onrender.com/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
