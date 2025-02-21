@@ -5,6 +5,7 @@ const Sponsors = () => {
     'LWT.Academy.jpeg',
     'GiveMYCertificate.png',
     'InterviewBit.png',
+    'tuf.jpg'
   ];
 
   return (
@@ -14,7 +15,7 @@ const Sponsors = () => {
           SPONSORS
         </h1>
       </div>
-      <div className="w-full">
+      <div className="min-w-full min-h-screen">
         {/* Adjust flex direction based on screen size */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 lg:gap-8">
           {imageArray.map((image, index) => (
@@ -22,7 +23,7 @@ const Sponsors = () => {
               key={index}
               src={image}
               alt={`Sponsor ${index + 1}`}
-              className="h-[20vh] w-[20vh] sm:h-[25vh] sm:w-[25vh] lg:h-[30vh] lg:w-[30vh] rounded-lg object-cover opacity-70 transition-opacity duration-300 hover:opacity-100"
+              className="h-[20vh] w-[50vw] sm:h-[30vh] sm:w-[30vw] lg:h-[30vh] lg:w-[20vw] rounded-lg object-cover opacity-70 transition-opacity duration-300 hover:opacity-100"
             />
           ))}
         </div>
