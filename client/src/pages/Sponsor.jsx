@@ -2,10 +2,12 @@ import React from 'react';
 
 const Sponsors = () => {
   const imageArray = [
+      'tuf.jpg',
     'LWT.Academy.jpeg',
-    'GiveMYCertificate.png',
     'InterviewBit.png',
-    'tuf.jpg'
+    'GiveMYCertificate.png'
+
+
   ];
 
   return (
