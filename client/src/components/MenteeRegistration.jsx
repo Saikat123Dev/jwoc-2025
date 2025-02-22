@@ -24,7 +24,7 @@ export default function MenteeRegistration() {
     setShowSuccessModal(false);
 
     try {
-      const response = await axios.post("https://jwoc-2025.onrender.com/api/mentee/register", data);
+      const response = await axios.post("https://jwoc-2025-1.onrender.com/api/mentee/register", data);
       if (response.data && response.status === 201) {
         setResponseMessage("Registration successful!");
         setShowSuccessModal(true);

@@ -86,7 +86,7 @@ export default function MentorRegistration() {
         linkedin: data.linkedin,
       };
 
-      const response = await fetch('https://jwoc-2025.onrender.com/api/mentor/registerMentor', {
+      const response = await fetch('https://jwoc-2025-1.onrender.com/api/mentor/registerMentor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

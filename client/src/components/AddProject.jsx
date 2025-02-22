@@ -104,7 +104,7 @@ const AddProject = () => {
         projectOwnerId: mentorId
       }));
 
-      const response = await fetch('https://jwoc-2025.onrender.com/api/mentor/project/addProject', {
+      const response = await fetch('https://jwoc-2025-1.onrender.com/api/mentor/project/addProject', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
