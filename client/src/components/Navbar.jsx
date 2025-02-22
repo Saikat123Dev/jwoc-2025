@@ -1,12 +1,13 @@
 import {
   BookOpen,
   Briefcase,
+  ChartColumn,
   Clock,
   Home,
   Menu,
   Trophy,
+  User,
   Users2,
-  ChartColumn,
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -124,6 +125,12 @@ const NavbarDemo = () => {
               <Divider />
               <NavItem id="sponsors" label="Sponsors" Icon={Trophy} />
               <Divider />
+              <NavItem
+                id="registrationcard"
+                label="Register"
+                Icon={User}
+                isRegister={true}
+              />
               <NavItem
                 id="leaderboard"
                 label="LeaderBoard"
