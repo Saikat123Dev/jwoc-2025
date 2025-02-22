@@ -174,6 +174,12 @@ const NavbarDemo = () => {
               <NavItem id="sponsors" label="Sponsors" Icon={Trophy} isMobile={true} />
               <div className="h-px w-full bg-gray-400/30 dark:bg-gray-600/30 my-2" />
               <NavItem
+                id="registrationcard"
+                label="Register"
+                Icon={User}
+                isRegister={true}
+              />
+              <NavItem
                 id="leaderboard"
                 label="LeaderBoard"
                 Icon={ChartColumn}
