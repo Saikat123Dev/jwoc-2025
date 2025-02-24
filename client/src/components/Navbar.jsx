@@ -6,9 +6,8 @@ import {
   Home,
   Menu,
   Trophy,
-  User,
   Users2,
-  X,
+  X
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -125,12 +124,7 @@ const NavbarDemo = () => {
               <Divider />
               <NavItem id="sponsors" label="Sponsors" Icon={Trophy} />
               <Divider />
-              <NavItem
-                id="registrationcard"
-                label="Register"
-                Icon={User}
-                isRegister={true}
-              />
+
               <NavItem
                 id="leaderboard"
                 label="LeaderBoard"
@@ -173,12 +167,7 @@ const NavbarDemo = () => {
               <NavItem id="projects" label="Projects" Icon={BookOpen} isMobile={true} />
               <NavItem id="sponsors" label="Sponsors" Icon={Trophy} isMobile={true} />
               <div className="h-px w-full bg-gray-400/30 dark:bg-gray-600/30 my-2" />
-              <NavItem
-                id="registrationcard"
-                label="Register"
-                Icon={User}
-                isRegister={true}
-              />
+
               <NavItem
                 id="leaderboard"
                 label="LeaderBoard"
