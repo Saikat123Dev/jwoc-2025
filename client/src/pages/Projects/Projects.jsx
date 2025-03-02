@@ -24,7 +24,7 @@ export default function Projects() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "https://jwoc-2025-1.onrender.com/api/mentor/project/getAllProjects"
+                    "https://jwoc-2025-2.onrender.com/api/mentor/project/getAllProjects"
                 );
                 const shuffledProjects = shuffleArray(response.data.projects);
                 setData(shuffledProjects);

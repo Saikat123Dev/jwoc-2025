@@ -23,7 +23,7 @@ const App = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://jwoc-2025-1.onrender.com/api/getALl");
+        const response = await fetch("https://jwoc-2025-2.onrender.com/api/getALl");
         const result = await response.json();
         let fetchedData = result.mentees;
         fetchedData = fetchedData.filter((d) => d.Ranking > 0).sort((a, b) => a.Ranking - b.Ranking);

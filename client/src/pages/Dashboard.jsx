@@ -33,7 +33,7 @@ const MentorDashboard = () => {
         // Get stored mentorId (either from URL or previously stored)
         const storedMentorId = localStorage.getItem("mentorId");
         console.log(storedMentorId)
-        const response = await axios.get("https://jwoc-2025-1.onrender.com/auth/user", {
+        const response = await axios.get("https://jwoc-2025-2.onrender.com/auth/user", {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${storedMentorId}`,
@@ -79,7 +79,7 @@ const MentorDashboard = () => {
   const logout = async () => {
     try {
       const mentorId = localStorage.getItem("mentorId");
-      await axios.get("https://jwoc-2025-1.onrender.com/auth/logout", {
+      await axios.get("https://jwoc-2025-2.onrender.com/auth/logout", {
         withCredentials: true,
         headers: {
           'Authorization': `Bearer ${mentorId || ''}`
