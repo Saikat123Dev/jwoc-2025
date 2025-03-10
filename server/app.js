@@ -222,17 +222,17 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 
   // Schedule leaderboard update every 30 minutes (30 * 60 * 1000 milliseconds)
-  setInterval(async () => {
-    try {
-      console.log("Starting scheduled leaderboard update...");
-      // Import fetchAllData from your module
-      const { fetchAllData } = require("./src/router/leaderboard/generate.js");
-      await fetchAllData();
-      console.log("Leaderboard updated successfully!");
-    } catch (error) {
-      console.error("Error updating leaderboard:", error);
-    }
-  },10);
+  // setInterval(async () => {
+  //   try {
+  //     console.log("Starting scheduled leaderboard update...");
+  //     // Import fetchAllData from your module
+  //     const { fetchAllData } = require("./src/router/leaderboard/generate.js");
+  //     await fetchAllData();
+  //     console.log("Leaderboard updated successfully!");
+  //   } catch (error) {
+  //     console.error("Error updating leaderboard:", error);
+  //   }
+  // },10);
 });
 
 // app.listen(PORT, async () => {
