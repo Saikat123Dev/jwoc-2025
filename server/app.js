@@ -226,22 +226,22 @@ app.listen(PORT, () => {
     try {
       console.log("Starting scheduled leaderboard update...");
       // Import fetchAllData from your module
-      const { fetchAllData } = require("./src/router/leaderboard/generate.js"); 
+      const { fetchAllData } = require("./src/router/leaderboard/generate.js");
       await fetchAllData();
       console.log("Leaderboard updated successfully!");
     } catch (error) {
       console.error("Error updating leaderboard:", error);
     }
-  }, 60*30*1000);
+  },10);
 });
 
 // app.listen(PORT, async () => {
 //   console.log(`Server running on port ${PORT}`);
-  
+
 //     try {
 //       console.log("Starting scheduled leaderboard update...");
 //       // Import fetchAllData from your module
-//       const { fetchAllData } = require("./src/router/leaderboard/generate.js"); 
+//       const { fetchAllData } = require("./src/router/leaderboard/generate.js");
 //       await fetchAllData();
 //       console.log("Leaderboard updated successfully!");
 //     } catch (error) {
