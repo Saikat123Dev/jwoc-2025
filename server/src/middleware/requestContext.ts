@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 import logger from '@/config/logger';
 import { RequestContext } from '@/types/api';
 
@@ -12,7 +12,7 @@ declare global {
 }
 
 export const requestContext = (req: Request, res: Response, next: NextFunction): void => {
-  const requestId = uuidv4();
+  const requestId = randomUUID();
   const startTime = Date.now();
   
   req.context = {

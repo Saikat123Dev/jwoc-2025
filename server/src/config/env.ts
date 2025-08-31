@@ -6,7 +6,7 @@ dotenv.config();
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-  PORT: z.string().transform(Number).default(3000),
+  PORT: z.string().transform(Number).default('3000'),
   
   // Database
   DATABASE_URL: z.string(),
@@ -25,17 +25,17 @@ const envSchema = z.object({
   KAFKA_CLIENT_ID: z.string().default('social-backend'),
   
   // Rate Limiting
-  RATE_LIMIT_WINDOW_MS: z.string().transform(Number).default(900000),
-  RATE_LIMIT_MAX_REQUESTS: z.string().transform(Number).default(100),
+  RATE_LIMIT_WINDOW_MS: z.string().transform(Number).default('900000'),
+  RATE_LIMIT_MAX_REQUESTS: z.string().transform(Number).default('100'),
   
   // File Upload
-  MAX_FILE_SIZE: z.string().transform(Number).default(10485760),
+  MAX_FILE_SIZE: z.string().transform(Number).default('10485760'),
   UPLOAD_DIR: z.string().default('uploads'),
   
   // Observability
   LOG_LEVEL: z.enum(['error', 'warn', 'info', 'debug']).default('info'),
-  ENABLE_METRICS: z.string().transform(val => val === 'true').default(true),
-  ENABLE_TRACING: z.string().transform(val => val === 'true').default(true),
+  ENABLE_METRICS: z.string().transform(val => val === 'true').default('true'),
+  ENABLE_TRACING: z.string().transform(val => val === 'true').default('true'),
   
   // S3 Compatible Storage
   S3_ENDPOINT: z.string().optional(),

@@ -1,5 +1,3 @@
-import { User, Post, Comment, Reaction, Follow, FeedItem, Notification } from '@prisma/client';
-
 // User DTOs
 export interface UserProfileDto {
   id: string;
