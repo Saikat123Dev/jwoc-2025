@@ -1,97 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model Mentee {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  type        String   @default("Mentee")
-  name        String
-  gender      String   @default("Prefer not to say")
-  email       String   @unique
-  phone       String
-  whatsapp    String
-  ipAddress   String?
-  ipDetails   Json?
-  college     String
-  year        String
-  github      String
-  linkedIn    String?
-  question1   String   @default("What inspired you to join?")
-  answer1     String
-  isBanned    Boolean  @default(false)
-  TotalPoints Int      @default(0)
-  Ranking     Int      @default(0)
-  pr_urls     Json     @default("[]") // Stores PR details as JSON
+model User {
+  id        String   @id @default(cuid())
+  handle    String   @unique
+  name      String
+  email     String   @unique
+  bio       String?
+  avatarUrl String?  @map("avatar_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  // Relations
+  posts         Post[]
+  comments      Comment[]
+  reactions     Reaction[]
+  feedItems     FeedItem[]
+  followers     Follow[] @relation("UserFollowers")
+  following     Follow[] @relation("UserFollowing")
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  followerId  String   @map("follower_id")
+  followeeId  String   @map("followee_id")
   createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  follower User @relation("UserFollowers", fields: [followerId], references: [id], onDelete: Cascade)
+  followee User @relation("UserFollowing", fields: [followeeId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followeeId])
+  @@index([followerId])
+  @@index([followeeId])
+  @@map("follows")
 }
 
-model Mentor {
-  id   String  @id @default(auto()) @map("_id") @db.ObjectId
-  type String  @default("Mentor")
-  name String?
-
-  email        String  @unique
-  isRegistered Boolean @default(false)
-
-  phone               String?
-  whatsapp            String?
-  gender              String               @default("Prefer not to say")
-  ipAddress           String?
-  college             String?
-  year                String?
-  githubLink          String?
-  linkedIn            String?
-  RegisteredProjectId String[]             @db.ObjectId
-  acceptedProjectId   String[]             @db.ObjectId
-  PRMerged            Int                  @default(0)
-  question1           String               @default("Why do you want to mentor?")
-  answer1             String?
-  question2           String               @default("What is your most valuable skill?")
-  answer2             String?
-  isSelected          Boolean              @default(false)
-  isBanned            Boolean              @default(false)
-  projectNumber       Int?                 @default(0)
-  forgotPasswordToken String?
-  createdAt           DateTime             @default(now()) @map("created_at")
-  updatedAt           DateTime             @updatedAt @map("updated_at")
-  Project             Project[]            @relation("MentorProjects")
-  oauthAccounts       MentorOAuthAccount[]
+enum PostVisibility {
+  PUBLIC
+  FOLLOWERS
+  PRIVATE
 }
 
-model MentorOAuthAccount {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  mentorId     String  @db.ObjectId
-  provider     String // 'google' or 'github'
-  providerId   String // Unique ID from OAuth provider
-  accessToken  String?
-  refreshToken String?
+model Post {
+  id          String         @id @default(cuid())
+  authorId    String         @map("author_id")
+  body        String
+  mediaUrls   Json?          @map("media_urls")
+  visibility  PostVisibility @default(PUBLIC)
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
 
-  mentor Mentor @relation(fields: [mentorId], references: [id])
+  // Relations
+  author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments  Comment[]
+  reactions Reaction[]
+  feedItems FeedItem[]
 
-  @@unique([provider, providerId])
-  @@index([mentorId])
+  @@index([authorId])
+  @@index([createdAt])
+  @@map("posts")
 }
 
-model Project {
-  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
-  projectName        String
-  projectLink        String?
-  projectDescription String
-  isDeleted          Boolean  @default(false)
-  projectTypes       String
-  projectTags        String[]
-  projectOwner       Mentor   @relation(fields: [projectOwnerId], references: [id], name: "MentorProjects")
-  projectOwnerId     String   @db.ObjectId
-  projectMentors     String[]
-  GitHubLink         String
-  PRMerged           Int      @default(0)
-  isSelected         Boolean  @default(false)
-  createdAt          DateTime @default(now()) @map("created_at")
-  updatedAt          DateTime @updatedAt @map("updated_at")
+enum ReactionType {
+  LIKE
+  LOVE
+  LAUGH
+  ANGRY
+  SAD
+}
+
+model Reaction {
+  id        String      @id @default(cuid())
+  userId    String      @map("user_id")
+  postId    String      @map("post_id")
+  type      ReactionType
+  createdAt DateTime    @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@index([postId])
+  @@map("reactions")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  postId    String   @map("post_id")
+  authorId  String   @map("author_id")
+  body      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@index([authorId])
+  @@map("comments")
+}
+
+model FeedItem {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  postId    String   @map("post_id")
+  rank      Float    @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@index([userId, rank])
+  @@map("feed_items")
+}
+
+enum NotificationType {
+  FOLLOW
+  LIKE
+  COMMENT
+  MENTION
+}
+
+model Notification {
+  id         String           @id @default(cuid())
+  userId     String           @map("user_id")
+  type       NotificationType
+  title      String
+  message    String
+  read       Boolean          @default(false)
+  metadata   Json?
+  createdAt  DateTime         @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, read])
+  @@index([createdAt])
+  @@map("notifications")
 }
