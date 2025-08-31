@@ -1,0 +1,2 @@
+# Provider specification file
+provider = "postgresql"
